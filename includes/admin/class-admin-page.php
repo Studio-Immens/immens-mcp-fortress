@@ -19,7 +19,7 @@ class Admin_Page {
 			'manage_options',
 			'immens-mcp-fortress',
 			array( $this, 'render_dashboard' ),
-			'dashicons-shield',
+			'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAr0lEQVR4nGNgGCggP+v/f6oZhI7JNegZkgFwjGTwE7JchWwYFkPxuxarQcc3YqcJGYzVIGRDsPHRDMZt4LENxBno70akgUi2oxiG5jIYmzgD9TQhbFVFVMO4OCHimXEkGohOo3uZJBciG6KngWpgQQoZkYItzLC5liQXOlnhjl0Q1lQhwYX2FthjFVt44jIQb04hkKDJy4Lk5GU0Qy8TKG3OEW0YLtdSVB5iM5gYdQBkFePAi1EtPQAAAABJRU5ErkJggg==',
 			30
 		);
 	}
