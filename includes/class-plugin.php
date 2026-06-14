@@ -250,8 +250,8 @@ class Plugin {
 	}
 
 	public function handle_oauth_authorize_request() {
-		$oauth_param = isset( $_GET['immens_mcp_fortress_oauth'] )
-			? sanitize_text_field( wp_unslash( $_GET['immens_mcp_fortress_oauth'] ) ) // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$oauth_param = isset( $_GET['immens_mcp_fortress_oauth'] ) // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			? sanitize_text_field( wp_unslash( $_GET['immens_mcp_fortress_oauth'] ) )
 			: '';
 
 		if ( 'authorize' !== $oauth_param ) {
@@ -273,13 +273,13 @@ class Plugin {
 		require_once IMMENS_MCP_FORTRESS_PLUGIN_DIR . 'includes/oauth/class-token-endpoint.php';
 		require_once IMMENS_MCP_FORTRESS_PLUGIN_DIR . 'includes/oauth/class-authorization-endpoint.php';
 
-		$method  = isset( $_SERVER['REQUEST_METHOD'] )
+		$method  = isset( $_SERVER['REQUEST_METHOD'] ) // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.NonceVerification.Recommended
 			? strtoupper( sanitize_text_field( wp_unslash( $_SERVER['REQUEST_METHOD'] ) ) )
 			: 'GET';
 		$request = new \WP_REST_Request( $method );
 
 		if ( 'POST' === $method ) {
-			$request->set_body_params( isset( $_POST ) ? wp_unslash( $_POST ) : array() );
+			$request->set_body_params( isset( $_POST ) ? wp_unslash( $_POST ) : array() ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
 		} else {
 			$request->set_query_params( isset( $_GET ) ? wp_unslash( $_GET ) : array() );
 		}
@@ -346,8 +346,8 @@ class Plugin {
 		$i = 0;
 		do {
 			$table = esc_sql( $wpdb->prefix . 'immens_mcp_audit_log' );
-			$deleted = $wpdb->query( $wpdb->prepare(
-				"DELETE FROM `{$table}` WHERE created_at < DATE_SUB(UTC_TIMESTAMP(), INTERVAL %d DAY) LIMIT 500",
+			$deleted = $wpdb->query( $wpdb->prepare( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
+				"DELETE FROM `{$table}` WHERE created_at < DATE_SUB(UTC_TIMESTAMP(), INTERVAL %d DAY) LIMIT 500", // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 				$retention
 			) );
 		} while ( $deleted > 0 && ++$i < self::CLEANUP_MAX_ITERATIONS );
@@ -361,8 +361,8 @@ class Plugin {
 		$table = esc_sql( $wpdb->prefix . 'immens_mcp_sessions' );
 		$i = 0;
 		do {
-			$deleted = $wpdb->query(
-				"DELETE FROM `{$table}` WHERE expires_at < UTC_TIMESTAMP() LIMIT 500"
+			$deleted = $wpdb->query( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
+				"DELETE FROM `{$table}` WHERE expires_at < UTC_TIMESTAMP() LIMIT 500" // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 			);
 		} while ( $deleted > 0 && ++$i < self::CLEANUP_MAX_ITERATIONS );
 	}
@@ -377,15 +377,15 @@ class Plugin {
 
 		$i = 0;
 		do {
-			$deleted = $wpdb->query(
-				"DELETE FROM `{$codes_table}` WHERE expires_at < DATE_SUB(UTC_TIMESTAMP(), INTERVAL 1 DAY) LIMIT 500"
+			$deleted = $wpdb->query( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
+				"DELETE FROM `{$codes_table}` WHERE expires_at < DATE_SUB(UTC_TIMESTAMP(), INTERVAL 1 DAY) LIMIT 500" // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 			);
 		} while ( $deleted > 0 && ++$i < self::CLEANUP_MAX_ITERATIONS );
 
 		$i = 0;
 		do {
-			$deleted = $wpdb->query(
-				"DELETE FROM `{$tokens_table}` WHERE is_active = 0 AND COALESCE(refresh_expires_at, expires_at) < DATE_SUB(UTC_TIMESTAMP(), INTERVAL 7 DAY) LIMIT 500"
+			$deleted = $wpdb->query( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
+				"DELETE FROM `{$tokens_table}` WHERE is_active = 0 AND COALESCE(refresh_expires_at, expires_at) < DATE_SUB(UTC_TIMESTAMP(), INTERVAL 7 DAY) LIMIT 500" // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 			);
 		} while ( $deleted > 0 && ++$i < self::CLEANUP_MAX_ITERATIONS );
 	}

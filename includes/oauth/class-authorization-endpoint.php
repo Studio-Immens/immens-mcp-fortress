@@ -52,7 +52,7 @@ class Authorization_Endpoint {
 
 		global $wpdb;
 		$table = $wpdb->prefix . 'immens_mcp_oauth_codes';
-		$wpdb->insert( $table, array(
+		$wpdb->insert( $table, array( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 			'code_hash'             => hash( 'sha256', $code ),
 			'client_id'             => $client_id,
 			'wp_user_id'            => get_current_user_id(),

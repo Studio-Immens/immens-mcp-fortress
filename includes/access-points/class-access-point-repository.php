@@ -35,7 +35,7 @@ class Access_Point_Repository {
 			'updated_at'      => current_time( 'mysql', true ),
 		);
 
-		$result = $wpdb->insert( $this->table, $insert_data );
+		$result = $wpdb->insert( $this->table, $insert_data ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 
 		if ( false === $result ) {
 			return new \WP_Error(
@@ -60,7 +60,7 @@ class Access_Point_Repository {
 			return $cached;
 		}
 
-		$row = $wpdb->get_row(
+		$row = $wpdb->get_row( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 			$wpdb->prepare( "SELECT * FROM `{$this->table}` WHERE id = %d", absint( $id ) ),
 			ARRAY_A
 		);
@@ -81,7 +81,7 @@ class Access_Point_Repository {
 			return $cached;
 		}
 
-		$row = $wpdb->get_row(
+		$row = $wpdb->get_row( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 			$wpdb->prepare(
 				"SELECT * FROM `{$this->table}` WHERE api_key_hash = %s AND is_enabled = 1",
 				$key_hash
@@ -99,7 +99,7 @@ class Access_Point_Repository {
 	public function get_all( $limit = 50, $offset = 0 ) {
 		global $wpdb;
 
-		return $wpdb->get_results(
+		return $wpdb->get_results( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 			$wpdb->prepare(
 				"SELECT id, name, api_key_prefix, is_enabled, ip_whitelist, tool_permissions, wp_user_id, rate_limit, is_pro, created_at, updated_at, last_used_at FROM `{$this->table}` ORDER BY created_at DESC LIMIT %d OFFSET %d",
 				absint( $limit ),
@@ -111,7 +111,7 @@ class Access_Point_Repository {
 
 	public function count() {
 		global $wpdb;
-		return (int) $wpdb->get_var( "SELECT COUNT(*) FROM `{$this->table}`" );
+		return (int) $wpdb->get_var( "SELECT COUNT(*) FROM `{$this->table}`" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 	}
 
 	public function update( $id, array $data ) {
@@ -151,7 +151,7 @@ class Access_Point_Repository {
 			$formats[] = '%d';
 		}
 
-		return $wpdb->update(
+		return $wpdb->update( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 			$this->table,
 			$update,
 			array( 'id' => absint( $id ) ),
@@ -169,7 +169,7 @@ class Access_Point_Repository {
 		$key_hash = hash( 'sha256', $raw_key );
 		$key_pfx  = substr( $raw_key, 0, 18 );
 
-		$wpdb->update(
+		$wpdb->update( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 			$this->table,
 			array(
 				'api_key_hash'   => $key_hash,
@@ -190,12 +190,12 @@ class Access_Point_Repository {
 	public function delete( $id ) {
 		global $wpdb;
 		$this->invalidate_cache( $id );
-		return $wpdb->delete( $this->table, array( 'id' => absint( $id ) ), array( '%d' ) );
+		return $wpdb->delete( $this->table, array( 'id' => absint( $id ) ), array( '%d' ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 	}
 
 	public function update_last_used( $id ) {
 		global $wpdb;
-		$wpdb->query( $wpdb->prepare(
+		$wpdb->query( $wpdb->prepare( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 			"UPDATE `{$this->table}` SET last_used_at = UTC_TIMESTAMP() WHERE id = %d AND (last_used_at IS NULL OR last_used_at < DATE_SUB(UTC_TIMESTAMP(), INTERVAL 5 MINUTE))",
 			absint( $id )
 		) );

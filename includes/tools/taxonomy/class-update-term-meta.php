@@ -38,11 +38,11 @@ class Update_Term_Meta extends Base_Tool {
 					'type'        => 'integer',
 					'description' => 'Term ID',
 				),
-				'meta_key'   => array(
+				'meta_key'   => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
 					'type'        => 'string',
 					'description' => 'Meta key',
 				),
-				'meta_value' => array(
+				'meta_value' => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
 					'type'        => 'string',
 					'description' => 'Meta value',
 				),

@@ -33,7 +33,7 @@ class Delete_Post_Meta extends Base_Tool {
 					'type'        => 'integer',
 					'description' => 'Post ID',
 				),
-				'meta_key' => array(
+				'meta_key' => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
 					'type'        => 'string',
 					'description' => 'Meta key to delete',
 				),
@@ -52,8 +52,8 @@ class Delete_Post_Meta extends Base_Tool {
 
 		if ( false === $result ) {
 			throw new \RuntimeException(
-				sprintf( 'Failed to delete meta key "%s" for post %d.', $meta_key, $post_id )
-) ; // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
+				sprintf( 'Failed to delete meta key "%s" for post %d.', $meta_key, $post_id ) // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
+			);
 		}
 
 		$this->invalidate_post_cache( $post_id );
@@ -61,7 +61,7 @@ class Delete_Post_Meta extends Base_Tool {
 		return array(
 			'success'  => true,
 			'post_id'  => $post_id,
-			'meta_key' => $meta_key,
+			'meta_key' => $meta_key, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
 			'deleted'  => $result,
 		);
 	}

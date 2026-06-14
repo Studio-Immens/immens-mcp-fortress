@@ -72,7 +72,7 @@ class List_Cpt_Items extends Base_Tool {
 
 		if ( ! post_type_exists( $post_type ) ) {
 			throw new \InvalidArgumentException(
-				sprintf( 'Post type "%s" does not exist or is not registered.', $post_type )
+				sprintf( 'Post type "%s" does not exist or is not registered.', $post_type ) // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
 ) ; // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
 		}
 

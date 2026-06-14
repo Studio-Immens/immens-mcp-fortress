@@ -69,16 +69,16 @@ class Add_Post_Terms extends Base_Tool {
 
 		if ( is_wp_error( $result ) ) {
 			throw new \RuntimeException(
-				$result->get_error_message()
-) ; // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
+				$result->get_error_message() // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
+			);
 		}
 
 		$this->invalidate_post_cache( $post_id );
 
 		return array(
-			'success'          => true,
-			'post_id'          => $post_id,
-			'taxonomy'         => $taxonomy,
+			'success'           => true,
+			'post_id'           => $post_id,
+			'taxonomy'          => $taxonomy,
 			'assigned_term_ids' => $result,
 		);
 	}

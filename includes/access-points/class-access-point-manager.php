@@ -14,12 +14,12 @@ class Access_Point_Manager {
 	}
 
 	public function create_access_point( $name, $wp_user_id = 0, $tool_permissions = null, $ip_whitelist = '', $rate_limit = 60 ) {
-		$limit = apply_filters( 'imf_access_point_limit', 2 );
+		$limit = apply_filters( 'imf_access_point_limit', 2 ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 		if ( $limit > 0 && $this->repository->count() >= $limit ) {
 			return new \WP_Error(
 				'access_point_limit',
-				/* translators: %d: access point limit number */
 				sprintf(
+					/* translators: %d: access point limit number */
 					__( 'Free tier limited to %d access points. Upgrade to Immens MCP Fortress Pro for unlimited.', 'immens-mcp-fortress' ),
 					$limit
 				)

@@ -378,7 +378,7 @@ class Server {
 			return;
 		}
 		global $wpdb;
-		$wpdb->insert(
+		$wpdb->insert( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 			$wpdb->prefix . 'immens_mcp_audit_log',
 			array(
 				'access_point_id' => 0,
@@ -398,7 +398,7 @@ class Server {
 		}
 		global $wpdb;
 		$safe_args = self::redact_sensitive_args( $arguments );
-		$wpdb->insert(
+		$wpdb->insert( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 			$wpdb->prefix . 'immens_mcp_audit_log',
 			array(
 				'access_point_id' => $access_point_id ? (int) $access_point_id : 0,
@@ -418,7 +418,7 @@ class Server {
 			return;
 		}
 		global $wpdb;
-		$wpdb->update(
+		$wpdb->update( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 			$wpdb->prefix . 'immens_mcp_audit_log',
 			array( 'result_status' => $status ),
 			array( 'id' => (int) $audit_id ),

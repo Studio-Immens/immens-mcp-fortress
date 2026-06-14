@@ -42,11 +42,11 @@ class Update_Post_Meta extends Base_Tool {
 					'type'        => 'integer',
 					'description' => 'Post ID',
 				),
-				'meta_key'   => array(
+				'meta_key'   => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
 					'type'        => 'string',
 					'description' => 'Meta key',
 				),
-				'meta_value' => array(
+				'meta_value' => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
 					'type'        => 'string',
 					'description' => 'Meta value',
 				),
@@ -66,8 +66,8 @@ class Update_Post_Meta extends Base_Tool {
 
 		if ( false === $result ) {
 			throw new \RuntimeException(
-				sprintf( 'Failed to update meta key "%s" for post %d.', $meta_key, $post_id )
-) ; // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
+				sprintf( 'Failed to update meta key "%s" for post %d.', $meta_key, $post_id ) // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
+			);
 		}
 
 		$this->invalidate_post_cache( $post_id );
@@ -75,7 +75,7 @@ class Update_Post_Meta extends Base_Tool {
 		return array(
 			'success' => true,
 			'post_id' => $post_id,
-			'meta_key' => $meta_key,
+			'meta_key' => $meta_key, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
 		);
 	}
 }

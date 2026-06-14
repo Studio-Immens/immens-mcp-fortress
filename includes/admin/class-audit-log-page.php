@@ -27,57 +27,57 @@ class Audit_Log_Page {
 		$table = $wpdb->prefix . 'immens_mcp_audit_log';
 
 		$per_page = 20;
-		$current_page = isset( $_GET['paged'] ) ? max( 1, absint( $_GET['paged'] ) ) : 1; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$current_page = isset( $_GET['paged'] ) ? max( 1, absint( $_GET['paged'] ) ) : 1; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		$offset = ( $current_page - 1 ) * $per_page;
 
 		$where = array( '1=1' );
 		$where_args = array();
 
-		$filter_tool = isset( $_GET['tool_name'] ) ? sanitize_text_field( wp_unslash( $_GET['tool_name'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$filter_tool = isset( $_GET['tool_name'] ) ? sanitize_text_field( wp_unslash( $_GET['tool_name'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if ( $filter_tool ) {
 			$where[] = 'tool_name LIKE %s';
 			$where_args[] = '%' . $wpdb->esc_like( $filter_tool ) . '%';
 		}
 
-		$filter_status = isset( $_GET['status'] ) ? sanitize_text_field( wp_unslash( $_GET['status'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$filter_status = isset( $_GET['status'] ) ? sanitize_text_field( wp_unslash( $_GET['status'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if ( $filter_status ) {
 			$where[] = 'result_status = %s';
 			$where_args[] = $filter_status;
 		}
 
-		$filter_date = isset( $_GET['date_from'] ) ? sanitize_text_field( wp_unslash( $_GET['date_from'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$filter_date = isset( $_GET['date_from'] ) ? sanitize_text_field( wp_unslash( $_GET['date_from'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if ( $filter_date ) {
 			$where[] = 'created_at >= %s';
 			$where_args[] = $filter_date . ' 00:00:00';
 		}
 
-		$where_sql = implode( ' AND ', $where );
+		$where_sql = implode( ' AND ', $where ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 		$table_escaped = esc_sql( $table );
 
 		if ( ! empty( $where_args ) ) {
-			$total_query = "SELECT COUNT(*) FROM `{$table_escaped}` WHERE {$where_sql}";
-			$total = (int) $wpdb->get_var( $wpdb->prepare( $total_query, $where_args ) );
+			$total = (int) $wpdb->get_var( $wpdb->prepare(
+				"SELECT COUNT(*) FROM `{$table_escaped}` WHERE {$where_sql}", // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+				$where_args
+			) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare
 		} else {
-			$total = (int) $wpdb->get_var( "SELECT COUNT(*) FROM `{$table_escaped}`" );
+			$total = (int) $wpdb->get_var( "SELECT COUNT(*) FROM `{$table_escaped}`" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 		}
 
-		if ( ! empty( $where_args ) ) {
-			$query = $wpdb->prepare(
-				"SELECT * FROM `{$table_escaped}` WHERE {$where_sql} ORDER BY created_at DESC LIMIT %d OFFSET %d",
+		$query = ! empty( $where_args )
+			? $wpdb->prepare(
+				"SELECT * FROM `{$table_escaped}` WHERE {$where_sql} ORDER BY created_at DESC LIMIT %d OFFSET %d", // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 				array_merge( $where_args, array( $per_page, $offset ) )
-			);
-		} else {
-			$query = $wpdb->prepare(
-				"SELECT * FROM `{$table_escaped}` ORDER BY created_at DESC LIMIT %d OFFSET %d",
+			)
+			: $wpdb->prepare(
+				"SELECT * FROM `{$table_escaped}` ORDER BY created_at DESC LIMIT %d OFFSET %d", // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 				$per_page,
 				$offset
 			);
-		}
-		$rows = $wpdb->get_results( $query, ARRAY_A );
+		$rows = $wpdb->get_results( $query, ARRAY_A ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.NotPrepared
 
 		$total_pages = ceil( $total / $per_page );
 
-		$statuses = $wpdb->get_col( "SELECT DISTINCT result_status FROM `{$table}` ORDER BY result_status" );
+		$statuses = $wpdb->get_col( "SELECT DISTINCT result_status FROM `{$table_escaped}` ORDER BY result_status" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 		?>
 		<div class="wrap">
 			<h1><?php esc_html_e( 'Audit Log', 'immens-mcp-fortress' ); ?></h1>

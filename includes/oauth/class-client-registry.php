@@ -11,7 +11,7 @@ class Client_Registry {
 		global $wpdb;
 		$table = $wpdb->prefix . 'immens_mcp_oauth_clients';
 
-		$wpdb->insert( $table, array(
+		$wpdb->insert( $table, array( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 			'client_id'    => $client_id,
 			'client_name'  => $client_name,
 			'redirect_uris' => wp_json_encode( $redirect_uris ),
@@ -25,8 +25,8 @@ class Client_Registry {
 	public function get_client( $client_id ) {
 		global $wpdb;
 		$table = $wpdb->prefix . 'immens_mcp_oauth_clients';
-		return $wpdb->get_row( $wpdb->prepare(
-			"SELECT * FROM `{$table}` WHERE client_id = %s",
+		return $wpdb->get_row( $wpdb->prepare( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
+			"SELECT * FROM `{$table}` WHERE client_id = %s", // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 			$client_id
 		), ARRAY_A );
 	}

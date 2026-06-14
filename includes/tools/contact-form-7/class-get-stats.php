@@ -87,8 +87,8 @@ class Get_Stats extends Base_Tool {
 		$query = new \WP_Query( array(
 			'post_type'      => 'flamingo_inbound',
 			'post_status'    => 'any',
-			'meta_key'       => '_cf7_form_id',
-			'meta_value'     => $form_id,
+			'meta_key'       => '_cf7_form_id', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
+			'meta_value'     => $form_id, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
 			'fields'         => 'ids',
 			'posts_per_page' => -1,
 		) );

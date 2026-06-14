@@ -15,7 +15,7 @@ class Session {
 		$session_id = bin2hex( random_bytes( 32 ) );
 		$table = $wpdb->prefix . 'immens_mcp_sessions';
 
-		$wpdb->insert(
+		$wpdb->insert( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 			$table,
 			array(
 				'session_id'       => $session_id,
@@ -41,9 +41,9 @@ class Session {
 
 		$table = $wpdb->prefix . 'immens_mcp_sessions';
 
-		$row = $wpdb->get_row(
+		$row = $wpdb->get_row( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 			$wpdb->prepare(
-				"SELECT * FROM `{$table}` WHERE session_id = %s AND expires_at > UTC_TIMESTAMP()",
+				"SELECT * FROM `{$table}` WHERE session_id = %s AND expires_at > UTC_TIMESTAMP()", // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 				$session_id
 			),
 			ARRAY_A
@@ -56,7 +56,7 @@ class Session {
 		global $wpdb;
 		$table = $wpdb->prefix . 'immens_mcp_sessions';
 
-		$wpdb->update(
+		$wpdb->update( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 			$table,
 			array( 'expires_at' => gmdate( 'Y-m-d H:i:s', time() + self::SESSION_TTL ) ),
 			array( 'session_id' => $session_id ),
@@ -68,7 +68,7 @@ class Session {
 	public function destroy( $session_id ) {
 		global $wpdb;
 		$table = $wpdb->prefix . 'immens_mcp_sessions';
-		$wpdb->delete( $table, array( 'session_id' => $session_id ), array( '%s' ) );
+		$wpdb->delete( $table, array( 'session_id' => $session_id ), array( '%s' ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 	}
 
 	public static function is_valid_format( $session_id ) {

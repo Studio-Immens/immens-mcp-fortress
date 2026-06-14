@@ -38,7 +38,7 @@ class Delete_Term_Meta extends Base_Tool {
 					'type'        => 'integer',
 					'description' => 'Term ID',
 				),
-				'meta_key' => array(
+				'meta_key' => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
 					'type'        => 'string',
 					'description' => 'Meta key to delete',
 				),

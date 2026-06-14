@@ -63,8 +63,8 @@ class List_Submissions extends Base_Tool {
 		);
 
 		if ( $form_id > 0 ) {
-			$query_args['meta_key']   = '_cf7_form_id';
-			$query_args['meta_value'] = $form_id;
+			$query_args['meta_key']   = '_cf7_form_id'; // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
+			$query_args['meta_value'] = $form_id; // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
 		}
 
 		$submissions = get_posts( $query_args );
