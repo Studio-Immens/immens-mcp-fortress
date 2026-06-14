@@ -85,7 +85,7 @@ class Upload_Media extends Base_Tool {
 		if ( ! copy( $file_path, $tmp_path ) ) {
 			$tmp_path = $tmp_dir . wp_generate_uuid4() . '-' . $filename;
 			if ( ! copy( $file_path, $tmp_path ) ) {
-				throw new \RuntimeException( 'Failed to copy file to temp directory.' );
+				throw new \RuntimeException( 'Failed to copy file to temp directory.' ) // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped;
 			}
 		}
 
@@ -100,11 +100,11 @@ class Upload_Media extends Base_Tool {
 		$movefile  = wp_handle_sideload( $file, $overrides );
 
 		if ( $tmp_file && file_exists( $tmp_file ) ) {
-			@unlink( $tmp_file );
+			@wp_delete_file( $tmp_file );
 		}
 
 		if ( isset( $movefile['error'] ) ) {
-			throw new \RuntimeException( $movefile['error'] );
+			throw new \RuntimeException( $movefile['error'] ) // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped;
 		}
 
 		$attachment = array(
@@ -117,7 +117,7 @@ class Upload_Media extends Base_Tool {
 		$attach_id = wp_insert_attachment( $attachment, $movefile['file'] );
 
 		if ( is_wp_error( $attach_id ) ) {
-			throw new \RuntimeException( $attach_id->get_error_message() );
+			throw new \RuntimeException( $attach_id->get_error_message() // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped );
 		}
 
 		if ( ! function_exists( 'wp_generate_attachment_metadata' ) ) {
@@ -143,7 +143,7 @@ class Upload_Media extends Base_Tool {
 
 		if ( $response->is_error() ) {
 			$error = $response->as_error();
-			throw new \RuntimeException( $error->get_error_message() ); // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
+			throw new \RuntimeException( $error->get_error_message() // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped ); // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
 		}
 
 		return $response->get_data();

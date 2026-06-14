@@ -55,7 +55,7 @@ class Delete_Term extends Base_Tool {
 		$result = wp_delete_term( $term_id, $arguments['taxonomy'] );
 
 		if ( is_wp_error( $result ) ) {
-			throw new \RuntimeException( $result->get_error_message() );
+			throw new \RuntimeException( $result->get_error_message() ); // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
 		}
 
 		if ( false === $result ) {

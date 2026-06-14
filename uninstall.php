@@ -5,7 +5,7 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 
 global $wpdb;
 
-$tables = array(
+$tables = array( // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 	'immens_mcp_access_points',
 	'immens_mcp_audit_log',
 	'immens_mcp_sessions',
@@ -15,11 +15,11 @@ $tables = array(
 	'immens_mcp_oauth_tokens',
 );
 
-foreach ( $tables as $table ) {
-	$wpdb->query( "DROP TABLE IF EXISTS `{$wpdb->prefix}{$table}`" );
+foreach ( $tables as $table ) { // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+	$wpdb->query( "DROP TABLE IF EXISTS `{$wpdb->prefix}{$table}`" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.DirectDatabaseQuery.SchemaChange
 }
 
-$options = array(
+$options = array( // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 	'immens_mcp_fortress_rate_limit',
 	'immens_mcp_fortress_audit_log_enabled',
 	'immens_mcp_fortress_audit_log_retention',
@@ -31,7 +31,7 @@ $options = array(
 	'immens_mcp_fortress_admin_language',
 );
 
-foreach ( $options as $option ) {
+foreach ( $options as $option ) { // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 	delete_option( $option );
 }
 

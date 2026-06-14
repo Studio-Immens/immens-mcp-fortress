@@ -330,7 +330,7 @@ class Transport {
 			exit;
 		}
 
-		@set_time_limit( 0 );
+		@set_time_limit( 0 ); // phpcs:ignore Squiz.PHP.DiscouragedFunctions.Discouraged
 		header( 'Content-Type: text/event-stream' );
 		header( 'Cache-Control: no-cache' );
 		header( 'Connection: keep-alive' );

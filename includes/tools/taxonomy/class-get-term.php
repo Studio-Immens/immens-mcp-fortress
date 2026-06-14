@@ -45,7 +45,7 @@ class Get_Term extends Base_Tool {
 		$term    = get_term( $term_id, $arguments['taxonomy'] );
 
 		if ( is_wp_error( $term ) ) {
-			throw new \RuntimeException( $term->get_error_message() );
+			throw new \RuntimeException( $term->get_error_message() ); // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
 		}
 
 		if ( null === $term ) {

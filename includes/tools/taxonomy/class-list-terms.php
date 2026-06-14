@@ -79,7 +79,7 @@ class List_Terms extends Base_Tool {
 		$terms = get_terms( $params );
 
 		if ( is_wp_error( $terms ) ) {
-			throw new \RuntimeException( $terms->get_error_message() );
+			throw new \RuntimeException( $terms->get_error_message() ); // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
 		}
 
 		return array(

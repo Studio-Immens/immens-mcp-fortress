@@ -121,9 +121,9 @@ class Settings_Page {
 		check_admin_referer( 'immens_mcp_save_settings' );
 
 		update_option( 'immens_mcp_fortress_force_draft_on_create', ! empty( $_POST['force_draft_on_create'] ) );
-		update_option( 'immens_mcp_fortress_max_title_length', isset( $_POST['max_title_length'] ) ? absint( $_POST['max_title_length'] ) : 0 );
+		update_option( 'immens_mcp_fortress_max_title_length', isset( $_POST['max_title_length'] ) ? absint( $_POST['max_title_length'] ) : 0 ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
 		update_option( 'immens_mcp_fortress_audit_log_enabled', ! empty( $_POST['audit_log_enabled'] ) );
-		update_option( 'immens_mcp_fortress_audit_log_retention', isset( $_POST['audit_log_retention'] ) ? max( 1, absint( $_POST['audit_log_retention'] ) ) : 30 );
+		update_option( 'immens_mcp_fortress_audit_log_retention', isset( $_POST['audit_log_retention'] ) ? max( 1, absint( $_POST['audit_log_retention'] ) ) : 30 ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
 
 		wp_safe_redirect( add_query_arg(
 			array( 'page' => 'immens-mcp-fortress-settings', 'saved' => 1 ),

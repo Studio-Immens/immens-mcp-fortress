@@ -57,7 +57,7 @@ class Upload_Media_Url extends Base_Tool {
 
 		$tmp = download_url( $url );
 		if ( is_wp_error( $tmp ) ) {
-			throw new \RuntimeException( $tmp->get_error_message() );
+			throw new \RuntimeException( $tmp->get_error_message() ) // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
 		}
 
 		$filename  = basename( $url );
@@ -73,8 +73,8 @@ class Upload_Media_Url extends Base_Tool {
 
 		$movefile = wp_handle_sideload( $file, $overrides );
 		if ( isset( $movefile['error'] ) ) {
-			@unlink( $tmp );
-			throw new \RuntimeException( $movefile['error'] );
+			@wp_delete_file( $tmp );
+			throw new \RuntimeException( $movefile['error'] ) // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped;
 		}
 
 		$attachment = array(
@@ -86,8 +86,8 @@ class Upload_Media_Url extends Base_Tool {
 
 		$attach_id = wp_insert_attachment( $attachment, $movefile['file'] );
 		if ( is_wp_error( $attach_id ) ) {
-			@unlink( $movefile['file'] );
-			throw new \RuntimeException( $attach_id->get_error_message() );
+			@wp_delete_file( $movefile['file'] );
+			throw new \RuntimeException( $attach_id->get_error_message() ) // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped;
 		}
 
 		if ( ! function_exists( 'wp_generate_attachment_metadata' ) ) {
@@ -113,7 +113,7 @@ class Upload_Media_Url extends Base_Tool {
 
 		if ( $response->is_error() ) {
 			$error = $response->as_error();
-			throw new \RuntimeException( $error->get_error_message() );
+			throw new \RuntimeException( $error->get_error_message() ) // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped;
 		}
 
 		return $response->get_data();

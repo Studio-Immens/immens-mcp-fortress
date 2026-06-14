@@ -45,7 +45,7 @@ class Trash_Comment extends Base_Tool {
 
 		$result = wp_trash_comment( $id );
 		if ( is_wp_error( $result ) ) {
-			throw new \RuntimeException( $result->get_error_message() );
+			throw new \RuntimeException( $result->get_error_message() ); // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
 		}
 
 		$params = array( 'context' => 'edit' );

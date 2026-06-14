@@ -60,7 +60,7 @@ class Export extends Base_Tool {
 		$mo_file  = $base_dir . $text_domain . '-' . $locale . '.mo';
 
 		if ( ! file_exists( $po_file ) ) {
-			throw new \RuntimeException( sprintf( 'PO file not found: %s', $po_file ) );
+			throw new \RuntimeException( sprintf( 'PO file not found: %s', $po_file ) ); // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
 		}
 
 		$mo_compiled = false;

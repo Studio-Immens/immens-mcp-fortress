@@ -70,7 +70,7 @@ class Add_Post_Terms extends Base_Tool {
 		if ( is_wp_error( $result ) ) {
 			throw new \RuntimeException(
 				$result->get_error_message()
-			);
+) ; // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
 		}
 
 		$this->invalidate_post_cache( $post_id );

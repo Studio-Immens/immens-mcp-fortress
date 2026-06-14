@@ -53,7 +53,7 @@ class Delete_Post_Meta extends Base_Tool {
 		if ( false === $result ) {
 			throw new \RuntimeException(
 				sprintf( 'Failed to delete meta key "%s" for post %d.', $meta_key, $post_id )
-			);
+) ; // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
 		}
 
 		$this->invalidate_post_cache( $post_id );

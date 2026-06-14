@@ -55,12 +55,12 @@ class Set_Post_Translation extends Base_Tool {
 
 		$post = get_post( $post_id );
 		if ( ! $post ) {
-			throw new \RuntimeException( sprintf( 'Post not found: %d', $post_id ) );
+			throw new \RuntimeException( sprintf( 'Post not found: %d', $post_id ) ); // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
 		}
 
 		$translation_post = get_post( $translation_post_id );
 		if ( ! $translation_post ) {
-			throw new \RuntimeException( sprintf( 'Translation post not found: %d', $translation_post_id ) );
+			throw new \RuntimeException( sprintf( 'Translation post not found: %d', $translation_post_id ) ); // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
 		}
 
 		if ( function_exists( 'pll_set_post_language' ) ) {

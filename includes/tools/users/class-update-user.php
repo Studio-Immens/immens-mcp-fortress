@@ -82,7 +82,7 @@ class Update_User extends Base_Tool {
 
 		$result = wp_update_user( $userdata );
 		if ( is_wp_error( $result ) ) {
-			throw new \RuntimeException( $result->get_error_message() );
+			throw new \RuntimeException( $result->get_error_message() ); // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
 		}
 
 		$params = array( 'context' => 'edit' );

@@ -235,7 +235,7 @@ class Server {
 		} catch ( \Exception $e ) {
 			$final_status = 'error';
 			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-				error_log( sprintf( 'Immens MCP Fortress [%s]: %s', $tool_name, $e->getMessage() ) );
+				error_log( sprintf( 'Immens MCP Fortress [%s]: %s', $tool_name, $e->getMessage() ) ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
 			}
 			return JSON_RPC::success_response( $id, array(
 				'content' => array( array(
@@ -247,7 +247,7 @@ class Server {
 		} catch ( \Error $e ) {
 			$final_status = 'error';
 			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-				error_log( sprintf( 'Immens MCP Fortress [%s]: %s', $tool_name, $e->getMessage() ) );
+				error_log( sprintf( 'Immens MCP Fortress [%s]: %s', $tool_name, $e->getMessage() ) ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
 			}
 			return JSON_RPC::success_response( $id, array(
 				'content' => array( array(

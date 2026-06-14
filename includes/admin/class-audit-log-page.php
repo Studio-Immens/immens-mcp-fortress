@@ -27,25 +27,25 @@ class Audit_Log_Page {
 		$table = $wpdb->prefix . 'immens_mcp_audit_log';
 
 		$per_page = 20;
-		$current_page = isset( $_GET['paged'] ) ? max( 1, absint( $_GET['paged'] ) ) : 1;
+		$current_page = isset( $_GET['paged'] ) ? max( 1, absint( $_GET['paged'] ) ) : 1; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		$offset = ( $current_page - 1 ) * $per_page;
 
 		$where = array( '1=1' );
 		$where_args = array();
 
-		$filter_tool = isset( $_GET['tool_name'] ) ? sanitize_text_field( wp_unslash( $_GET['tool_name'] ) ) : '';
+		$filter_tool = isset( $_GET['tool_name'] ) ? sanitize_text_field( wp_unslash( $_GET['tool_name'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if ( $filter_tool ) {
 			$where[] = 'tool_name LIKE %s';
 			$where_args[] = '%' . $wpdb->esc_like( $filter_tool ) . '%';
 		}
 
-		$filter_status = isset( $_GET['status'] ) ? sanitize_text_field( wp_unslash( $_GET['status'] ) ) : '';
+		$filter_status = isset( $_GET['status'] ) ? sanitize_text_field( wp_unslash( $_GET['status'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if ( $filter_status ) {
 			$where[] = 'result_status = %s';
 			$where_args[] = $filter_status;
 		}
 
-		$filter_date = isset( $_GET['date_from'] ) ? sanitize_text_field( wp_unslash( $_GET['date_from'] ) ) : '';
+		$filter_date = isset( $_GET['date_from'] ) ? sanitize_text_field( wp_unslash( $_GET['date_from'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if ( $filter_date ) {
 			$where[] = 'created_at >= %s';
 			$where_args[] = $filter_date . ' 00:00:00';
@@ -148,7 +148,7 @@ class Audit_Log_Page {
 				<div class="tablenav bottom" style="margin-top: 10px;">
 					<div class="tablenav-pages">
 						<?php
-						echo paginate_links( array(
+						$paginate = paginate_links( array(
 							'base'      => add_query_arg( 'paged', '%#%' ),
 							'format'    => '',
 							'prev_text' => '&laquo;',
@@ -156,6 +156,7 @@ class Audit_Log_Page {
 							'total'     => $total_pages,
 							'current'   => $current_page,
 						) );
+						echo wp_kses_post( $paginate );
 						?>
 					</div>
 				</div>

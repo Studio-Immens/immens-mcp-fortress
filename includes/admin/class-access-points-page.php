@@ -39,7 +39,7 @@ class Access_Points_Page {
 		$categories    = Access_Point_Schema::get_all_tool_categories();
 		$users         = get_users( array( 'fields' => array( 'ID', 'user_login', 'display_name' ) ) );
 
-		$edit_id = isset( $_GET['edit'] ) ? absint( $_GET['edit'] ) : 0;
+		$edit_id = isset( $_GET['edit'] ) ? absint( $_GET['edit'] ) : 0; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		$editing = $edit_id ? $this->manager->get_access_point( $edit_id ) : null;
 
 		if ( $editing ) {
@@ -48,7 +48,7 @@ class Access_Points_Page {
 				: Access_Point_Schema::get_default_tool_permissions();
 		}
 
-		$show_new_key = isset( $_GET['new_key'] ) ? sanitize_text_field( wp_unslash( $_GET['new_key'] ) ) : '';
+		$show_new_key = isset( $_GET['new_key'] ) ? sanitize_text_field( wp_unslash( $_GET['new_key'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		?>
 		<div class="wrap imf-wrap">
 			<h1><?php esc_html_e( 'Access Points', 'immens-mcp-fortress' ); ?></h1>
@@ -67,6 +67,7 @@ class Access_Points_Page {
 
 			<?php if ( $editing ) : ?>
 				<div class="imf-card">
+					<?php /* translators: %s: access point name */ ?>
 					<h2><?php echo esc_html( sprintf( __( 'Edit: %s', 'immens-mcp-fortress' ), $editing['name'] ) ); ?></h2>
 					<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 						<input type="hidden" name="action" value="immens_mcp_update_access_point">
@@ -191,7 +192,7 @@ class Access_Points_Page {
 					</a>
 				</h2>
 
-				<?php if ( isset( $_GET['new'] ) ) : ?>
+				<?php if ( isset( $_GET['new'] ) ) : // phpcs:ignore WordPress.Security.NonceVerification.Recommended ?>
 					<div class="imf-new-form" style="margin-bottom: 20px; padding: 15px; background: #fff; border: 1px solid #c3c4c7;">
 						<h3><?php esc_html_e( 'Create Access Point', 'immens-mcp-fortress' ); ?></h3>
 						<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
@@ -298,8 +299,8 @@ class Access_Points_Page {
 
 		check_admin_referer( 'immens_mcp_create_access_point' );
 
-		$name       = isset( $_POST['name'] ) ? sanitize_text_field( wp_unslash( $_POST['name'] ) ) : '';
-		$wp_user_id = isset( $_POST['wp_user_id'] ) ? absint( $_POST['wp_user_id'] ) : 0;
+		$name       = isset( $_POST['name'] ) ? sanitize_text_field( wp_unslash( $_POST['name'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		$wp_user_id = isset( $_POST['wp_user_id'] ) ? absint( $_POST['wp_user_id'] ) : 0; // phpcs:ignore WordPress.Security.NonceVerification.Missing
 
 		if ( empty( $name ) ) {
 			wp_die( esc_html__( 'Name is required.', 'immens-mcp-fortress' ) );
@@ -328,25 +329,25 @@ class Access_Points_Page {
 			wp_die( esc_html__( 'Unauthorized.', 'immens-mcp-fortress' ) );
 		}
 
-		$id = isset( $_POST['id'] ) ? absint( $_POST['id'] ) : 0;
+		$id = isset( $_POST['id'] ) ? absint( $_POST['id'] ) : 0; // phpcs:ignore WordPress.Security.NonceVerification.Missing
 		check_admin_referer( 'immens_mcp_update_access_point_' . $id );
 
 		$data = array();
 
-		if ( isset( $_POST['name'] ) ) {
+		if ( isset( $_POST['name'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
 			$data['name'] = sanitize_text_field( wp_unslash( $_POST['name'] ) );
 		}
-		if ( isset( $_POST['wp_user_id'] ) ) {
+		if ( isset( $_POST['wp_user_id'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
 			$data['wp_user_id'] = absint( $_POST['wp_user_id'] );
 		}
-		$data['ip_whitelist'] = isset( $_POST['ip_whitelist'] )
+		$data['ip_whitelist'] = isset( $_POST['ip_whitelist'] ) // phpcs:ignore WordPress.Security.NonceVerification.Missing
 			? sanitize_textarea_field( wp_unslash( $_POST['ip_whitelist'] ) )
 			: '';
-		if ( isset( $_POST['rate_limit'] ) ) {
+		if ( isset( $_POST['rate_limit'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
 			$data['rate_limit'] = absint( $_POST['rate_limit'] );
 		}
-		if ( isset( $_POST['tool_permissions'] ) ) {
-			$raw_permissions = wp_unslash( $_POST['tool_permissions'] );
+		if ( isset( $_POST['tool_permissions'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+			$raw_permissions = wp_unslash( $_POST['tool_permissions'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 			$permissions = array();
 			if ( is_array( $raw_permissions ) ) {
 				foreach ( $raw_permissions as $category => $perms ) {
@@ -374,7 +375,7 @@ class Access_Points_Page {
 			wp_die( esc_html__( 'Unauthorized.', 'immens-mcp-fortress' ) );
 		}
 
-		$id = isset( $_POST['id'] ) ? absint( $_POST['id'] ) : 0;
+		$id = isset( $_POST['id'] ) ? absint( $_POST['id'] ) : 0; // phpcs:ignore WordPress.Security.NonceVerification.Missing
 		check_admin_referer( 'immens_mcp_delete_access_point_' . $id );
 
 		$this->manager->delete_access_point( $id );
@@ -391,7 +392,7 @@ class Access_Points_Page {
 			wp_die( esc_html__( 'Unauthorized.', 'immens-mcp-fortress' ) );
 		}
 
-		$id = isset( $_POST['id'] ) ? absint( $_POST['id'] ) : 0;
+		$id = isset( $_POST['id'] ) ? absint( $_POST['id'] ) : 0; // phpcs:ignore WordPress.Security.NonceVerification.Missing
 		check_admin_referer( 'immens_mcp_regenerate_key_' . $id );
 
 		$result = $this->manager->regenerate_key( $id );
@@ -413,8 +414,8 @@ class Access_Points_Page {
 
 		check_ajax_referer( 'immens_mcp_fortress_admin' );
 
-		$id      = isset( $_POST['id'] ) ? absint( $_POST['id'] ) : 0;
-		$enabled = isset( $_POST['enabled'] ) ? (int) $_POST['enabled'] : 1;
+		$id      = isset( $_POST['id'] ) ? absint( $_POST['id'] ) : 0; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		$enabled = isset( $_POST['enabled'] ) ? (int) $_POST['enabled'] : 1; // phpcs:ignore WordPress.Security.NonceVerification.Missing
 
 		$this->manager->toggle_access_point( $id, $enabled );
 

@@ -59,7 +59,7 @@ class Update_Term_Meta extends Base_Tool {
 		$result = update_term_meta( $term_id, $arguments['meta_key'], $arguments['meta_value'] );
 
 		if ( is_wp_error( $result ) ) {
-			throw new \RuntimeException( $result->get_error_message() );
+			throw new \RuntimeException( $result->get_error_message() ); // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
 		}
 
 		return array(

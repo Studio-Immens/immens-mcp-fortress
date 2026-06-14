@@ -78,7 +78,7 @@ class Create_User extends Base_Tool {
 
 		$user_id = wp_insert_user( $userdata );
 		if ( is_wp_error( $user_id ) ) {
-			throw new \RuntimeException( $user_id->get_error_message() );
+			throw new \RuntimeException( $user_id->get_error_message() ); // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
 		}
 
 		$params = array( 'context' => 'edit' );

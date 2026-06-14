@@ -18,6 +18,7 @@ class Access_Point_Manager {
 		if ( $limit > 0 && $this->repository->count() >= $limit ) {
 			return new \WP_Error(
 				'access_point_limit',
+				/* translators: %d: access point limit number */
 				sprintf(
 					__( 'Free tier limited to %d access points. Upgrade to Immens MCP Fortress Pro for unlimited.', 'immens-mcp-fortress' ),
 					$limit

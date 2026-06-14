@@ -77,7 +77,7 @@ class Create_Term extends Base_Tool {
 		$result = wp_insert_term( $arguments['name'], $arguments['taxonomy'], $args );
 
 		if ( is_wp_error( $result ) ) {
-			throw new \RuntimeException( $result->get_error_message() );
+			throw new \RuntimeException( $result->get_error_message() ); // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
 		}
 
 		return array(

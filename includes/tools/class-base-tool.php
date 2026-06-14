@@ -59,12 +59,12 @@ abstract class Base_Tool {
 		} else {
 			throw new \InvalidArgumentException(
 				sprintf( 'Invalid %s: must be a positive integer, got: %s', $label, wp_json_encode( $value ) ) // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
-			);
+) ; // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
 		}
 		if ( $id < 1 ) {
 			throw new \InvalidArgumentException(
 				sprintf( 'Invalid %s: must be a positive integer.', $label ) // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
-			);
+) ; // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
 		}
 		return $id;
 	}
@@ -79,7 +79,7 @@ abstract class Base_Tool {
 		if ( ! empty( $missing ) ) {
 			throw new \InvalidArgumentException(
 				sprintf( 'Missing required parameters: %s', implode( ', ', $missing ) ) // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
-			);
+) ; // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
 		}
 	}
 
@@ -95,7 +95,7 @@ abstract class Base_Tool {
 		}
 		throw new \InvalidArgumentException(
 			sprintf( '%s must be a valid JSON array or object.', $label ) // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
-		);
+) ; // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
 	}
 
 	protected function validate_title_length( $title ) {
@@ -106,7 +106,7 @@ abstract class Base_Tool {
 		if ( $max > 0 && mb_strlen( $title ) > $max ) {
 			throw new \InvalidArgumentException(
 				sprintf( 'Title exceeds maximum allowed length of %d characters.', $max ) // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
-			);
+) ; // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
 		}
 	}
 
@@ -181,7 +181,7 @@ abstract class Base_Tool {
 			if ( function_exists( 'rocket_clean_post' ) ) {
 				rocket_clean_post( $id );
 			}
-			do_action( 'litespeed_purge_post', $id );
+			do_action( 'litespeed_purge_post', $id ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 			if ( function_exists( 'w3tc_flush_post' ) ) {
 				w3tc_flush_post( $id );
 			}

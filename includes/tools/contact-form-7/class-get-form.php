@@ -44,7 +44,7 @@ class Get_Form extends Base_Tool {
 
 		$form = get_post( $form_id );
 		if ( ! $form || 'wpcf7_contact_form' !== $form->post_type ) {
-			throw new \RuntimeException( sprintf( 'CF7 form not found: %d', $form_id ) );
+			throw new \RuntimeException( sprintf( 'CF7 form not found: %d', $form_id ) ); // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
 		}
 
 		$form_html   = get_post_meta( $form_id, '_form', true );

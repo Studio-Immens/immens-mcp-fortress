@@ -44,7 +44,7 @@ class Get_Post_Translations extends Base_Tool {
 
 		$post = get_post( $post_id );
 		if ( ! $post ) {
-			throw new \RuntimeException( sprintf( 'Post not found: %d', $post_id ) );
+			throw new \RuntimeException( sprintf( 'Post not found: %d', $post_id ) ); // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
 		}
 
 		$translations = array();
