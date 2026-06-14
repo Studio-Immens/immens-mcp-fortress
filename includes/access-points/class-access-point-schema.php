@@ -1,0 +1,153 @@
+<?php
+namespace Immens_MCP_Fortress\Access_Points;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+class Access_Point_Schema {
+
+	public static function get_table_name() {
+		global $wpdb;
+		return $wpdb->prefix . 'immens_mcp_access_points';
+	}
+
+	public static function get_columns() {
+		return array(
+			'id',
+			'name',
+			'api_key_hash',
+			'api_key_prefix',
+			'is_enabled',
+			'ip_whitelist',
+			'tool_permissions',
+			'wp_user_id',
+			'rate_limit',
+			'is_pro',
+			'created_at',
+			'updated_at',
+			'last_used_at',
+		);
+	}
+
+	public static function get_default_tool_permissions() {
+		return array(
+			'posts'              => array( 'read' => true, 'write' => true ),
+			'pages'              => array( 'read' => true, 'write' => true ),
+			'media'              => array( 'read' => true, 'write' => true ),
+			'comments'           => array( 'read' => true, 'write' => true ),
+			'users'              => array( 'read' => true, 'write' => false ),
+			'taxonomy'           => array( 'read' => true, 'write' => true ),
+			'menus'              => array( 'read' => true, 'write' => false ),
+			'blocks'             => array( 'read' => true, 'write' => true ),
+			'templates'          => array( 'read' => true, 'write' => false ),
+			'styles'             => array( 'read' => true, 'write' => false ),
+			'plugins'            => array( 'read' => true, 'write' => false ),
+			'themes'             => array( 'read' => true, 'write' => false ),
+			'site'               => array( 'read' => true, 'write' => false ),
+			'search'             => array( 'read' => true, 'write' => false ),
+			'revisions'          => array( 'read' => true, 'write' => false ),
+			'meta'               => array( 'read' => true, 'write' => true ),
+			'woocommerce'        => array( 'read' => true, 'write' => false ),
+			'yoast'              => array( 'read' => true, 'write' => true ),
+			'rank-math'          => array( 'read' => true, 'write' => true ),
+			'loco-translate'     => array( 'read' => true, 'write' => true ),
+			'contact-form-7'     => array( 'read' => true, 'write' => false ),
+			'polylang'           => array( 'read' => true, 'write' => true ),
+		);
+	}
+
+	public static function get_all_tool_categories() {
+		return array(
+			'posts'     => __( 'Posts', 'immens-mcp-fortress' ),
+			'pages'     => __( 'Pages', 'immens-mcp-fortress' ),
+			'media'     => __( 'Media', 'immens-mcp-fortress' ),
+			'comments'  => __( 'Comments', 'immens-mcp-fortress' ),
+			'users'     => __( 'Users', 'immens-mcp-fortress' ),
+			'taxonomy'  => __( 'Taxonomy', 'immens-mcp-fortress' ),
+			'menus'     => __( 'Menus', 'immens-mcp-fortress' ),
+			'blocks'    => __( 'Blocks', 'immens-mcp-fortress' ),
+			'templates' => __( 'Templates', 'immens-mcp-fortress' ),
+			'styles'    => __( 'Global Styles', 'immens-mcp-fortress' ),
+			'plugins'   => __( 'Plugins', 'immens-mcp-fortress' ),
+			'themes'    => __( 'Themes', 'immens-mcp-fortress' ),
+			'site'      => __( 'Site Settings', 'immens-mcp-fortress' ),
+			'search'    => __( 'Search', 'immens-mcp-fortress' ),
+			'revisions' => __( 'Revisions', 'immens-mcp-fortress' ),
+			'meta'      => __( 'Post Meta', 'immens-mcp-fortress' ),
+			'woocommerce' => __( 'WooCommerce', 'immens-mcp-fortress' ),
+			'yoast'     => __( 'Yoast SEO', 'immens-mcp-fortress' ),
+			'rank-math' => __( 'Rank Math SEO', 'immens-mcp-fortress' ),
+			'loco-translate' => __( 'Loco Translate', 'immens-mcp-fortress' ),
+			'contact-form-7' => __( 'Contact Form 7', 'immens-mcp-fortress' ),
+			'polylang'  => __( 'Polylang', 'immens-mcp-fortress' ),
+		);
+	}
+
+	public static function tool_permissions_to_allowed_tools( $permissions ) {
+		if ( empty( $permissions ) || ! is_array( $permissions ) ) {
+			return array( '*' );
+		}
+
+		$allowed = array();
+
+		$category_to_prefixes = array(
+			'posts'     => array( 'wp_list_posts', 'wp_get_post', 'wp_create_post', 'wp_update_post', 'wp_delete_post', 'wp_count_posts', 'wp_get_full_post', 'wp_find_replace_post' ),
+			'pages'     => array( 'wp_list_pages', 'wp_get_page', 'wp_create_page', 'wp_update_page', 'wp_delete_page', 'wp_count_pages' ),
+			'media'     => array( 'wp_list_media', 'wp_get_media', 'wp_upload_media', 'wp_upload_media_url', 'wp_update_media', 'wp_delete_media', 'wp_count_media' ),
+			'comments'  => array( 'wp_list_comments', 'wp_get_comment', 'wp_create_comment', 'wp_update_comment', 'wp_delete_comment', 'wp_approve_comment', 'wp_spam_comment', 'wp_trash_comment' ),
+			'users'     => array( 'wp_list_users', 'wp_get_user', 'wp_create_user', 'wp_update_user', 'wp_delete_user' ),
+			'taxonomy'  => array( 'wp_list_categories', 'wp_get_category', 'wp_create_category', 'wp_update_category', 'wp_delete_category', 'wp_list_tags', 'wp_get_tag', 'wp_create_tag', 'wp_update_tag', 'wp_delete_tag', 'wp_list_terms', 'wp_get_term', 'wp_create_term', 'wp_update_term', 'wp_delete_term', 'wp_get_term_meta', 'wp_update_term_meta', 'wp_delete_term_meta' ),
+			'menus'     => array( 'wp_list_menus', 'wp_get_menu', 'wp_create_menu', 'wp_update_menu', 'wp_delete_menu', 'wp_list_menu_items', 'wp_create_menu_item', 'wp_update_menu_item', 'wp_delete_menu_item' ),
+			'blocks'    => array( 'wp_list_blocks', 'wp_get_block', 'wp_create_block', 'wp_update_block', 'wp_delete_block', 'wp_get_block_types' ),
+			'templates' => array( 'wp_list_templates', 'wp_get_template', 'wp_update_template' ),
+			'styles'    => array( 'wp_get_global_styles', 'wp_update_global_styles' ),
+			'plugins'   => array( 'wp_list_plugins' ),
+			'themes'    => array( 'wp_list_themes' ),
+			'site'      => array( 'wp_get_site_settings', 'wp_update_site_settings' ),
+			'search'    => array( 'wp_search' ),
+			'revisions' => array( 'wp_list_revisions', 'wp_get_revision' ),
+			'meta'      => array( 'wp_get_post_meta', 'wp_update_post_meta', 'wp_delete_post_meta', 'wp_add_post_terms' ),
+			'woocommerce' => array( 'wc_*' ),
+			'yoast'     => array( 'yoast_*' ),
+			'rank-math' => array( 'rankmath_*' ),
+			'loco-translate' => array( 'loco_*' ),
+			'contact-form-7' => array( 'cf7_*' ),
+			'polylang'  => array( 'polylang_*' ),
+		);
+
+		foreach ( $permissions as $category => $perms ) {
+			if ( ! isset( $category_to_prefixes[ $category ] ) ) {
+				continue;
+			}
+
+			$read  = ! empty( $perms['read'] );
+			$write = ! empty( $perms['write'] );
+
+			foreach ( $category_to_prefixes[ $category ] as $tool ) {
+				if ( false !== strpos( $tool, '*' ) ) {
+					if ( $read ) {
+						$allowed[] = $tool;
+					}
+					if ( $write ) {
+						$allowed[] = $tool;
+					}
+				} elseif ( strpos( $tool, 'list' ) !== false || strpos( $tool, 'get' ) !== false || strpos( $tool, 'count' ) !== false || strpos( $tool, 'search' ) !== false ) {
+					if ( $read ) {
+						$allowed[] = $tool;
+					}
+				} else {
+					if ( $write ) {
+						$allowed[] = $tool;
+					}
+				}
+			}
+		}
+
+		if ( empty( $allowed ) ) {
+			$allowed[] = '*';
+		}
+
+		return $allowed;
+	}
+}

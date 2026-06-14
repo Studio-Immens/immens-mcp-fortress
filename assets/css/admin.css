@@ -1,0 +1,39 @@
+.imf-wrap { max-width: 1100px; }
+.imf-wrap h1 { margin-bottom: 20px; }
+.imf-wrap h2 { margin-top: 0; }
+
+.imf-dashboard-cards { display: flex; gap: 20px; margin-bottom: 20px; flex-wrap: wrap; }
+.imf-dashboard-cards .imf-card { flex: 1; min-width: 300px; }
+
+.imf-card { background: #fff; border: 1px solid #c3c4c7; border-radius: 4px; padding: 20px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+
+.imf-endpoint-box { display: flex; align-items: center; gap: 10px; background: #f0f0f1; padding: 10px; border-radius: 3px; margin: 10px 0; }
+.imf-endpoint-box code { flex: 1; word-break: break-all; font-size: 13px; padding: 5px; }
+
+.imf-stats { display: flex; gap: 20px; }
+.imf-stat { text-align: center; }
+.imf-stat-value { display: block; font-size: 32px; font-weight: 700; color: #2271b1; }
+.imf-stat-label { display: block; color: #646970; font-size: 13px; }
+
+.imf-setup-guide { margin-bottom: 15px; }
+.imf-setup-guide h3 { margin-bottom: 5px; }
+.imf-setup-guide ol { margin-top: 5px; }
+
+.imf-toggle { position: relative; display: inline-block; width: 44px; height: 24px; }
+.imf-toggle input { opacity: 0; width: 0; height: 0; }
+.imf-toggle-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .3s; border-radius: 24px; }
+.imf-toggle-slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .3s; border-radius: 50%; }
+.imf-toggle input:checked + .imf-toggle-slider { background-color: #2271b1; }
+.imf-toggle input:checked + .imf-toggle-slider:before { transform: translateX(20px); }
+.imf-toggle input:disabled + .imf-toggle-slider { opacity: 0.5; cursor: not-allowed; }
+
+.imf-permissions-table { margin-top: 10px; }
+.imf-permissions-table th { font-weight: 600; }
+.imf-permissions-table td { padding: 8px 10px; vertical-align: middle; }
+.imf-permissions-table input[type="checkbox"] { margin: 0; }
+
+.imf-pro-badge { display: inline-block; background: #f0ad4e; color: #fff; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 3px; margin-left: 5px; vertical-align: middle; text-transform: uppercase; }
+
+.imf-new-form { border-left: 4px solid #2271b1 !important; }
+
+.imf-wrap .notice code { user-select: all; word-break: break-all; }

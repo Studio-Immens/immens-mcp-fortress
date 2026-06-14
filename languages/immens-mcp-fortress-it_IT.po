@@ -1,0 +1,430 @@
+﻿msgid ""
+msgstr ""
+"Project-Id-Version: Immens MCP Fortress 1.0.0\n"
+"Language: it_IT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: includes/admin/class-admin-page.php:68
+msgid "Unlock 131 additional MCP tools!"
+msgstr "Sblocca 131 strumenti MCP aggiuntivi!"
+
+#: includes/admin/class-admin-page.php:69
+msgid "Get Immens MCP Fortress Pro for Gutenberg block-level editing, Primary Source, Immens CRM, ClassyBlocks, SEO Framework, Greenshift, Stackable, TranslatePress integrations, unlimited access points, SSE transport and more."
+msgstr "Ottieni Immens MCP Fortress Pro per editing Gutenberg avanzato, integrazioni con Primary Source, Immens CRM, ClassyBlocks, SEO Framework, Greenshift, Stackable, TranslatePress, access point illimitati, trasporto SSE e molto altro."
+
+#: includes/admin/class-admin-page.php:70
+#, php-bracket-format
+msgid "Learn More →"
+msgstr "Scopri di più →"
+
+#: includes/admin/class-admin-page.php:79
+msgid "Immens MCP Fortress — Dashboard"
+msgstr "Immens MCP Fortress — Dashboard"
+
+#: includes/admin/class-admin-page.php:84
+msgid "MCP Endpoint"
+msgstr "Endpoint MCP"
+
+#: includes/admin/class-admin-page.php:90
+msgid "Copy"
+msgstr "Copia"
+
+#: includes/admin/class-admin-page.php:93
+msgid "Use this URL in Claude Desktop, ChatGPT, Cursor, or any MCP-compatible client."
+msgstr "Usa questo URL in Claude Desktop, ChatGPT, Cursor o qualsiasi client MCP."
+
+#: includes/admin/class-admin-page.php:99
+msgid "Quick Stats"
+msgstr "Statistiche Rapide"
+
+#: includes/admin/class-admin-page.php:103
+msgid "Access Points"
+msgstr "Access Point"
+
+#: includes/admin/class-admin-page.php:108
+msgid "Free tier limited to 2 access points. Upgrade to Pro for unlimited."
+msgstr "Il piano gratuito è limitato a 2 access point. Passa a Pro per averne illimitati."
+
+#: includes/admin/class-admin-page.php:114
+msgid "Quick Setup Guides"
+msgstr "Guide Rapide"
+
+#: includes/admin/class-admin-page.php:117
+msgid "Claude Desktop"
+msgstr "Claude Desktop"
+
+#: includes/admin/class-admin-page.php:119
+msgid "Go to Settings → Connectors → Add custom connector"
+msgstr "Vai su Impostazioni → Connettori → Aggiungi connettore personalizzato"
+
+#: includes/admin/class-admin-page.php:120
+msgid "Paste the MCP endpoint URL above"
+msgstr "Incolla l'URL dell'endpoint MCP qui sopra"
+
+#: includes/admin/class-admin-page.php:121
+msgid "Enter your Access Point API key when prompted"
+msgstr "Inserisci la chiave API dell'Access Point quando richiesto"
+
+#: includes/admin/class-admin-page.php:127
+msgid "OpenCode"
+msgstr "OpenCode"
+
+#: includes/admin/class-admin-page.php:129
+msgid "Add to your opencode.json:"
+msgstr "Aggiungi al tuo opencode.json:"
+
+#: includes/admin/class-admin-page.php:141
+msgid "Run opencode mcp list to verify connection"
+msgstr "Esegui opencode mcp list per verificare la connessione"
+
+#: includes/admin/class-admin-page.php:146
+msgid "OpenClaw"
+msgstr "OpenClaw"
+
+#: includes/admin/class-admin-page.php:149
+msgid "Tell OpenClaw in plain English:"
+msgstr "Dì a OpenClaw in linguaggio naturale:"
+
+#: includes/admin/class-admin-page.php:156
+msgid "OpenClaw will auto-configure itself. Or install the WordPress MCP skill from ClawHub."
+msgstr "OpenClaw si configurerà automaticamente. Oppure installa la skill WordPress MCP da ClawHub."
+
+#: includes/admin/class-admin-page.php:161
+msgid "Cursor / Windsurf / Cline"
+msgstr "Cursor / Windsurf / Cline"
+
+#: includes/admin/class-admin-page.php:163
+msgid "Add MCP server in your client settings"
+msgstr "Aggiungi il server MCP nelle impostazioni del tuo client"
+
+#: includes/admin/class-admin-page.php:164
+msgid "Set transport to \"streamable-http\""
+msgstr "Imposta il trasporto su \"streamable-http\""
+
+#: includes/admin/class-admin-page.php:165
+msgid "Use the URL and your Access Point API key"
+msgstr "Usa l'URL e la chiave API del tuo Access Point"
+
+#: includes/admin/class-access-points-page.php:28
+msgid "Access Points"
+msgstr "Access Point"
+
+#: includes/admin/class-access-points-page.php:37
+msgid "Edit: %s"
+msgstr "Modifica: %s"
+
+#: includes/admin/class-access-points-page.php:46
+msgid "Update Access Point"
+msgstr "Aggiorna Access Point"
+
+#: includes/admin/class-access-points-page.php:47
+msgid "Name"
+msgstr "Nome"
+
+#: includes/admin/class-access-points-page.php:55
+msgid "API Key Prefix"
+msgstr "Prefisso Chiave API"
+
+#: includes/admin/class-access-points-page.php:60
+msgid "WordPress User"
+msgstr "Utente WordPress"
+
+#: includes/admin/class-access-points-page.php:63
+msgid "— None (Admin capabilities) —"
+msgstr "— Nessuno (capacità Admin) —"
+
+#: includes/admin/class-access-points-page.php:74
+msgid "The AI will act as this WordPress user. Leave empty for full admin access."
+msgstr "L\\'IA agirà come questo utente WordPress. Lascia vuoto per accesso amministrativo completo."
+
+#: includes/admin/class-access-points-page.php:78
+msgid "IP Whitelist"
+msgstr "Whitelist IP"
+
+#: includes/admin/class-access-points-page.php:81
+msgid "Leave empty to allow all IPs"
+msgstr "Lascia vuoto per permettere tutti gli IP"
+
+#: includes/admin/class-access-points-page.php:82
+msgid "One IP address or CIDR range per line. Leave empty to allow all IPs."
+msgstr "Un indirizzo IP o range CIDR per riga. Lascia vuoto per permettere tutti gli IP."
+
+#: includes/admin/class-access-points-page.php:87
+msgid "Rate Limit"
+msgstr "Limite di Richieste"
+
+#: includes/admin/class-access-points-page.php:91
+msgid "requests per minute"
+msgstr "richieste al minuto"
+
+#: includes/admin/class-access-points-page.php:95
+msgid "Tool Permissions"
+msgstr "Permessi Strumenti"
+
+#: includes/admin/class-access-points-page.php:97
+msgid "Category"
+msgstr "Categoria"
+
+#: includes/admin/class-access-points-page.php:98
+msgid "Read"
+msgstr "Lettura"
+
+#: includes/admin/class-access-points-page.php:99
+msgid "Write"
+msgstr "Scrittura"
+
+#: includes/admin/class-access-points-page.php:119
+msgid "Save Changes"
+msgstr "Salva Modifiche"
+
+#: includes/admin/class-access-points-page.php:122
+msgid "Cancel"
+msgstr "Annulla"
+
+#: includes/admin/class-access-points-page.php:126
+msgid "Danger Zone"
+msgstr "Zona Pericolo"
+
+#: includes/admin/class-access-points-page.php:134
+msgid "Regenerate API Key"
+msgstr "Rigenera Chiave API"
+
+#: includes/admin/class-access-points-page.php:141
+msgid "Delete Access Point"
+msgstr "Elimina Access Point"
+
+#: includes/admin/class-access-points-page.php:148
+msgid "All Access Points"
+msgstr "Tutti gli Access Point"
+
+#: includes/admin/class-access-points-page.php:150
+msgid "Add New"
+msgstr "Aggiungi Nuovo"
+
+#: includes/admin/class-access-points-page.php:156
+msgid "Create Access Point"
+msgstr "Crea Access Point"
+
+#: includes/admin/class-access-points-page.php:166
+msgid "My Claude Desktop"
+msgstr "Il mio Claude Desktop"
+
+#: includes/admin/class-access-points-page.php:173
+msgid "Create Access Point"
+msgstr "Crea Access Point"
+
+#: includes/access-points/class-access-point-schema.php:35
+msgid "Posts"
+msgstr "Articoli"
+
+#: includes/access-points/class-access-point-schema.php:36
+msgid "Pages"
+msgstr "Pagine"
+
+#: includes/access-points/class-access-point-schema.php:37
+msgid "Media"
+msgstr "Media"
+
+#: includes/access-points/class-access-point-schema.php:38
+msgid "Comments"
+msgstr "Commenti"
+
+#: includes/access-points/class-access-point-schema.php:39
+msgid "Users"
+msgstr "Utenti"
+
+#: includes/access-points/class-access-point-schema.php:40
+msgid "Taxonomy"
+msgstr "Tassonomia"
+
+#: includes/access-points/class-access-point-schema.php:41
+msgid "Menus"
+msgstr "Menu"
+
+#: includes/access-points/class-access-point-schema.php:42
+msgid "Blocks"
+msgstr "Blocchi"
+
+#: includes/access-points/class-access-point-schema.php:43
+msgid "Templates"
+msgstr "Template"
+
+#: includes/access-points/class-access-point-schema.php:44
+msgid "Global Styles"
+msgstr "Stili Globali"
+
+#: includes/access-points/class-access-point-schema.php:45
+msgid "Plugins"
+msgstr "Plugin"
+
+#: includes/access-points/class-access-point-schema.php:46
+msgid "Themes"
+msgstr "Temi"
+
+#: includes/access-points/class-access-point-schema.php:47
+msgid "Site Settings"
+msgstr "Impostazioni Sito"
+
+#: includes/access-points/class-access-point-schema.php:48
+msgid "Search"
+msgstr "Ricerca"
+
+#: includes/access-points/class-access-point-schema.php:49
+msgid "Revisions"
+msgstr "Revisioni"
+
+#: includes/access-points/class-access-point-schema.php:50
+msgid "Post Meta"
+msgstr "Meta Articoli"
+
+#: includes/access-points/class-access-point-manager.php:22
+msgid "Free tier limited to %d access points. Upgrade to Immens MCP Fortress Pro for unlimited."
+msgstr "Il piano gratuito è limitato a %d access point. Passa a Immens MCP Fortress Pro per averne illimitati."
+
+#: includes/admin/class-settings-page.php:47
+msgid "Force Draft on Create"
+msgstr "Forza Bozza alla Creazione"
+
+#: includes/admin/class-settings-page.php:50
+msgid "AI-created posts are always saved as drafts, regardless of what the AI requests."
+msgstr "Gli articoli creati dall\\'IA vengono sempre salvati come bozze, indipendentemente da ciò che richiede l\\'IA."
+
+#: includes/admin/class-settings-page.php:57
+msgid "Max Title Length"
+msgstr "Lunghezza Massima Titolo"
+
+#: includes/admin/class-settings-page.php:61
+msgid "Maximum characters for post titles. 0 = no limit."
+msgstr "Numero massimo di caratteri per i titoli. 0 = nessun limite."
+
+#: includes/admin/class-settings-page.php:73
+msgid "Enable Audit Log"
+msgstr "Abilita Registro Audit"
+
+#: includes/admin/class-settings-page.php:76
+msgid "Log every MCP tool call with timestamp, tool name, and result."
+msgstr "Registra ogni chiamata strumento MCP con timestamp, nome strumento e risultato."
+
+#: includes/admin/class-settings-page.php:82
+msgid "Audit Log Retention"
+msgstr "Conservazione Registro Audit"
+
+#: includes/admin/class-settings-page.php:86
+msgid "days"
+msgstr "giorni"
+
+#: includes/admin/class-settings-page.php:97
+msgid "Save Settings"
+msgstr "Salva Impostazioni"
+
+#: includes/admin/class-settings-page.php:102-109
+msgid "Pro Features"
+msgstr "Funzionalità Pro"
+
+#: includes/admin/class-settings-page.php:103
+msgid "Upgrade to Immens MCP Fortress Pro for:"
+msgstr "Passa a Immens MCP Fortress Pro per:"
+
+#: includes/admin/class-settings-page.php:105
+msgid "Change History with before/after snapshots"
+msgstr "Cronologia Modifiche con snapshot prima/dopo"
+
+#: includes/admin/class-settings-page.php:106
+msgid "Gutenberg block-level editing (add/remove/reorder blocks)"
+msgstr "Modifica blocchi Gutenberg a livello avanzato (aggiungi/rimuovi/riordina blocchi)"
+
+#: includes/admin/class-settings-page.php:107
+msgid "131 integration tools: Primary Source, Immens CRM, ClassyBlocks, SEO, and more"
+msgstr "131 strumenti di integrazione: Primary Source, Immens CRM, ClassyBlocks, SEO e altro"
+
+#: includes/admin/class-settings-page.php:108
+msgid "SSE Transport for legacy MCP clients"
+msgstr "Trasporto SSE per client MCP legacy"
+
+#: includes/admin/class-settings-page.php:109
+msgid "Extended audit log retention"
+msgstr "Conservazione estesa del registro audit"
+
+#: includes/admin/class-settings-page.php:113
+msgid "Learn More →"
+msgstr "Scopri di più →"
+
+#: includes/access-points/class-access-point-auth.php:18
+msgid "Missing Authorization header."
+msgstr "Intestazione Authorization mancante."
+
+#: includes/access-points/class-access-point-auth.php:24
+msgid "Authorization header must use Bearer scheme."
+msgstr "L\\'intestazione Authorization deve usare lo schema Bearer."
+
+#: includes/access-points/class-access-point-auth.php:30
+msgid "Bearer token is empty."
+msgstr "Il token Bearer è vuoto."
+
+#: includes/access-points/class-access-point-auth.php:36
+msgid "Invalid or disabled access point."
+msgstr "Access Point non valido o disabilitato."
+
+#: includes/access-points/class-access-point-auth.php:41
+msgid "Access denied: your IP address is not whitelisted for this access point."
+msgstr "Accesso negato: il tuo indirizzo IP non è nella whitelist per questo access point."
+
+#: includes/oauth/class-scope-map.php:16
+msgid "Read access to content"
+msgstr "Accesso in lettura ai contenuti"
+
+#: includes/oauth/class-scope-map.php:17
+msgid "Write access to content"
+msgstr "Accesso in scrittura ai contenuti"
+
+#: includes/oauth/class-consent-screen.php:33
+msgid "Authorize MCP Client"
+msgstr "Autorizza Client MCP"
+
+#: includes/oauth/class-consent-screen.php:54
+msgid "Authorize Application"
+msgstr "Autorizza Applicazione"
+
+#: includes/oauth/class-consent-screen.php:57
+msgid "wants to access your WordPress site via MCP."
+msgstr "vuole accedere al tuo sito WordPress tramite MCP."
+
+#: includes/oauth/class-consent-screen.php:59
+msgid "Requested permissions:"
+msgstr "Permessi richiesti:"
+
+#: includes/oauth/class-consent-screen.php:64
+msgid "Basic read access"
+msgstr "Accesso in lettura base"
+
+#: includes/oauth/class-consent-screen.php:77
+msgid "Approve"
+msgstr "Approva"
+
+#: includes/oauth/class-consent-screen.php:78
+msgid "Deny"
+msgstr "Nega"
+
+#: includes/access-points/class-access-point-repository.php:31
+msgid "Failed to create access point."
+msgstr "Impossibile creare l\\'access point."
+
+#: includes/admin/class-access-points-page.php:51
+msgid "New API Key (shown only once):"
+msgstr "Nuova Chiave API (mostrata una sola volta):"
+
+#: includes/admin/class-access-points-page.php:56
+msgid "Copy this key now. It will not be displayed again."
+msgstr "Copia subito questa chiave. Non verrà più mostrata."
+
+#: includes/admin/class-access-points-page.php:76
+msgid "Leave empty to allow all IPs"
+msgstr "Lascia vuoto per permettere tutti gli IP"
+
+#: includes/admin/class-access-points-page.php:90
+msgid "Rate Limit"
+msgstr "Limite Richieste/min"
+
