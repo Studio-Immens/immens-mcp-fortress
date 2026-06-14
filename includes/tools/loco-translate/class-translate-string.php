@@ -92,16 +92,14 @@ class Translate_String extends Base_Tool {
 	}
 
 	private function create_po_file( $po_file, $text_domain, $locale ) {
-		$content = <<<PO
-msgid ""
-msgstr ""
-"Project-Id-Version: {$text_domain}\\n"
-"Language: {$locale}\\n"
-"MIME-Version: 1.0\\n"
-"Content-Type: text/plain; charset=UTF-8\\n"
-"Content-Transfer-Encoding: 8bit\\n"
-
-PO;
+		$content = 'msgid ""' . "\n"
+			. 'msgstr ""' . "\n"
+			. '"Project-Id-Version: ' . $text_domain . '\n"' . "\n"
+			. '"Language: ' . $locale . '\n"' . "\n"
+			. '"MIME-Version: 1.0\n"' . "\n"
+			. '"Content-Type: text/plain; charset=UTF-8\n"' . "\n"
+			. '"Content-Transfer-Encoding: 8bit\n"' . "\n"
+			. "\n";
 		file_put_contents( $po_file, $content );
 	}
 

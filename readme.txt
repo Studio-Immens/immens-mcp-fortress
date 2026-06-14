@@ -1,5 +1,5 @@
 === Immens MCP Fortress ===
-Contributors: studioimmens
+Contributors: innovazioneweb
 Tags: mcp, ai, gutenberg, rest-api, security
 Requires at least: 6.0
 Tested up to: 7.0

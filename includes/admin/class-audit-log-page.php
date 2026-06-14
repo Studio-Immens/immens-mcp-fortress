@@ -52,14 +52,27 @@ class Audit_Log_Page {
 		}
 
 		$where_sql = implode( ' AND ', $where );
+		$table_escaped = esc_sql( $table );
 
-		$total_query = "SELECT COUNT(*) FROM `{$table}` WHERE {$where_sql}";
-		$total = $wpdb->get_var( $wpdb->prepare( $total_query, $where_args ) );
+		if ( ! empty( $where_args ) ) {
+			$total_query = "SELECT COUNT(*) FROM `{$table_escaped}` WHERE {$where_sql}";
+			$total = (int) $wpdb->get_var( $wpdb->prepare( $total_query, $where_args ) );
+		} else {
+			$total = (int) $wpdb->get_var( "SELECT COUNT(*) FROM `{$table_escaped}`" );
+		}
 
-		$query = $wpdb->prepare(
-			"SELECT * FROM `{$table}` WHERE {$where_sql} ORDER BY created_at DESC LIMIT %d OFFSET %d",
-			array_merge( $where_args, array( $per_page, $offset ) )
-		);
+		if ( ! empty( $where_args ) ) {
+			$query = $wpdb->prepare(
+				"SELECT * FROM `{$table_escaped}` WHERE {$where_sql} ORDER BY created_at DESC LIMIT %d OFFSET %d",
+				array_merge( $where_args, array( $per_page, $offset ) )
+			);
+		} else {
+			$query = $wpdb->prepare(
+				"SELECT * FROM `{$table_escaped}` ORDER BY created_at DESC LIMIT %d OFFSET %d",
+				$per_page,
+				$offset
+			);
+		}
 		$rows = $wpdb->get_results( $query, ARRAY_A );
 
 		$total_pages = ceil( $total / $per_page );
