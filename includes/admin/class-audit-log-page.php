@@ -163,11 +163,11 @@ class Audit_Log_Page {
 			<?php endif; ?>
 		</div>
 
-		<div id="imf-args-modal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:100000;"
+		<div id="imf-args-modal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);z-index:100000;"
 			onclick="if(event.target===this)this.style.display='none'">
-			<div style="background:#fff;margin:60px auto;max-width:600px;padding:20px;border-radius:4px;max-height:70vh;overflow:auto;">
-				<pre id="imf-args-content" style="white-space:pre-wrap;word-break:break-all;font-size:12px;"></pre>
-				<button type="button" class="button" onclick="document.getElementById('imf-args-modal').style.display='none'">
+			<div style="background:linear-gradient(135deg,#0e1528,#121828);border:1px solid rgba(0,229,255,0.2);margin:60px auto;max-width:620px;padding:24px;border-radius:12px;max-height:70vh;overflow:auto;box-shadow:0 12px 48px rgba(0,0,0,0.5);">
+				<pre id="imf-args-content" style="white-space:pre-wrap;word-break:break-all;font-size:12px;color:#06d6a0;font-family:'SF Mono','Fira Code','Consolas',monospace;background:rgba(0,0,0,0.4);padding:14px;border-radius:8px;border:1px solid rgba(0,229,255,0.1);"></pre>
+				<button type="button" class="button" onclick="document.getElementById('imf-args-modal').style.display='none'" style="margin-top:12px;">
 					<?php esc_html_e( 'Close', 'immens-mcp-fortress' ); ?>
 				</button>
 			</div>

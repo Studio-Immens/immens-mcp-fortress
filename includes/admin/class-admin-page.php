@@ -57,19 +57,35 @@ class Admin_Page {
 		$count   = $manager->count_access_points();
 		$endpoint_url = rest_url( \Immens_MCP_Fortress\MCP\Transport::NAMESPACE_V1 . \Immens_MCP_Fortress\MCP\Transport::ROUTE );
 
-		$pro_active    = false;
 		$pro_installed = class_exists( 'Immens_MCP_Fortress_Pro_Bootstrap' );
+		$pro_active    = false;
+		if ( $pro_installed && class_exists( 'Immens_MCP_Fortress_Pro_License' ) ) {
+			try {
+				$pro_active = Immens_MCP_Fortress_Pro_License::is_active();
+			} catch ( \Throwable $e ) {
+				$pro_active = false;
+			}
+		}
 		?>
 		<div class="wrap imf-wrap">
 			<?php if ( ! $pro_active ) :
 				$notice_type = $pro_installed ? 'warning' : 'info';
+				$notice_msg  = $pro_installed
+					? __( 'Activate your Pro license to unlock all integration tools and features.', 'immens-mcp-fortress' )
+					: __( 'Get Immens MCP Fortress Pro for Gutenberg block-level editing, Primary Source, Immens CRM, ClassyBlocks, SEO Framework, Greenshift, Stackable, TranslatePress integrations, unlimited access points, SSE transport and more.', 'immens-mcp-fortress' );
+				$notice_btn  = $pro_installed
+					? __( 'Activate Now →', 'immens-mcp-fortress' )
+					: __( 'Learn More →', 'immens-mcp-fortress' );
+				$notice_url  = $pro_installed
+					? admin_url( 'admin.php?page=immens-mcp-fortress-pro-license' )
+					: 'https://studioimmens.com/immens-mcp-fortress-pro';
 			?>
-			<div class="notice notice-<?php echo esc_attr( $notice_type ); ?> is-dismissible" style="border-left-color: #f0ad4e;">
+			<div class="notice notice-<?php echo esc_attr( $notice_type ); ?> is-dismissible">
 				<p>
 					<strong><?php esc_html_e( 'Unlock 131 additional MCP tools!', 'immens-mcp-fortress' ); ?></strong>
-					<?php esc_html_e( 'Get Immens MCP Fortress Pro for Gutenberg block-level editing, Primary Source, Immens CRM, ClassyBlocks, SEO Framework, Greenshift, Stackable, TranslatePress integrations, unlimited access points, SSE transport and more.', 'immens-mcp-fortress' ); ?>
-					<a href="https://studioimmens.com/immens-mcp-fortress-pro" target="_blank" class="button button-primary button-small" style="margin-left: 10px;">
-						<?php esc_html_e( 'Learn More →', 'immens-mcp-fortress' ); ?>
+					<?php echo esc_html( $notice_msg ); ?>
+					<a href="<?php echo esc_url( $notice_url ); ?>" target="<?php echo $pro_installed ? '_self' : '_blank'; ?>" class="button button-primary button-small" style="margin-left: 10px;">
+						<?php echo esc_html( $notice_btn ); ?>
 					</a>
 				</p>
 			</div>
