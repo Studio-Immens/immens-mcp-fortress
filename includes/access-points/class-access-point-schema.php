@@ -54,6 +54,16 @@ class Access_Point_Schema {
 			'loco-translate'     => array( 'read' => true, 'write' => true ),
 			'contact-form-7'     => array( 'read' => true, 'write' => false ),
 			'polylang'           => array( 'read' => true, 'write' => true ),
+			'primary-source'     => array( 'read' => true, 'write' => true ),
+			'immens-integration' => array( 'read' => true, 'write' => true ),
+			'immens-crm'         => array( 'read' => true, 'write' => true ),
+			'classyblocks'       => array( 'read' => true, 'write' => true ),
+			'seo-framework'      => array( 'read' => true, 'write' => true ),
+			'greenshift'         => array( 'read' => true, 'write' => true ),
+			'stackable'          => array( 'read' => true, 'write' => true ),
+			'translatepress'     => array( 'read' => true, 'write' => true ),
+			'elementor'          => array( 'read' => true, 'write' => true ),
+			'acf'                => array( 'read' => true, 'write' => true ),
 		);
 	}
 
@@ -81,6 +91,16 @@ class Access_Point_Schema {
 			'loco-translate' => __( 'Loco Translate', 'immens-mcp-fortress' ),
 			'contact-form-7' => __( 'Contact Form 7', 'immens-mcp-fortress' ),
 			'polylang'  => __( 'Polylang', 'immens-mcp-fortress' ),
+			'primary-source'     => __( 'Primary Source (Pro)', 'immens-mcp-fortress' ),
+			'immens-integration' => __( 'Immens Integration (Pro)', 'immens-mcp-fortress' ),
+			'immens-crm'         => __( 'Immens CRM (Pro)', 'immens-mcp-fortress' ),
+			'classyblocks'       => __( 'ClassyBlocks (Pro)', 'immens-mcp-fortress' ),
+			'seo-framework'      => __( 'SEO Framework (Pro)', 'immens-mcp-fortress' ),
+			'greenshift'         => __( 'Greenshift (Pro)', 'immens-mcp-fortress' ),
+			'stackable'          => __( 'Stackable (Pro)', 'immens-mcp-fortress' ),
+			'translatepress'     => __( 'TranslatePress (Pro)', 'immens-mcp-fortress' ),
+			'elementor'          => __( 'Elementor (Pro)', 'immens-mcp-fortress' ),
+			'acf'                => __( 'ACF (Pro)', 'immens-mcp-fortress' ),
 		);
 	}
 
@@ -114,6 +134,16 @@ class Access_Point_Schema {
 			'loco-translate' => array( 'loco_*' ),
 			'contact-form-7' => array( 'cf7_*' ),
 			'polylang'  => array( 'polylang_*' ),
+			'primary-source'     => array( 'ps_*' ),
+			'immens-integration' => array( 'imi_*' ),
+			'immens-crm'         => array( 'crm_*' ),
+			'classyblocks'       => array( 'cb_*' ),
+			'seo-framework'      => array( 'tsf_*' ),
+			'greenshift'         => array( 'gs_*' ),
+			'stackable'          => array( 'stk_*' ),
+			'translatepress'     => array( 'trp_*' ),
+			'elementor'          => array( 'elementor_*' ),
+			'acf'                => array( 'acf_*' ),
 		);
 
 		foreach ( $permissions as $category => $perms ) {
