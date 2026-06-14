@@ -81,7 +81,7 @@ class Access_Point_Repository {
 			return $cached;
 		}
 
-		$row = $wpdb->get_row( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
+		$row = $wpdb->get_row( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 			$wpdb->prepare(
 				"SELECT * FROM `{$this->table}` WHERE api_key_hash = %s AND is_enabled = 1",
 				$key_hash
@@ -99,7 +99,7 @@ class Access_Point_Repository {
 	public function get_all( $limit = 50, $offset = 0 ) {
 		global $wpdb;
 
-		return $wpdb->get_results( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
+		return $wpdb->get_results( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 			$wpdb->prepare(
 				"SELECT id, name, api_key_prefix, is_enabled, ip_whitelist, tool_permissions, wp_user_id, rate_limit, is_pro, created_at, updated_at, last_used_at FROM `{$this->table}` ORDER BY created_at DESC LIMIT %d OFFSET %d",
 				absint( $limit ),
@@ -195,7 +195,7 @@ class Access_Point_Repository {
 
 	public function update_last_used( $id ) {
 		global $wpdb;
-		$wpdb->query( $wpdb->prepare( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
+		$wpdb->query( $wpdb->prepare( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 			"UPDATE `{$this->table}` SET last_used_at = UTC_TIMESTAMP() WHERE id = %d AND (last_used_at IS NULL OR last_used_at < DATE_SUB(UTC_TIMESTAMP(), INTERVAL 5 MINUTE))",
 			absint( $id )
 		) );

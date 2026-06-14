@@ -34,8 +34,8 @@ class Token_Endpoint {
 		$table = $wpdb->prefix . 'immens_mcp_oauth_codes'; // phpcs:ignore PluginCheck.Security.DirectDB.UnescapedDBParameter
 		$code_hash = hash( 'sha256', $code );
 
-		$row = $wpdb->get_row( $wpdb->prepare( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
-			"SELECT * FROM `{$table}` WHERE code_hash = %s AND client_id = %s AND expires_at > UTC_TIMESTAMP()", // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		$row = $wpdb->get_row( $wpdb->prepare( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.InterpolatedNotPrepared,PluginCheck.Security.DirectDB.UnescapedDBParameter
+			"SELECT * FROM `{$table}` WHERE code_hash = %s AND client_id = %s AND expires_at > UTC_TIMESTAMP()",
 			$code_hash,
 			$client_id
 		), ARRAY_A );

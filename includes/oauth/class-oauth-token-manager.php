@@ -40,19 +40,18 @@ class OAuth_Token_Manager {
 		$table  = $wpdb->prefix . 'immens_mcp_oauth_tokens'; // phpcs:ignore PluginCheck.Security.DirectDB.UnescapedDBParameter
 		$hash   = hash( 'sha256', $token );
 
-		return $wpdb->get_row( $wpdb->prepare( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
-			"SELECT * FROM `{$table}` WHERE access_token_hash = %s AND is_active = 1 AND expires_at > UTC_TIMESTAMP()", // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		return $wpdb->get_row( $wpdb->prepare( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.InterpolatedNotPrepared,PluginCheck.Security.DirectDB.UnescapedDBParameter
+			"SELECT * FROM `{$table}` WHERE access_token_hash = %s AND is_active = 1 AND expires_at > UTC_TIMESTAMP()",
 			$hash
 		), ARRAY_A );
 	}
 
 	public function validate_refresh_token( $token ) {
 		global $wpdb;
-		$table = $wpdb->prefix . 'immens_mcp_oauth_tokens'; // phpcs:ignore PluginCheck.Security.DirectDB.UnescapedDBParameter
 		$hash  = hash( 'sha256', $token );
 
-		return $wpdb->get_row( $wpdb->prepare( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
-			"SELECT * FROM `{$table}` WHERE refresh_token_hash = %s AND is_active = 1 AND refresh_expires_at > UTC_TIMESTAMP()", // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		return $wpdb->get_row( $wpdb->prepare( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.InterpolatedNotPrepared,PluginCheck.Security.DirectDB.UnescapedDBParameter
+			"SELECT * FROM `{$table}` WHERE refresh_token_hash = %s AND is_active = 1 AND refresh_expires_at > UTC_TIMESTAMP()",
 			$hash
 		), ARRAY_A );
 	}
