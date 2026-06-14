@@ -251,7 +251,7 @@ class Plugin {
 
 	public function handle_oauth_authorize_request() {
 		$oauth_param = isset( $_GET['immens_mcp_fortress_oauth'] ) // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			? sanitize_text_field( wp_unslash( $_GET['immens_mcp_fortress_oauth'] ) )
+			? sanitize_text_field( wp_unslash( $_GET['immens_mcp_fortress_oauth'] ) ) // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			: '';
 
 		if ( 'authorize' !== $oauth_param ) {

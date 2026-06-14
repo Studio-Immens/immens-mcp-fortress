@@ -66,7 +66,7 @@ class Audit_Log_Page {
 		$query = ! empty( $where_args )
 			? $wpdb->prepare(
 				"SELECT * FROM `{$table_escaped}` WHERE {$where_sql} ORDER BY created_at DESC LIMIT %d OFFSET %d", // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
-				array_merge( $where_args, array( $per_page, $offset ) )
+				array_merge( $where_args, array( $per_page, $offset ) ) // phpcs:ignore WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber
 			)
 			: $wpdb->prepare(
 				"SELECT * FROM `{$table_escaped}` ORDER BY created_at DESC LIMIT %d OFFSET %d", // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared

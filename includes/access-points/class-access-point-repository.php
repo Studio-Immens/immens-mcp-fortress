@@ -61,7 +61,7 @@ class Access_Point_Repository {
 		}
 
 		$row = $wpdb->get_row( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
-			$wpdb->prepare( "SELECT * FROM `{$this->table}` WHERE id = %d", absint( $id ) ),
+			$wpdb->prepare( "SELECT * FROM `{$this->table}` WHERE id = %d", absint( $id ) ), // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 			ARRAY_A
 		);
 

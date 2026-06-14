@@ -31,7 +31,7 @@ class Token_Endpoint {
 		}
 
 		global $wpdb;
-		$table = $wpdb->prefix . 'immens_mcp_oauth_codes';
+		$table = $wpdb->prefix . 'immens_mcp_oauth_codes'; // phpcs:ignore PluginCheck.Security.DirectDB.UnescapedDBParameter
 		$code_hash = hash( 'sha256', $code );
 
 		$row = $wpdb->get_row( $wpdb->prepare( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching

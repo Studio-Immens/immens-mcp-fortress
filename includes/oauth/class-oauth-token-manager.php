@@ -9,7 +9,7 @@ class OAuth_Token_Manager {
 
 	public function create_token( $client_id, $wp_user_id, $scopes = array() ) {
 		global $wpdb;
-		$table = $wpdb->prefix . 'immens_mcp_oauth_tokens';
+		$table = $wpdb->prefix . 'immens_mcp_oauth_tokens'; // phpcs:ignore PluginCheck.Security.DirectDB.UnescapedDBParameter
 
 		$raw_access  = 'imf_oat_' . bin2hex( random_bytes( 32 ) );
 		$raw_refresh = 'imf_ort_' . bin2hex( random_bytes( 32 ) );
@@ -37,7 +37,7 @@ class OAuth_Token_Manager {
 
 	public function validate_access_token( $token ) {
 		global $wpdb;
-		$table  = $wpdb->prefix . 'immens_mcp_oauth_tokens';
+		$table  = $wpdb->prefix . 'immens_mcp_oauth_tokens'; // phpcs:ignore PluginCheck.Security.DirectDB.UnescapedDBParameter
 		$hash   = hash( 'sha256', $token );
 
 		return $wpdb->get_row( $wpdb->prepare( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
@@ -48,7 +48,7 @@ class OAuth_Token_Manager {
 
 	public function validate_refresh_token( $token ) {
 		global $wpdb;
-		$table = $wpdb->prefix . 'immens_mcp_oauth_tokens';
+		$table = $wpdb->prefix . 'immens_mcp_oauth_tokens'; // phpcs:ignore PluginCheck.Security.DirectDB.UnescapedDBParameter
 		$hash  = hash( 'sha256', $token );
 
 		return $wpdb->get_row( $wpdb->prepare( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
@@ -59,7 +59,7 @@ class OAuth_Token_Manager {
 
 	public function revoke_token( $token_id ) {
 		global $wpdb;
-		$table = $wpdb->prefix . 'immens_mcp_oauth_tokens';
+		$table = $wpdb->prefix . 'immens_mcp_oauth_tokens'; // phpcs:ignore PluginCheck.Security.DirectDB.UnescapedDBParameter
 		$wpdb->update( $table, array( 'is_active' => 0 ), array( 'id' => absint( $token_id ) ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 	}
 }

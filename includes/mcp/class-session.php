@@ -13,7 +13,7 @@ class Session {
 		global $wpdb;
 
 		$session_id = bin2hex( random_bytes( 32 ) );
-		$table = $wpdb->prefix . 'immens_mcp_sessions';
+		$table = $wpdb->prefix . 'immens_mcp_sessions'; // phpcs:ignore PluginCheck.Security.DirectDB.UnescapedDBParameter
 
 		$wpdb->insert( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 			$table,
@@ -39,7 +39,7 @@ class Session {
 			return false;
 		}
 
-		$table = $wpdb->prefix . 'immens_mcp_sessions';
+		$table = $wpdb->prefix . 'immens_mcp_sessions'; // phpcs:ignore PluginCheck.Security.DirectDB.UnescapedDBParameter
 
 		$row = $wpdb->get_row( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 			$wpdb->prepare(
@@ -54,7 +54,7 @@ class Session {
 
 	public function touch( $session_id ) {
 		global $wpdb;
-		$table = $wpdb->prefix . 'immens_mcp_sessions';
+		$table = $wpdb->prefix . 'immens_mcp_sessions'; // phpcs:ignore PluginCheck.Security.DirectDB.UnescapedDBParameter
 
 		$wpdb->update( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 			$table,
@@ -67,7 +67,7 @@ class Session {
 
 	public function destroy( $session_id ) {
 		global $wpdb;
-		$table = $wpdb->prefix . 'immens_mcp_sessions';
+		$table = $wpdb->prefix . 'immens_mcp_sessions'; // phpcs:ignore PluginCheck.Security.DirectDB.UnescapedDBParameter
 		$wpdb->delete( $table, array( 'session_id' => $session_id ), array( '%s' ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 	}
 
