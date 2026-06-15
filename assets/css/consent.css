@@ -1,0 +1,10 @@
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; max-width: 500px; margin: 60px auto; padding: 20px; background: #f0f0f1; }
+.card { background: #fff; border-radius: 8px; padding: 30px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+h1 { font-size: 22px; margin-top: 0; }
+.scope-list { list-style: none; padding: 0; margin: 20px 0; }
+.scope-list li { padding: 8px 0; border-bottom: 1px solid #eee; }
+.scope-list li:last-child { border-bottom: none; }
+.actions { margin-top: 20px; display: flex; gap: 10px; }
+.btn { padding: 10px 24px; border-radius: 4px; border: none; cursor: pointer; font-size: 14px; }
+.btn-approve { background: #2271b1; color: #fff; }
+.btn-deny { background: #ddd; color: #333; }

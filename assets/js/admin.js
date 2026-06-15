@@ -45,4 +45,30 @@ jQuery(function($) {
 			alert('Toggle failed. Please try again.');
 		});
 	});
+
+	var $permsTable = $('.imf-permissions-table');
+
+	if ( $permsTable.length ) {
+		$('.imf-enable-active-btn').on('click', function() {
+			$permsTable.find('tr.imf-plugin-active').each(function() {
+				$(this).find('input[type="checkbox"]').prop('checked', true);
+			});
+		});
+
+		var $hideToggle = $('#imf-hide-inactive');
+		$hideToggle.on('change', function() {
+			if ( $(this).is(':checked') ) {
+				$permsTable.find('tr.imf-plugin-inactive').hide();
+			} else {
+				$permsTable.find('tr.imf-plugin-inactive').show();
+			}
+		}).trigger('change');
+
+		var $editForm = $permsTable.closest('form');
+		if ( $editForm.length ) {
+			$editForm.on('submit', function() {
+				$permsTable.find('tr.imf-plugin-inactive').show();
+			});
+		}
+	}
 });

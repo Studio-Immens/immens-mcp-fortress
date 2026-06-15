@@ -18,7 +18,7 @@ class Update_User extends Base_Tool {
 	}
 
 	public function get_required_capability() {
-		return 'promote_users';
+		return 'edit_users';
 	}
 
 	public function get_category() {

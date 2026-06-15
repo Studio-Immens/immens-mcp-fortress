@@ -33,6 +33,12 @@ class Get_Revision extends Base_Tool {
 					'type'        => 'integer',
 					'description' => 'Revision ID',
 				),
+				'post_type' => array(
+					'type'        => 'string',
+					'description' => 'Post type (post or page)',
+					'enum'        => array( 'post', 'page' ),
+					'default'     => 'post',
+				),
 			),
 			'required'   => array( 'parent', 'id' ),
 		);
@@ -43,6 +49,8 @@ class Get_Revision extends Base_Tool {
 		$id        = $this->parse_required_id( $arguments['id'] );
 		$params    = array( 'context' => 'edit' );
 
-		return $this->rest_request( 'GET', '/wp/v2/posts/' . $parent_id . '/revisions/' . $id, $params );
+		$post_type = isset( $arguments['post_type'] ) ? trim( $arguments['post_type'] ) : 'post';
+		$base      = ( 'page' === $post_type ) ? 'pages' : 'posts';
+		return $this->rest_request( 'GET', '/wp/v2/' . $base . '/' . $parent_id . '/revisions/' . $id, $params );
 	}
 }

@@ -721,6 +721,95 @@ body[class*="mcp-fortress_page_immens-mcp-fortress"] ::-webkit-scrollbar-thumb {
     background: linear-gradient(180deg, #00e5ff, #7c3aed); border-radius: 3px;
 }
 
+/* --- Permissions Action Bar --- */
+.imf-permissions-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 12px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+}
+.imf-permissions-actions .button .dashicons {
+    width: 16px;
+    height: 16px;
+    font-size: 16px;
+    line-height: 1.4;
+    margin-right: 2px;
+}
+.imf-hide-inactive-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: #8892a0;
+    font-size: 13px;
+    cursor: pointer;
+    user-select: none;
+}
+.imf-hide-inactive-label input[type="checkbox"] {
+    accent-color: #7c3aed;
+}
+.imf-hide-inactive-label .dashicons {
+    width: 16px;
+    height: 16px;
+    font-size: 16px;
+    color: #7080a0;
+}
+.imf-permissions-hint {
+    font-size: 12px;
+    color: #7080a0;
+    font-style: italic;
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    margin-left: auto;
+}
+.imf-permissions-hint .dashicons {
+    width: 14px;
+    height: 14px;
+    font-size: 14px;
+}
+
+/* --- Plugin Status Dot --- */
+.imf-plugin-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+.imf-dot-active {
+    background: #06d6a0;
+    box-shadow: 0 0 6px rgba(6, 214, 160, 0.4);
+}
+.imf-dot-inactive {
+    background: #555;
+}
+
+/* --- Not Installed Badge --- */
+.imf-not-installed-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    color: #7080a0;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 0 6px;
+    border-radius: 3px;
+    margin-left: 6px;
+    vertical-align: middle;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+/* --- Inactive Plugin Row --- */
+.imf-permissions-table tr.imf-plugin-inactive td {
+    opacity: 0.4;
+}
+.imf-permissions-table tr.imf-plugin-inactive td:first-child {
+    opacity: 0.5;
+}
+
 /* --- Responsive --- */
 @media (max-width: 782px) {
     .imf-dashboard-cards { grid-template-columns: 1fr; }

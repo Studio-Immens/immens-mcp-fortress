@@ -41,6 +41,7 @@ class Access_Points_Page {
 
 		$edit_id = isset( $_GET['edit'] ) ? absint( $_GET['edit'] ) : 0; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		$editing = $edit_id ? $this->manager->get_access_point( $edit_id ) : null;
+		$plugin_status = Access_Point_Schema::get_plugin_status();
 
 		if ( $editing ) {
 			$edit_permissions = $editing['tool_permissions']
@@ -127,18 +128,48 @@ class Access_Points_Page {
 						</table>
 
 						<h3><?php esc_html_e( 'Tool Permissions', 'immens-mcp-fortress' ); ?></h3>
+
+						<div class="imf-permissions-actions">
+							<button type="button" class="button imf-enable-active-btn">
+								<span class="dashicons dashicons-yes"></span>
+								<?php esc_html_e( 'Enable All Active', 'immens-mcp-fortress' ); ?>
+							</button>
+							<label class="imf-hide-inactive-label">
+								<input type="checkbox" id="imf-hide-inactive" checked>
+								<span class="dashicons dashicons-visibility"></span>
+								<?php esc_html_e( 'Show only installed plugins', 'immens-mcp-fortress' ); ?>
+							</label>
+							<span class="imf-permissions-hint">
+								<span class="dashicons dashicons-info-outline"></span>
+								<?php esc_html_e( 'Unchecked categories are not sent to the AI agent, reducing context usage.', 'immens-mcp-fortress' ); ?>
+							</span>
+						</div>
+
 						<table class="imf-permissions-table widefat striped">
 							<thead>
 								<tr>
+									<th style="width: 30px;"></th>
 									<th><?php esc_html_e( 'Category', 'immens-mcp-fortress' ); ?></th>
 									<th style="width: 80px;"><?php esc_html_e( 'Read', 'immens-mcp-fortress' ); ?></th>
 									<th style="width: 80px;"><?php esc_html_e( 'Write', 'immens-mcp-fortress' ); ?></th>
 								</tr>
 							</thead>
 							<tbody>
-								<?php foreach ( $categories as $key => $label ) : ?>
-									<tr>
-										<td><?php echo esc_html( $label ); ?></td>
+								<?php foreach ( $categories as $key => $label ) :
+									$installed = isset( $plugin_status[ $key ] ) ? $plugin_status[ $key ] : true;
+								?>
+									<tr class="<?php echo $installed ? 'imf-plugin-active' : 'imf-plugin-inactive'; ?>">
+										<td>
+											<span class="imf-plugin-dot <?php echo $installed ? 'imf-dot-active' : 'imf-dot-inactive'; ?>"
+												title="<?php echo $installed ? esc_attr__( 'Plugin installed', 'immens-mcp-fortress' ) : esc_attr__( 'Plugin not installed', 'immens-mcp-fortress' ); ?>">
+											</span>
+										</td>
+										<td>
+											<?php echo esc_html( $label ); ?>
+											<?php if ( ! $installed ) : ?>
+												<span class="imf-not-installed-badge"><?php esc_html_e( 'not installed', 'immens-mcp-fortress' ); ?></span>
+											<?php endif; ?>
+										</td>
 										<td>
 											<input type="checkbox" name="tool_permissions[<?php echo esc_attr( $key ); ?>][read]" value="1"
 												<?php checked( ! empty( $edit_permissions[ $key ]['read'] ) ); ?>>
@@ -193,7 +224,7 @@ class Access_Points_Page {
 				</h2>
 
 				<?php if ( isset( $_GET['new'] ) ) : // phpcs:ignore WordPress.Security.NonceVerification.Recommended ?>
-					<div class="imf-new-form" style="margin-bottom: 20px; padding: 15px; background: #fff; border: 1px solid #c3c4c7;">
+					<div class="imf-new-form">
 						<h3><?php esc_html_e( 'Create Access Point', 'immens-mcp-fortress' ); ?></h3>
 						<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 							<input type="hidden" name="action" value="immens_mcp_create_access_point">
@@ -219,7 +250,83 @@ class Access_Points_Page {
 										</select>
 									</td>
 								</tr>
+								<tr>
+									<th><label for="new_ap_ip_whitelist"><?php esc_html_e( 'IP Whitelist', 'immens-mcp-fortress' ); ?></label></th>
+									<td>
+										<textarea name="ip_whitelist" id="new_ap_ip_whitelist" rows="4" class="large-text code"
+											placeholder="<?php esc_attr_e( '192.168.1.0/24&#10;10.0.0.5&#10;Leave empty to allow all IPs', 'immens-mcp-fortress' ); ?>"></textarea>
+										<p class="description">
+											<?php esc_html_e( 'One IP address or CIDR range per line. Leave empty to allow all IPs.', 'immens-mcp-fortress' ); ?>
+										</p>
+									</td>
+								</tr>
+								<tr>
+									<th><label for="new_ap_rate_limit"><?php esc_html_e( 'Rate Limit', 'immens-mcp-fortress' ); ?></label></th>
+									<td>
+										<input type="number" name="rate_limit" id="new_ap_rate_limit" min="1" max="1000"
+											value="60" class="small-text">
+										<span class="description"><?php esc_html_e( 'requests per minute', 'immens-mcp-fortress' ); ?></span>
+									</td>
+								</tr>
 							</table>
+
+							<h3><?php esc_html_e( 'Tool Permissions', 'immens-mcp-fortress' ); ?></h3>
+
+							<div class="imf-permissions-actions">
+								<button type="button" class="button imf-enable-active-btn">
+									<span class="dashicons dashicons-yes"></span>
+									<?php esc_html_e( 'Enable All Active', 'immens-mcp-fortress' ); ?>
+								</button>
+								<label class="imf-hide-inactive-label">
+									<input type="checkbox" id="imf-hide-inactive" checked>
+									<span class="dashicons dashicons-visibility"></span>
+									<?php esc_html_e( 'Show only installed plugins', 'immens-mcp-fortress' ); ?>
+								</label>
+								<span class="imf-permissions-hint">
+									<span class="dashicons dashicons-info-outline"></span>
+									<?php esc_html_e( 'Unchecked categories are not sent to the AI agent, reducing context usage.', 'immens-mcp-fortress' ); ?>
+								</span>
+							</div>
+
+							<table class="imf-permissions-table widefat striped">
+								<thead>
+									<tr>
+										<th style="width: 30px;"></th>
+										<th><?php esc_html_e( 'Category', 'immens-mcp-fortress' ); ?></th>
+										<th style="width: 80px;"><?php esc_html_e( 'Read', 'immens-mcp-fortress' ); ?></th>
+										<th style="width: 80px;"><?php esc_html_e( 'Write', 'immens-mcp-fortress' ); ?></th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php $default_perms = Access_Point_Schema::get_default_tool_permissions(); ?>
+									<?php foreach ( $categories as $key => $label ) :
+										$installed = isset( $plugin_status[ $key ] ) ? $plugin_status[ $key ] : true;
+									?>
+										<tr class="<?php echo $installed ? 'imf-plugin-active' : 'imf-plugin-inactive'; ?>">
+											<td>
+												<span class="imf-plugin-dot <?php echo $installed ? 'imf-dot-active' : 'imf-dot-inactive'; ?>"
+													title="<?php echo $installed ? esc_attr__( 'Plugin installed', 'immens-mcp-fortress' ) : esc_attr__( 'Plugin not installed', 'immens-mcp-fortress' ); ?>">
+												</span>
+											</td>
+											<td>
+												<?php echo esc_html( $label ); ?>
+												<?php if ( ! $installed ) : ?>
+													<span class="imf-not-installed-badge"><?php esc_html_e( 'not installed', 'immens-mcp-fortress' ); ?></span>
+												<?php endif; ?>
+											</td>
+											<td>
+												<input type="checkbox" name="tool_permissions[<?php echo esc_attr( $key ); ?>][read]" value="1"
+													<?php checked( ! empty( $default_perms[ $key ]['read'] ) ); ?>>
+											</td>
+											<td>
+												<input type="checkbox" name="tool_permissions[<?php echo esc_attr( $key ); ?>][write]" value="1"
+													<?php checked( ! empty( $default_perms[ $key ]['write'] ) ); ?>>
+											</td>
+										</tr>
+									<?php endforeach; ?>
+								</tbody>
+							</table>
+
 							<p>
 								<button type="submit" class="button button-primary">
 									<?php esc_html_e( 'Create Access Point', 'immens-mcp-fortress' ); ?>
@@ -299,14 +406,38 @@ class Access_Points_Page {
 
 		check_admin_referer( 'immens_mcp_create_access_point' );
 
-		$name       = isset( $_POST['name'] ) ? sanitize_text_field( wp_unslash( $_POST['name'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
-		$wp_user_id = isset( $_POST['wp_user_id'] ) ? absint( $_POST['wp_user_id'] ) : 0; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		$name       = isset( $_POST['name'] ) ? sanitize_text_field( wp_unslash( $_POST['name'] ) ) : '';
+ // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		$wp_user_id = isset( $_POST['wp_user_id'] ) ? absint( $_POST['wp_user_id'] ) : 0;
+ // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		$ip_whitelist = isset( $_POST['ip_whitelist'] )
+ // phpcs:ignore WordPress.Security.NonceVerification.Missing
+			? sanitize_textarea_field( wp_unslash( $_POST['ip_whitelist'] ) )
+			: '';
+		$rate_limit = isset( $_POST['rate_limit'] ) ? absint( $_POST['rate_limit'] ) : 60;
+ // phpcs:ignore WordPress.Security.NonceVerification.Missing
+
+		$tool_permissions = null;
+		if ( isset( $_POST['tool_permissions'] ) ) {
+ // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+			$raw_permissions = wp_unslash( $_POST['tool_permissions'] );
+			$tool_permissions = array();
+			if ( is_array( $raw_permissions ) ) {
+				foreach ( $raw_permissions as $category => $perms ) {
+					$category = sanitize_key( $category );
+					$tool_permissions[ $category ] = array(
+						'read'  => ! empty( $perms['read'] ),
+						'write' => ! empty( $perms['write'] ),
+					);
+				}
+			}
+		}
 
 		if ( empty( $name ) ) {
 			wp_die( esc_html__( 'Name is required.', 'immens-mcp-fortress' ) );
 		}
 
-		$result = $this->manager->create_access_point( $name, $wp_user_id );
+		$result = $this->manager->create_access_point( $name, $wp_user_id, $tool_permissions, $ip_whitelist, $rate_limit );
 
 		if ( is_wp_error( $result ) ) {
 			wp_die( esc_html( $result->get_error_message() ) );

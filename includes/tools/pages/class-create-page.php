@@ -77,6 +77,10 @@ class Create_Page extends Base_Tool {
 		$this->validate_required( $arguments, array( 'title' ) );
 		$this->validate_title_length( isset( $arguments['title'] ) ? $arguments['title'] : null );
 
+		if ( ! isset( $arguments['slug'] ) && ! empty( $arguments['title'] ) ) {
+			$arguments['slug'] = sanitize_title( $arguments['title'] );
+		}
+
 		$params = array(
 			'title'  => $arguments['title'],
 			'status' => isset( $arguments['status'] ) ? $arguments['status'] : 'draft',

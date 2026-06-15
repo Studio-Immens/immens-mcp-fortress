@@ -25,8 +25,8 @@ class Plugin {
 	}
 
 	private function __construct() {
+		add_action( 'init', array( $this, 'register_assets' ) );
 		add_action( 'rest_api_init', array( $this, 'register_rest_routes' ) );
-		add_action( 'init', array( $this, 'load_textdomain' ) );
 		add_action( 'init', array( $this, 'handle_well_known' ), 0 );
 		add_action( 'init', array( $this, 'handle_oauth_authorize_request' ), PHP_INT_MAX );
 
@@ -45,11 +45,12 @@ class Plugin {
 		}
 	}
 
-	public function load_textdomain() {
-		load_plugin_textdomain( // phpcs:ignore PluginCheck.CodeAnalysis.DiscouragedFunctions.load_plugin_textdomainFound
-			'immens-mcp-fortress',
-			false,
-			dirname( IMMENS_MCP_FORTRESS_PLUGIN_BASENAME ) . '/languages'
+	public function register_assets() {
+		wp_register_style(
+			'immens-mcp-fortress-consent',
+			IMMENS_MCP_FORTRESS_PLUGIN_URL . 'assets/css/consent.css',
+			array(),
+			IMMENS_MCP_FORTRESS_VERSION
 		);
 	}
 
@@ -143,6 +144,7 @@ class Plugin {
 			'revisions', 'meta', 'search', 'blocks', 'cpt', 'templates', 'styles',
 			'woocommerce', 'yoast', 'rank-math',
 			'loco-translate', 'contact-form-7', 'polylang',
+			'code-snippets', 'w3-total-cache',
 		);
 
 		foreach ( $tool_dirs as $dir ) {
@@ -279,9 +281,21 @@ class Plugin {
 		$request = new \WP_REST_Request( $method );
 
 		if ( 'POST' === $method ) {
-			$request->set_body_params( isset( $_POST ) ? wp_unslash( $_POST ) : array() ); // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.NonceVerification.Recommended
+			$request->set_param( 'client_id', sanitize_text_field( wp_unslash( $_POST['client_id'] ?? '' ) ) );
+			$request->set_param( 'redirect_uri', esc_url_raw( wp_unslash( $_POST['redirect_uri'] ?? '' ) ) );
+			$request->set_param( 'scope', sanitize_text_field( wp_unslash( $_POST['scope'] ?? '' ) ) );
+			$request->set_param( 'state', sanitize_text_field( wp_unslash( $_POST['state'] ?? '' ) ) );
+			$request->set_param( 'code_challenge', sanitize_text_field( wp_unslash( $_POST['code_challenge'] ?? '' ) ) );
+			$request->set_param( 'code_challenge_method', sanitize_key( $_POST['code_challenge_method'] ?? '' ) );
+			$request->set_param( '_imf_oauth_nonce', sanitize_text_field( wp_unslash( $_POST['_imf_oauth_nonce'] ?? '' ) ) );
 		} else {
-			$request->set_query_params( isset( $_GET ) ? wp_unslash( $_GET ) : array() ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$request->set_param( 'response_type', sanitize_key( $_GET['response_type'] ?? '' ) );
+			$request->set_param( 'client_id', sanitize_text_field( wp_unslash( $_GET['client_id'] ?? '' ) ) );
+			$request->set_param( 'redirect_uri', esc_url_raw( wp_unslash( $_GET['redirect_uri'] ?? '' ) ) );
+			$request->set_param( 'scope', sanitize_text_field( wp_unslash( $_GET['scope'] ?? '' ) ) );
+			$request->set_param( 'state', sanitize_text_field( wp_unslash( $_GET['state'] ?? '' ) ) );
+			$request->set_param( 'code_challenge', sanitize_text_field( wp_unslash( $_GET['code_challenge'] ?? '' ) ) );
+			$request->set_param( 'code_challenge_method', sanitize_key( $_GET['code_challenge_method'] ?? '' ) );
 		}
 
 		$endpoint = new OAuth\Authorization_Endpoint();

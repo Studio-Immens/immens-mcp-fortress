@@ -58,11 +58,19 @@ class Translate_String extends Base_Tool {
 	public function execute( array $arguments ) {
 		$this->validate_required( $arguments, array( 'text_domain', 'original', 'translation', 'locale', 'type' ) );
 
-		$text_domain = $arguments['text_domain'];
+		$text_domain = sanitize_key( $arguments['text_domain'] );
 		$original    = $arguments['original'];
 		$translation = $arguments['translation'];
-		$locale      = $arguments['locale'];
-		$type        = $arguments['type'];
+		$locale      = sanitize_text_field( $arguments['locale'] );
+
+		if ( ! preg_match( '/^[a-zA-Z0-9_-]+$/', $text_domain ) || empty( $text_domain ) ) {
+			throw new \InvalidArgumentException( 'Invalid text_domain. Only alphanumeric, dash, and underscore characters are allowed.' );
+		}
+		if ( ! preg_match( '/^[a-zA-Z_]+$/', $locale ) || empty( $locale ) ) {
+			throw new \InvalidArgumentException( 'Invalid locale. Only alphabetic and underscore characters are allowed.' );
+		}
+
+		$type = $arguments['type'];
 
 		$base_dir  = ( 'theme' === $type ) ? WP_LANG_DIR . '/themes/' : WP_LANG_DIR . '/plugins/';
 
@@ -70,8 +78,14 @@ class Translate_String extends Base_Tool {
 			wp_mkdir_p( $base_dir );
 		}
 
-		$po_file = $base_dir . $text_domain . '-' . $locale . '.po';
-		$mo_file = $base_dir . $text_domain . '-' . $locale . '.mo';
+		$po_file  = $base_dir . $text_domain . '-' . $locale . '.po';
+		$mo_file  = $base_dir . $text_domain . '-' . $locale . '.mo';
+		$real_po  = realpath( dirname( $po_file ) ) ? realpath( dirname( $po_file ) ) . '/' . basename( $po_file ) : $po_file;
+		$real_dir = realpath( $base_dir );
+
+		if ( $real_dir && 0 !== strpos( $real_po, $real_dir ) ) {
+			throw new \RuntimeException( 'File path escapes the language directory.' );
+		}
 
 		if ( ! file_exists( $po_file ) ) {
 			$this->create_po_file( $po_file, $text_domain, $locale );

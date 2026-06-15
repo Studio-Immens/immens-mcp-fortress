@@ -20,18 +20,10 @@ class Consent_Screen {
 			<meta charset="utf-8">
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 			<title><?php esc_html_e( 'Authorize MCP Client', 'immens-mcp-fortress' ); ?></title>
-			<style>
-				body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; max-width: 500px; margin: 60px auto; padding: 20px; background: #f0f0f1; }
-				.card { background: #fff; border-radius: 8px; padding: 30px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-				h1 { font-size: 22px; margin-top: 0; }
-				.scope-list { list-style: none; padding: 0; margin: 20px 0; }
-				.scope-list li { padding: 8px 0; border-bottom: 1px solid #eee; }
-				.scope-list li:last-child { border-bottom: none; }
-				.actions { margin-top: 20px; display: flex; gap: 10px; }
-				.btn { padding: 10px 24px; border-radius: 4px; border: none; cursor: pointer; font-size: 14px; }
-				.btn-approve { background: #2271b1; color: #fff; }
-				.btn-deny { background: #ddd; color: #333; }
-			</style>
+			<?php
+				wp_enqueue_style( 'immens-mcp-fortress-consent' );
+				wp_print_styles( array( 'immens-mcp-fortress-consent' ) );
+			?>
 		</head>
 		<body>
 			<div class="card">
@@ -50,6 +42,7 @@ class Consent_Screen {
 					<?php endif; ?>
 				</ul>
 				<form method="post">
+					<?php wp_nonce_field( 'imf_oauth_consent', '_imf_oauth_nonce' ); ?>
 					<input type="hidden" name="client_id" value="<?php echo esc_attr( $client_id ); ?>">
 					<input type="hidden" name="redirect_uri" value="<?php echo esc_attr( $redirect_uri ); ?>">
 					<input type="hidden" name="state" value="<?php echo esc_attr( $state ); ?>">

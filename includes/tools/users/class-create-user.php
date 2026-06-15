@@ -18,7 +18,7 @@ class Create_User extends Base_Tool {
 	}
 
 	public function get_required_capability() {
-		return 'promote_users';
+		return 'create_users';
 	}
 
 	public function get_category() {

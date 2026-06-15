@@ -64,6 +64,8 @@ class Access_Point_Schema {
 			'translatepress'     => array( 'read' => true, 'write' => true ),
 			'elementor'          => array( 'read' => true, 'write' => true ),
 			'acf'                => array( 'read' => true, 'write' => true ),
+			'code-snippets'      => array( 'read' => true, 'write' => true ),
+			'w3-total-cache'     => array( 'read' => true, 'write' => false ),
 		);
 	}
 
@@ -101,6 +103,8 @@ class Access_Point_Schema {
 			'translatepress'     => __( 'TranslatePress (Pro)', 'immens-mcp-fortress' ),
 			'elementor'          => __( 'Elementor (Pro)', 'immens-mcp-fortress' ),
 			'acf'                => __( 'ACF (Pro)', 'immens-mcp-fortress' ),
+			'code-snippets'      => __( 'Code Snippets', 'immens-mcp-fortress' ),
+			'w3-total-cache'     => __( 'W3 Total Cache', 'immens-mcp-fortress' ),
 		);
 	}
 
@@ -144,6 +148,8 @@ class Access_Point_Schema {
 			'translatepress'     => array( 'trp_*' ),
 			'elementor'          => array( 'elementor_*' ),
 			'acf'                => array( 'acf_*' ),
+			'code-snippets'      => array( 'cs_*' ),
+			'w3-total-cache'     => array( 'w3tc_*' ),
 		);
 
 		foreach ( $permissions as $category => $perms ) {
@@ -179,5 +185,47 @@ class Access_Point_Schema {
 		}
 
 		return $allowed;
+	}
+
+	public static function get_plugin_status() {
+		$status = array(
+			'posts'              => true,
+			'pages'              => true,
+			'media'              => true,
+			'comments'           => true,
+			'users'              => true,
+			'taxonomy'           => true,
+			'menus'              => true,
+			'blocks'             => true,
+			'templates'          => true,
+			'styles'             => true,
+			'plugins'            => true,
+			'themes'             => true,
+			'site'               => true,
+			'search'             => true,
+			'revisions'          => true,
+			'meta'               => true,
+		);
+
+		$status['woocommerce']        = class_exists( 'WooCommerce' );
+		$status['yoast']              = defined( 'WPSEO_VERSION' );
+		$status['rank-math']          = defined( 'RANK_MATH_VERSION' );
+		$status['loco-translate']     = function_exists( 'loco_plugin_auto_update' ) || function_exists( 'loco_plugin_' );
+		$status['contact-form-7']     = defined( 'WPCF7_VERSION' );
+		$status['polylang']           = defined( 'POLYLANG_VERSION' );
+		$status['primary-source']     = defined( 'PS_VERSION' ) || class_exists( 'PrimarySource\Plugin' );
+		$status['immens-integration'] = defined( 'IMMENS_INTEGRATION_VERSION' );
+		$status['immens-crm']         = defined( 'IMMENS_CRM_VERSION' );
+		$status['classyblocks']       = defined( 'CB_PRO_VERSION' );
+		$status['seo-framework']      = function_exists( 'the_seo_framework' );
+		$status['greenshift']         = defined( 'GREENSHIFT_VERSION' );
+		$status['stackable']          = defined( 'STACKABLE_VERSION' );
+		$status['translatepress']     = defined( 'TRP_PLUGIN_VERSION' );
+		$status['elementor']          = defined( 'ELEMENTOR_VERSION' );
+		$status['acf']                = class_exists( 'ACF' );
+		$status['code-snippets']      = function_exists( 'code_snippets' ) || post_type_exists( 'code-snippets' );
+		$status['w3-total-cache']     = defined( 'W3TC' ) || function_exists( 'w3tc_flush_all' );
+
+		return $status;
 	}
 }

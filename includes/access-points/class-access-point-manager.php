@@ -14,18 +14,6 @@ class Access_Point_Manager {
 	}
 
 	public function create_access_point( $name, $wp_user_id = 0, $tool_permissions = null, $ip_whitelist = '', $rate_limit = 60 ) {
-		$limit = apply_filters( 'imf_access_point_limit', 2 ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
-		if ( $limit > 0 && $this->repository->count() >= $limit ) {
-			return new \WP_Error(
-				'access_point_limit',
-				sprintf(
-					/* translators: %d: access point limit number */
-					__( 'Free tier limited to %d access points. Upgrade to Immens MCP Fortress Pro for unlimited.', 'immens-mcp-fortress' ),
-					$limit
-				)
-			);
-		}
-
 		$data = array(
 			'name'             => $name,
 			'wp_user_id'       => $wp_user_id,
@@ -51,6 +39,21 @@ class Access_Point_Manager {
 	}
 
 	public function update_access_point( $id, array $data ) {
+		if ( isset( $data['tool_permissions'] ) ) {
+			$existing = $this->get_access_point( $id );
+			if ( $existing && ! empty( $existing['tool_permissions'] ) ) {
+				$existing_perms = json_decode( $existing['tool_permissions'], true );
+				if ( is_array( $existing_perms ) ) {
+					$merged = $data['tool_permissions'];
+					foreach ( $existing_perms as $cat => $perms ) {
+						if ( ! isset( $merged[ $cat ] ) ) {
+							$merged[ $cat ] = $perms;
+						}
+					}
+					$data['tool_permissions'] = $merged;
+				}
+			}
+		}
 		return $this->repository->update( $id, $data );
 	}
 

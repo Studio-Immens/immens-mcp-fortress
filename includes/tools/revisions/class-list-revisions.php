@@ -39,6 +39,12 @@ class List_Revisions extends Base_Tool {
 					'description' => 'Revisions per page',
 					'default'     => 10,
 				),
+				'post_type' => array(
+					'type'        => 'string',
+					'description' => 'Post type (post or page)',
+					'enum'        => array( 'post', 'page' ),
+					'default'     => 'post',
+				),
 			),
 			'required'   => array( 'parent' ),
 		);
@@ -61,7 +67,9 @@ class List_Revisions extends Base_Tool {
 			'context'  => 'edit',
 		);
 
-		$request  = new \WP_REST_Request( 'GET', '/wp/v2/posts/' . $parent_id . '/revisions' );
+		$post_type = isset( $arguments['post_type'] ) ? trim( $arguments['post_type'] ) : 'post';
+		$base      = ( 'page' === $post_type ) ? 'pages' : 'posts';
+		$request   = new \WP_REST_Request( 'GET', '/wp/v2/' . $base . '/' . $parent_id . '/revisions' );
 		foreach ( $params as $key => $value ) {
 			$request->set_param( $key, $value );
 		}
