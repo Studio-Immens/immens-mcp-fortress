@@ -42,6 +42,7 @@ class List_Users extends Base_Tool {
 				'roles'    => array(
 					'type'        => 'array',
 					'description' => 'Filter by role(s)',
+					'items'       => array( 'type' => 'string' ),
 				),
 				'orderby'  => array(
 					'type'        => 'string',

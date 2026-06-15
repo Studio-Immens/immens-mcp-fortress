@@ -28,7 +28,6 @@ class Get_Order extends Base_Tool {
 				'id' => array(
 					'type'        => 'integer',
 					'description' => 'Order ID',
-					'required'    => true,
 				),
 			),
 			'required'   => array( 'id' ),

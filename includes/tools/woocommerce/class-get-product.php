@@ -28,7 +28,6 @@ class Get_Product extends Base_Tool {
 				'id' => array(
 					'type'        => 'integer',
 					'description' => 'Product ID',
-					'required'    => true,
 				),
 			),
 			'required'   => array( 'id' ),

@@ -28,7 +28,7 @@ class Search_Products extends Base_Tool {
 				'search'   => array(
 					'type'        => 'string',
 					'description' => 'Search term (minimum 2 characters)',
-					'required'    => true,
+
 				),
 				'per_page' => array(
 					'type'        => 'integer',
