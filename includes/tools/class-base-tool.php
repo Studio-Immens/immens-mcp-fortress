@@ -39,10 +39,14 @@ abstract class Base_Tool {
 	}
 
 	public function get_definition() {
+		$schema = $this->get_input_schema();
+		if ( isset( $schema['properties'] ) && is_array( $schema['properties'] ) && empty( $schema['properties'] ) ) {
+			$schema['properties'] = new \stdClass();
+		}
 		$definition = array(
 			'name'        => $this->get_name(),
 			'description' => $this->get_description(),
-			'inputSchema' => $this->get_input_schema(),
+			'inputSchema' => $schema,
 		);
 		$annotations = $this->get_annotations();
 		if ( ! empty( $annotations ) ) {

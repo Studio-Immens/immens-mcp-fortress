@@ -145,9 +145,11 @@ class Admin_Page {
     "immens-mcp-fortress": {
       "type": "remote",
       "url": "<?php echo esc_url( $endpoint_url ); ?>",
+      "enabled": true,
       "headers": {
         "Authorization": "Bearer YOUR_API_KEY"
-      }
+      },
+      "oauth": false
     }
   }
 }</pre>
