@@ -7,3 +7,8 @@ INTERNAL_DOCUMENTATION.md export-ignore
 .distignore export-ignore
 admin-icon-base64.txt export-ignore
 admin-icon.png export-ignore
+.opencode/ export-ignore
+clawhub/ export-ignore
+README.it.md export-ignore
+icon-128x128.png export-ignore
+icon-256x256.png export-ignore
