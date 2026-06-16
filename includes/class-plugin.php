@@ -84,6 +84,9 @@ class Plugin {
 
 		$this->load_mcp_includes();
 
+		require_once IMMENS_MCP_FORTRESS_PLUGIN_DIR . 'includes/rest-api/class-rest-api-schema.php';
+		require_once IMMENS_MCP_FORTRESS_PLUGIN_DIR . 'includes/rest-api/class-rest-api-registry.php';
+
 		require_once IMMENS_MCP_FORTRESS_PLUGIN_DIR . 'includes/admin/class-admin-page.php';
 		require_once IMMENS_MCP_FORTRESS_PLUGIN_DIR . 'includes/admin/class-access-points-page.php';
 		require_once IMMENS_MCP_FORTRESS_PLUGIN_DIR . 'includes/admin/class-settings-page.php';
@@ -135,6 +138,15 @@ class Plugin {
 			$oauth_routes = new OAuth\OAuth_Routes();
 			$oauth_routes->register_routes();
 		}
+
+		if ( apply_filters( 'imf_rest_api_gateway_enabled', true ) ) {
+			require_once IMMENS_MCP_FORTRESS_PLUGIN_DIR . 'includes/rest-api/class-rest-api-schema.php';
+			require_once IMMENS_MCP_FORTRESS_PLUGIN_DIR . 'includes/rest-api/class-rest-api-registry.php';
+			require_once IMMENS_MCP_FORTRESS_PLUGIN_DIR . 'includes/rest-api/class-rest-api-auth.php';
+			$rest_registry = new REST_API\REST_API_Registry();
+			$rest_auth     = new REST_API\REST_API_Auth( $access_point_manager, $rest_registry );
+			$rest_auth->register();
+		}
 	}
 
 	private function register_tools() {
@@ -148,6 +160,9 @@ class Plugin {
 		);
 
 		foreach ( $tool_dirs as $dir ) {
+			if ( ! \Immens_MCP_Fortress\Access_Points\Access_Point_Schema::is_plugin_active_for_tool_dir( $dir ) ) {
+				continue;
+			}
 			$tool_path = IMMENS_MCP_FORTRESS_PLUGIN_DIR . 'includes/tools/' . $dir . '/';
 			if ( is_dir( $tool_path ) ) {
 				$files = glob( $tool_path . 'class-*.php' );
@@ -155,6 +170,16 @@ class Plugin {
 					foreach ( $files as $file ) {
 						require_once $file;
 					}
+				}
+			}
+		}
+
+		$tool_path = IMMENS_MCP_FORTRESS_PLUGIN_DIR . 'includes/tools/rest-api/';
+		if ( is_dir( $tool_path ) ) {
+			$files = glob( $tool_path . 'class-*.php' );
+			if ( $files ) {
+				foreach ( $files as $file ) {
+					require_once $file;
 				}
 			}
 		}

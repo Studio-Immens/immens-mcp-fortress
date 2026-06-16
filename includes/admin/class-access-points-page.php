@@ -3,6 +3,8 @@ namespace Immens_MCP_Fortress\Admin;
 
 use Immens_MCP_Fortress\Access_Points\Access_Point_Manager;
 use Immens_MCP_Fortress\Access_Points\Access_Point_Schema;
+use Immens_MCP_Fortress\REST_API\REST_API_Registry;
+use Immens_MCP_Fortress\REST_API\REST_API_Schema;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -93,7 +95,7 @@ class Access_Points_Page {
 								<th><label for="ap_wp_user"><?php esc_html_e( 'WordPress User', 'immens-mcp-fortress' ); ?></label></th>
 								<td>
 									<select name="wp_user_id" id="ap_wp_user">
-										<option value="0"><?php esc_html_e( '— None (Admin capabilities) —', 'immens-mcp-fortress' ); ?></option>
+										<option value="0"><?php esc_html_e( 'â€” None (Admin capabilities) â€”', 'immens-mcp-fortress' ); ?></option>
 										<?php foreach ( $users as $user ) : ?>
 											<option value="<?php echo esc_attr( $user->ID ); ?>"
 												<?php selected( $editing['wp_user_id'], $user->ID ); ?>>
@@ -180,8 +182,10 @@ class Access_Points_Page {
 										</td>
 									</tr>
 								<?php endforeach; ?>
-							</tbody>
-						</table>
+			</tbody>
+		</table>
+
+						<?php $this->render_rest_permissions_section( true ); ?>
 
 						<p class="submit">
 							<button type="submit" class="button button-primary">
@@ -241,7 +245,7 @@ class Access_Points_Page {
 									<th><label for="new_ap_user"><?php esc_html_e( 'WordPress User', 'immens-mcp-fortress' ); ?></label></th>
 									<td>
 										<select name="wp_user_id" id="new_ap_user">
-											<option value="0"><?php esc_html_e( '— None (Admin capabilities) —', 'immens-mcp-fortress' ); ?></option>
+											<option value="0"><?php esc_html_e( 'â€” None (Admin capabilities) â€”', 'immens-mcp-fortress' ); ?></option>
 											<?php foreach ( $users as $user ) : ?>
 												<option value="<?php echo esc_attr( $user->ID ); ?>">
 													<?php echo esc_html( $user->display_name . ' (' . $user->user_login . ')' ); ?>
@@ -326,6 +330,8 @@ class Access_Points_Page {
 									<?php endforeach; ?>
 								</tbody>
 							</table>
+
+							<?php $this->render_rest_permissions_section( false ); ?>
 
 							<p>
 								<button type="submit" class="button button-primary">
@@ -431,6 +437,12 @@ class Access_Points_Page {
 					);
 				}
 			}
+			$all_categories = Access_Point_Schema::get_all_tool_categories();
+			foreach ( array_keys( $all_categories ) as $cat ) {
+				if ( ! isset( $tool_permissions[ $cat ] ) ) {
+					$tool_permissions[ $cat ] = array( 'read' => false, 'write' => false );
+				}
+			}
 		}
 
 		if ( empty( $name ) ) {
@@ -460,24 +472,30 @@ class Access_Points_Page {
 			wp_die( esc_html__( 'Unauthorized.', 'immens-mcp-fortress' ) );
 		}
 
-		$id = isset( $_POST['id'] ) ? absint( $_POST['id'] ) : 0; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		$id = isset( $_POST['id'] ) ? absint( $_POST['id'] ) : 0;
+ // phpcs:ignore WordPress.Security.NonceVerification.Missing
 		check_admin_referer( 'immens_mcp_update_access_point_' . $id );
 
 		$data = array();
 
-		if ( isset( $_POST['name'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		if ( isset( $_POST['name'] ) ) {
+ // phpcs:ignore WordPress.Security.NonceVerification.Missing
 			$data['name'] = sanitize_text_field( wp_unslash( $_POST['name'] ) );
 		}
-		if ( isset( $_POST['wp_user_id'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		if ( isset( $_POST['wp_user_id'] ) ) {
+ // phpcs:ignore WordPress.Security.NonceVerification.Missing
 			$data['wp_user_id'] = absint( $_POST['wp_user_id'] );
 		}
-		$data['ip_whitelist'] = isset( $_POST['ip_whitelist'] ) // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		$data['ip_whitelist'] = isset( $_POST['ip_whitelist'] )
+ // phpcs:ignore WordPress.Security.NonceVerification.Missing
 			? sanitize_textarea_field( wp_unslash( $_POST['ip_whitelist'] ) )
 			: '';
-		if ( isset( $_POST['rate_limit'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		if ( isset( $_POST['rate_limit'] ) ) {
+ // phpcs:ignore WordPress.Security.NonceVerification.Missing
 			$data['rate_limit'] = absint( $_POST['rate_limit'] );
 		}
-		if ( isset( $_POST['tool_permissions'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		if ( isset( $_POST['tool_permissions'] ) ) {
+ // phpcs:ignore WordPress.Security.NonceVerification.Missing
 			$raw_permissions = wp_unslash( $_POST['tool_permissions'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 			$permissions = array();
 			if ( is_array( $raw_permissions ) ) {
@@ -487,6 +505,12 @@ class Access_Points_Page {
 						'read'  => ! empty( $perms['read'] ),
 						'write' => ! empty( $perms['write'] ),
 					);
+				}
+			}
+			$all_categories = Access_Point_Schema::get_all_tool_categories();
+			foreach ( array_keys( $all_categories ) as $cat ) {
+				if ( ! isset( $permissions[ $cat ] ) ) {
+					$permissions[ $cat ] = array( 'read' => false, 'write' => false );
 				}
 			}
 			$data['tool_permissions'] = $permissions;
@@ -506,7 +530,8 @@ class Access_Points_Page {
 			wp_die( esc_html__( 'Unauthorized.', 'immens-mcp-fortress' ) );
 		}
 
-		$id = isset( $_POST['id'] ) ? absint( $_POST['id'] ) : 0; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		$id = isset( $_POST['id'] ) ? absint( $_POST['id'] ) : 0;
+ // phpcs:ignore WordPress.Security.NonceVerification.Missing
 		check_admin_referer( 'immens_mcp_delete_access_point_' . $id );
 
 		$this->manager->delete_access_point( $id );
@@ -523,7 +548,8 @@ class Access_Points_Page {
 			wp_die( esc_html__( 'Unauthorized.', 'immens-mcp-fortress' ) );
 		}
 
-		$id = isset( $_POST['id'] ) ? absint( $_POST['id'] ) : 0; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		$id = isset( $_POST['id'] ) ? absint( $_POST['id'] ) : 0;
+ // phpcs:ignore WordPress.Security.NonceVerification.Missing
 		check_admin_referer( 'immens_mcp_regenerate_key_' . $id );
 
 		$result = $this->manager->regenerate_key( $id );
@@ -545,11 +571,92 @@ class Access_Points_Page {
 
 		check_ajax_referer( 'immens_mcp_fortress_admin' );
 
-		$id      = isset( $_POST['id'] ) ? absint( $_POST['id'] ) : 0; // phpcs:ignore WordPress.Security.NonceVerification.Missing
-		$enabled = isset( $_POST['enabled'] ) ? (int) $_POST['enabled'] : 1; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		$id      = isset( $_POST['id'] ) ? absint( $_POST['id'] ) : 0;
+ // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		$enabled = isset( $_POST['enabled'] ) ? (int) $_POST['enabled'] : 1;
+ // phpcs:ignore WordPress.Security.NonceVerification.Missing
 
 		$this->manager->toggle_access_point( $id, $enabled );
 
 		wp_send_json_success( array( 'enabled' => $enabled ) );
+	}
+
+	private function render_rest_permissions_section( $editing = false ) {
+		$registry    = new REST_API_Registry();
+		$categorized = $registry->get_namespaces_by_category();
+		$edit_perms  = array();
+
+		if ( $editing ) {
+			$edit_id = isset( $_GET['edit'] ) ? absint( $_GET['edit'] ) : 0; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			if ( $edit_id ) {
+				$saved_perms = $registry->get_namespace_permissions( $edit_id );
+				if ( is_array( $saved_perms ) ) {
+					$edit_perms = $saved_perms;
+				}
+			}
+		}
+
+		if ( empty( $categorized ) ) {
+			return;
+		}
+		?>
+		<h3><?php esc_html_e( 'REST API Namespace Permissions', 'immens-mcp-fortress' ); ?></h3>
+		<p class="description" style="margin-bottom: 12px;">
+			<?php esc_html_e( 'Control which REST API namespaces can be accessed via this access point. These permissions apply both to the MCP REST API tool and direct REST API calls using this access point key.', 'immens-mcp-fortress' ); ?>
+		</p>
+
+		<table class="imf-permissions-table widefat striped">
+			<thead>
+				<tr>
+					<th style="width: 30px;"></th>
+					<th><?php esc_html_e( 'Namespace', 'immens-mcp-fortress' ); ?></th>
+					<th style="width: 80px;"><?php esc_html_e( 'Read', 'immens-mcp-fortress' ); ?></th>
+					<th style="width: 80px;"><?php esc_html_e( 'Write', 'immens-mcp-fortress' ); ?></th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php foreach ( $categorized as $category => $data ) :
+					$is_active   = $data['active'];
+					$label       = $data['label'];
+					$namespaces  = $data['namespaces'];
+				?>
+					<tr style="background: #f8f9fa;">
+						<td colspan="4">
+							<strong style="font-size: 13px;"><?php echo esc_html( $label ); ?></strong>
+							<?php if ( ! $is_active ) : ?>
+								<span class="imf-not-installed-badge"><?php esc_html_e( 'plugin not installed', 'immens-mcp-fortress' ); ?></span>
+							<?php endif; ?>
+						</td>
+					</tr>
+					<?php foreach ( $namespaces as $ns ) :
+						$ns_label = REST_API_Schema::get_namespace_label( $ns );
+						$ns_key   = 'ns:' . $ns;
+						$has_read = $editing ? ( isset( $edit_perms[ $ns ]['read'] ) ? $edit_perms[ $ns ]['read'] : $is_active ) : $is_active;
+						$has_write = $editing ? ( isset( $edit_perms[ $ns ]['write'] ) ? $edit_perms[ $ns ]['write'] : false ) : false;
+					?>
+						<tr>
+							<td></td>
+							<td>
+								<code style="font-size: 12px;"><?php echo esc_html( $ns ); ?></code>
+								<?php if ( $ns_label !== $ns ) : ?>
+									<br><small style="color: #666;"><?php echo esc_html( $ns_label ); ?></small>
+								<?php endif; ?>
+							</td>
+							<td>
+								<input type="checkbox" name="tool_permissions[<?php echo esc_attr( $ns_key ); ?>][read]" value="1"
+									<?php checked( $has_read ); ?>
+									<?php disabled( ! $is_active ); ?>>
+							</td>
+							<td>
+								<input type="checkbox" name="tool_permissions[<?php echo esc_attr( $ns_key ); ?>][write]" value="1"
+									<?php checked( $has_write ); ?>
+									<?php disabled( ! $is_active ); ?>>
+							</td>
+						</tr>
+					<?php endforeach; ?>
+				<?php endforeach; ?>
+			</tbody>
+		</table>
+		<?php
 	}
 }

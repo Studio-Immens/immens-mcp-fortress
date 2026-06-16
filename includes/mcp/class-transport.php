@@ -12,7 +12,7 @@ class Transport {
 
 	const NAMESPACE_V1   = 'immens-mcp-fortress/v1';
 	const ROUTE          = '/mcp';
-	const ROUTE_WITH_KEY = '/mcp/(?P<api_key>imf_[a-f0-9]{67})';
+	const ROUTE_WITH_KEY = '/mcp/(?P<api_key>imf_[a-f0-9]{64})';
 	const MAX_BATCH_SIZE = 20;
 
 	private $server;

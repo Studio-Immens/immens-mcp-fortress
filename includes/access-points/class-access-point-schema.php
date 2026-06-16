@@ -48,6 +48,7 @@ class Access_Point_Schema {
 			'search'             => array( 'read' => true, 'write' => false ),
 			'revisions'          => array( 'read' => true, 'write' => false ),
 			'meta'               => array( 'read' => true, 'write' => true ),
+			'rest-api'           => array( 'read' => true, 'write' => true ),
 			'woocommerce'        => array( 'read' => true, 'write' => false ),
 			'yoast'              => array( 'read' => true, 'write' => true ),
 			'rank-math'          => array( 'read' => true, 'write' => true ),
@@ -87,6 +88,7 @@ class Access_Point_Schema {
 			'search'    => __( 'Search', 'immens-mcp-fortress' ),
 			'revisions' => __( 'Revisions', 'immens-mcp-fortress' ),
 			'meta'      => __( 'Post Meta', 'immens-mcp-fortress' ),
+			'rest-api'  => __( 'REST API Gateway', 'immens-mcp-fortress' ),
 			'woocommerce' => __( 'WooCommerce', 'immens-mcp-fortress' ),
 			'yoast'     => __( 'Yoast SEO', 'immens-mcp-fortress' ),
 			'rank-math' => __( 'Rank Math SEO', 'immens-mcp-fortress' ),
@@ -132,6 +134,7 @@ class Access_Point_Schema {
 			'search'    => array( 'wp_search' ),
 			'revisions' => array( 'wp_list_revisions', 'wp_get_revision' ),
 			'meta'      => array( 'wp_get_post_meta', 'wp_update_post_meta', 'wp_delete_post_meta', 'wp_add_post_terms' ),
+			'rest-api'  => array( 'wp_rest_api_request' ),
 			'woocommerce' => array( 'wc_*' ),
 			'yoast'     => array( 'yoast_*' ),
 			'rank-math' => array( 'rankmath_*' ),
@@ -187,6 +190,38 @@ class Access_Point_Schema {
 		return $allowed;
 	}
 
+	public static function get_tool_dir_plugin_map() {
+		return array(
+			'woocommerce'        => 'woocommerce',
+			'yoast'              => 'yoast',
+			'rank-math'          => 'rank-math',
+			'loco-translate'     => 'loco-translate',
+			'contact-form-7'     => 'contact-form-7',
+			'polylang'           => 'polylang',
+			'primary-source'     => 'primary-source',
+			'immens-integration' => 'immens-integration',
+			'immens-crm'         => 'immens-crm',
+			'classyblocks'       => 'classyblocks',
+			'seo-framework'      => 'seo-framework',
+			'greenshift'         => 'greenshift',
+			'stackable'          => 'stackable',
+			'translatepress'     => 'translatepress',
+			'elementor'          => 'elementor',
+			'acf'                => 'acf',
+			'code-snippets'      => 'code-snippets',
+			'w3-total-cache'     => 'w3-total-cache',
+		);
+	}
+
+	public static function is_plugin_active_for_tool_dir( $dir ) {
+		$map    = self::get_tool_dir_plugin_map();
+		$status = self::get_plugin_status();
+		if ( isset( $map[ $dir ] ) ) {
+			return ! empty( $status[ $map[ $dir ] ] );
+		}
+		return true;
+	}
+
 	public static function get_plugin_status() {
 		$status = array(
 			'posts'              => true,
@@ -223,6 +258,7 @@ class Access_Point_Schema {
 		$status['translatepress']     = defined( 'TRP_PLUGIN_VERSION' );
 		$status['elementor']          = defined( 'ELEMENTOR_VERSION' );
 		$status['acf']                = class_exists( 'ACF' );
+		$status['rest-api']            = true;
 		$status['code-snippets']      = function_exists( 'code_snippets' ) || post_type_exists( 'code-snippets' );
 		$status['w3-total-cache']     = defined( 'W3TC' ) || function_exists( 'w3tc_flush_all' );
 

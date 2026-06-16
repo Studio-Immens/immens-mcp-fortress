@@ -17,6 +17,8 @@ class Server {
 
 	const SUPPORTED_PROTOCOL_VERSIONS = array( '2025-11-25', '2025-06-18', '2025-03-26' );
 
+	private static $current_access_point_id = 0;
+
 	private $tool_registry;
 	private $resource_registry;
 	private $access_point_manager;
@@ -68,12 +70,18 @@ class Server {
 		$this->request_auth_source     = $auth_source;
 		$this->request_wp_user_id      = (int) $wp_user_id;
 		$this->request_access_point_id = (int) $access_point_id;
+		self::$current_access_point_id = (int) $access_point_id;
 	}
 
 	public function clear_request_identity() {
 		$this->request_auth_source     = null;
 		$this->request_wp_user_id      = 0;
 		$this->request_access_point_id = 0;
+		self::$current_access_point_id = 0;
+	}
+
+	public static function get_current_access_point_id() {
+		return self::$current_access_point_id;
 	}
 
 	public function handle_message( $message, $access_point_id = null, $allowed_tools = null ) {
