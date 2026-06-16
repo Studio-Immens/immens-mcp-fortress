@@ -62,6 +62,19 @@ class Update_Page extends Base_Tool {
 					'type'        => 'integer',
 					'description' => 'Featured media attachment ID',
 				),
+				'convert_to_blocks' => array(
+					'type'        => 'boolean',
+					'description' => 'Convert HTML content to Gutenberg blocks before saving. Requires extended MCP tools.',
+				),
+				'builder' => array(
+					'type'        => 'string',
+					'description' => 'Block builder to target for conversion: auto, greenshift, stackable, core.',
+					'enum'        => array( 'auto', 'greenshift', 'stackable', 'core' ),
+				),
+				'block_config' => array(
+					'type'        => 'object',
+					'description' => 'Advanced block configuration (e.g. animations). Requires extended MCP tools.',
+				),
 			),
 			'required'   => array( 'id' ),
 		);
@@ -82,6 +95,16 @@ class Update_Page extends Base_Tool {
 
 		if ( isset( $arguments['featured_media'] ) ) {
 			$params['featured_media'] = (int) $arguments['featured_media'];
+		}
+
+		if ( ! empty( $arguments['convert_to_blocks'] ) ) {
+			$params['imf_convert_to_blocks'] = true;
+		}
+		if ( isset( $arguments['builder'] ) ) {
+			$params['imf_builder'] = $arguments['builder'];
+		}
+		if ( isset( $arguments['block_config'] ) ) {
+			$params['imf_block_config'] = $arguments['block_config'];
 		}
 
 		return $this->rest_request( 'POST', '/wp/v2/pages/' . $id, $params );
