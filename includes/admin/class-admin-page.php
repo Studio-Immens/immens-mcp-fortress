@@ -161,11 +161,19 @@ class Admin_Page {
 				<div class="imf-setup-guide">
 					<h3><?php esc_html_e( 'OpenClaw', 'immens-mcp-fortress' ); ?></h3>
 					<ol>
-						<li><?php esc_html_e( 'Tell OpenClaw in plain English:', 'immens-mcp-fortress' ); ?></li>
+						<li><?php esc_html_e( 'Via ClawHub skill (one-click):', 'immens-mcp-fortress' ); ?></li>
+					</ol>
+					<pre style="background: #f0f0f1; padding: 10px; border-radius: 3px; font-size: 12px; overflow-x: auto;">openclaw skills install wordpress-mcp</pre>
+					<ol start="2">
+						<li><?php esc_html_e( 'Or manually via CLI:', 'immens-mcp-fortress' ); ?></li>
+					</ol>
+					<pre style="background: #f0f0f1; padding: 10px; border-radius: 3px; font-size: 12px; overflow-x: auto;"><?php echo esc_textarea( 'openclaw mcp add immens-mcp-fortress --url "' . $endpoint_url . '" --header "Authorization: Bearer YOUR_API_KEY"' ); ?></pre>
+					<ol start="3">
+						<li><?php esc_html_e( 'Or tell OpenClaw in plain English:', 'immens-mcp-fortress' ); ?></li>
 					</ol>
 					<pre style="background: #f0f0f1; padding: 10px; border-radius: 3px; font-size: 12px; overflow-x: auto;"><?php echo esc_textarea( sprintf( 'Add this as an MCP server with Bearer Token authentication: %s and use this token: YOUR_API_KEY', $endpoint_url ) ); ?></pre>
-					<ol start="2">
-						<li><?php esc_html_e( 'OpenClaw will auto-configure itself. Or install the WordPress MCP skill from ClawHub.', 'immens-mcp-fortress' ); ?></li>
+					<ol start="4">
+						<li><?php esc_html_e( 'OpenClaw will auto-configure itself. Tip: publish your skill on ClawHub for easy sharing.', 'immens-mcp-fortress' ); ?></li>
 					</ol>
 				</div>
 

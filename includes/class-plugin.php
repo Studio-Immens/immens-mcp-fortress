@@ -196,8 +196,9 @@ class Plugin {
 		$is_auth      = ( '/.well-known/oauth-authorization-server' === $request_uri
 			|| '/.well-known/openid-configuration' === $request_uri );
 		$is_opencode  = ( '/.well-known/opencode' === $request_uri );
+		$is_openclaw  = ( '/.well-known/openclaw' === $request_uri );
 
-		if ( $is_opencode ) {
+		if ( $is_opencode || $is_openclaw ) {
 			require_once IMMENS_MCP_FORTRESS_PLUGIN_DIR . 'includes/mcp/class-transport.php';
 			$endpoint_url = rest_url( MCP\Transport::NAMESPACE_V1 . MCP\Transport::ROUTE );
 			status_header( 200 );
