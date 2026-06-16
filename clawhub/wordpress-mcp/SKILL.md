@@ -3,6 +3,21 @@ name: wordpress-mcp
 description: Connect OpenClaw to any WordPress site running Immens MCP Fortress. Manage posts, pages, media, comments, users, WooCommerce, SEO, translations, and 274+ WordPress operations via MCP tools. Secure bearer-token authentication with SHA-256 hashed API keys, IP whitelisting, and rate limiting.
 license: GPL-2.0-or-later
 compatibility: openclaw
+tags:
+  - wordpress
+  - mcp
+  - cms
+  - woocommerce
+  - seo
+  - content-management
+  - automation
+  - web-development
+  - website-management
+  - publishing
+  - blogging
+  - admin
+  - writing
+  - ecommerce
 metadata:
   publisher: Studio Immens
   category: wordpress
