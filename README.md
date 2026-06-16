@@ -5,8 +5,17 @@
 [![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)](https://studioimmens.com)
 [![WordPress](https://img.shields.io/badge/WordPress-6.0%2B-brightgreen.svg)](https://wordpress.org)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-purple.svg)](https://php.net)
-[![License](https://img.shields.io/badge/license-GPL--2.0-or-later-green.svg)](https://www.gnu.org/licenses/gpl-2.0.html)
+[![License](https://img.shields.io/badge/license-GPL--2.0--or--later-green.svg)](https://www.gnu.org/licenses/gpl-2.0.html)
 [![MCP](https://img.shields.io/badge/MCP-2025--11--25-orange.svg)](https://modelcontextprotocol.io)
+
+---
+
+## 🔗 Links
+
+- 📦 **WordPress.org:** [wordpress.org/plugins/immens-mcp-fortress](https://wordpress.org/plugins/immens-mcp-fortress/)
+- ⭐ **Pro Version:** [studioimmens.com/immens-mcp-fortress-pro](https://studioimmens.com/immens-mcp-fortress-pro)
+- 🌐 **Studio Immens:** [studioimmens.com](https://studioimmens.com)
+- 📖 **MCP Standard:** [modelcontextprotocol.io](https://modelcontextprotocol.io)
 
 ---
 

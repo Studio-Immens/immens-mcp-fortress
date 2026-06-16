@@ -3,5 +3,7 @@
 .github export-ignore
 .git export-ignore
 .wordpress-org export-ignore
+INTERNAL_DOCUMENTATION.md export-ignore
+.distignore export-ignore
 admin-icon-base64.txt export-ignore
 admin-icon.png export-ignore
