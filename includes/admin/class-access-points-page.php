@@ -602,7 +602,12 @@ class Access_Points_Page {
 		?>
 		<h3><?php esc_html_e( 'REST API Namespace Permissions', 'immens-mcp-fortress' ); ?></h3>
 		<p class="description" style="margin-bottom: 12px;">
-			<?php esc_html_e( 'Control which REST API namespaces can be accessed via this access point. These permissions apply both to the MCP REST API tool and direct REST API calls using this access point key.', 'immens-mcp-fortress' ); ?>
+			<?php esc_html_e( 'These permissions control which REST API endpoints are accessible through this access point, both via the MCP tool and direct HTTP calls. Enable a namespace to expose it to the AI agent.', 'immens-mcp-fortress' ); ?>
+			<br>
+			<strong><?php esc_html_e( 'Read', 'immens-mcp-fortress' ); ?></strong> = <?php esc_html_e( 'GET requests (list, view)', 'immens-mcp-fortress' ); ?> &nbsp;
+			<strong><?php esc_html_e( 'Write', 'immens-mcp-fortress' ); ?></strong> = <?php esc_html_e( 'POST, PUT, PATCH, DELETE (create, update, delete)', 'immens-mcp-fortress' ); ?>
+			<br>
+			<em><?php esc_html_e( 'Disabling a namespace here also hides it from the AI agent, reducing token usage.', 'immens-mcp-fortress' ); ?></em>
 		</p>
 
 		<table class="imf-permissions-table widefat striped">
@@ -631,6 +636,7 @@ class Access_Points_Page {
 					<?php foreach ( $namespaces as $ns ) :
 						$ns_label = REST_API_Schema::get_namespace_label( $ns );
 						$ns_key   = 'ns:' . $ns;
+						$ns_desc  = REST_API_Schema::get_namespace_description( $ns );
 						$has_read = $editing ? ( isset( $edit_perms[ $ns ]['read'] ) ? $edit_perms[ $ns ]['read'] : $is_active ) : $is_active;
 						$has_write = $editing ? ( isset( $edit_perms[ $ns ]['write'] ) ? $edit_perms[ $ns ]['write'] : false ) : false;
 					?>
@@ -641,16 +647,21 @@ class Access_Points_Page {
 								<?php if ( $ns_label !== $ns ) : ?>
 									<br><small style="color: #666;"><?php echo esc_html( $ns_label ); ?></small>
 								<?php endif; ?>
+								<?php if ( $ns_desc ) : ?>
+									<br><small style="color: #999; font-style: italic;"><?php echo esc_html( $ns_desc ); ?></small>
+								<?php endif; ?>
 							</td>
 							<td>
 								<input type="checkbox" name="tool_permissions[<?php echo esc_attr( $ns_key ); ?>][read]" value="1"
 									<?php checked( $has_read ); ?>
-									<?php disabled( ! $is_active ); ?>>
+									<?php disabled( ! $is_active ); ?>
+									title="<?php esc_attr_e( 'Allow GET requests to this namespace', 'immens-mcp-fortress' ); ?>">
 							</td>
 							<td>
 								<input type="checkbox" name="tool_permissions[<?php echo esc_attr( $ns_key ); ?>][write]" value="1"
 									<?php checked( $has_write ); ?>
-									<?php disabled( ! $is_active ); ?>>
+									<?php disabled( ! $is_active ); ?>
+									title="<?php esc_attr_e( 'Allow POST, PUT, PATCH, DELETE to this namespace', 'immens-mcp-fortress' ); ?>">
 							</td>
 						</tr>
 					<?php endforeach; ?>

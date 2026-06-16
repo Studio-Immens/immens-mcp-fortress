@@ -18,33 +18,36 @@ class REST_API_Registry {
 		}
 
 		$server = rest_get_server();
+		$namespaces = $server->get_namespaces();
 
-		$routes = $server->get_routes();
-		if ( empty( $routes ) ) {
-			$routes = $this->get_registered_routes_fallback();
-		}
+		if ( empty( $namespaces ) ) {
+			$live_routes = $server->get_routes();
+			$fallback    = $this->get_registered_routes_fallback();
 
-		$namespaces = array();
-
-		foreach ( $routes as $route => $handlers ) {
-			$route = ltrim( $route, '/' );
-			$slash_pos = strpos( $route, '/' );
-
-			if ( false !== $slash_pos ) {
-				$namespace = substr( $route, 0, $slash_pos );
-
-				if ( 0 === strpos( $route, 'wp/' ) && false !== strpos( substr( $route, $slash_pos + 1 ), '/' ) ) {
-					$second_slash = strpos( $route, '/', $slash_pos + 1 );
-					if ( false !== $second_slash ) {
-						$namespace = substr( $route, 0, $second_slash );
-					}
+			$routes = $live_routes;
+			foreach ( $fallback as $ns => $dummy ) {
+				if ( ! isset( $routes[ $ns ] ) ) {
+					$routes[ $ns ] = array( array() );
 				}
-			} else {
-				$namespace = $route;
 			}
 
-			if ( ! in_array( $namespace, $namespaces, true ) ) {
-				$namespaces[] = $namespace;
+			$seen = array();
+			foreach ( $routes as $route => $handlers ) {
+				$route    = ltrim( $route, '/' );
+				$segments = explode( '/', $route );
+
+				if ( count( $segments ) >= 3 ) {
+					$namespace = $segments[0] . '/' . $segments[1];
+				} elseif ( count( $segments ) === 2 ) {
+					$namespace = $segments[0] . '/' . $segments[1];
+				} else {
+					$namespace = $route;
+				}
+
+				if ( ! isset( $seen[ $namespace ] ) ) {
+					$seen[ $namespace ] = true;
+					$namespaces[] = $namespace;
+				}
 			}
 		}
 
@@ -55,8 +58,7 @@ class REST_API_Registry {
 	}
 
 	public function get_namespaces_by_category() {
-		$namespaces = $this->get_all_namespaces();
-		$status     = Access_Point_Schema::get_plugin_status();
+		$namespaces  = $this->get_all_namespaces();
 		$categorized = array();
 
 		foreach ( $namespaces as $ns ) {
@@ -65,12 +67,7 @@ class REST_API_Registry {
 			}
 
 			$category = REST_API_Schema::get_namespace_category( $ns );
-
-			if ( 'other' !== $category ) {
-				$active = isset( $status[ $category ] ) ? $status[ $category ] : true;
-			} else {
-				$active = true;
-			}
+			$active   = REST_API_Schema::is_namespace_plugin_active( $ns );
 
 			if ( ! isset( $categorized[ $category ] ) ) {
 				$categorized[ $category ] = array(
