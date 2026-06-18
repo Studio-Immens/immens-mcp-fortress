@@ -42,7 +42,7 @@ class Consent_Screen {
 					<?php endif; ?>
 				</ul>
 				<form method="post">
-					<?php wp_nonce_field( 'imf_oauth_consent', '_imf_oauth_nonce' ); ?>
+					<?php wp_nonce_field( 'immens_mcp_fortress_oauth_consent', '_immens_mcp_fortress_oauth_nonce' ); ?>
 					<input type="hidden" name="client_id" value="<?php echo esc_attr( $client_id ); ?>">
 					<input type="hidden" name="redirect_uri" value="<?php echo esc_attr( $redirect_uri ); ?>">
 					<input type="hidden" name="state" value="<?php echo esc_attr( $state ); ?>">

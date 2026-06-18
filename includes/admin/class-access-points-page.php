@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 namespace Immens_MCP_Fortress\Admin;
 
 use Immens_MCP_Fortress\Access_Points\Access_Point_Manager;
@@ -95,7 +95,7 @@ class Access_Points_Page {
 								<th><label for="ap_wp_user"><?php esc_html_e( 'WordPress User', 'immens-mcp-fortress' ); ?></label></th>
 								<td>
 									<select name="wp_user_id" id="ap_wp_user">
-										<option value="0"><?php esc_html_e( 'â€” None (Admin capabilities) â€”', 'immens-mcp-fortress' ); ?></option>
+										<option value="0"><?php esc_html_e( '- None (Admin capabilities) -', 'immens-mcp-fortress' ); ?></option>
 										<?php foreach ( $users as $user ) : ?>
 											<option value="<?php echo esc_attr( $user->ID ); ?>"
 												<?php selected( $editing['wp_user_id'], $user->ID ); ?>>
@@ -203,7 +203,7 @@ class Access_Points_Page {
 						<input type="hidden" name="action" value="immens_mcp_regenerate_key">
 						<input type="hidden" name="id" value="<?php echo esc_attr( $editing['id'] ); ?>">
 						<?php wp_nonce_field( 'immens_mcp_regenerate_key_' . $editing['id'] ); ?>
-						<button type="submit" class="button" onclick="return confirm(IMF_Admin.confirm_regenerate);">
+						<button type="submit" class="button" onclick="return confirm(IMMENS_MCP_FORTRESS_Admin.confirm_regenerate);">
 							<?php esc_html_e( 'Regenerate API Key', 'immens-mcp-fortress' ); ?>
 						</button>
 					</form>
@@ -212,7 +212,7 @@ class Access_Points_Page {
 						<input type="hidden" name="action" value="immens_mcp_delete_access_point">
 						<input type="hidden" name="id" value="<?php echo esc_attr( $editing['id'] ); ?>">
 						<?php wp_nonce_field( 'immens_mcp_delete_access_point_' . $editing['id'] ); ?>
-						<button type="submit" class="button button-link-delete" onclick="return confirm(IMF_Admin.confirm_delete);">
+						<button type="submit" class="button button-link-delete" onclick="return confirm(IMMENS_MCP_FORTRESS_Admin.confirm_delete);">
 							<?php esc_html_e( 'Delete Access Point', 'immens-mcp-fortress' ); ?>
 						</button>
 					</form>
@@ -245,10 +245,10 @@ class Access_Points_Page {
 									<th><label for="new_ap_user"><?php esc_html_e( 'WordPress User', 'immens-mcp-fortress' ); ?></label></th>
 									<td>
 										<select name="wp_user_id" id="new_ap_user">
-											<option value="0"><?php esc_html_e( 'â€” None (Admin capabilities) â€”', 'immens-mcp-fortress' ); ?></option>
-											<?php foreach ( $users as $user ) : ?>
-												<option value="<?php echo esc_attr( $user->ID ); ?>">
-													<?php echo esc_html( $user->display_name . ' (' . $user->user_login . ')' ); ?>
+										<option value="0"><?php esc_html_e( '- None (Admin capabilities) -', 'immens-mcp-fortress' ); ?></option>
+										<?php foreach ( $users as $user ) : ?>
+											<option value="<?php echo esc_attr( $user->ID ); ?>">
+												<?php echo esc_html( $user->display_name . ' (' . $user->user_login . ')' ); ?>
 												</option>
 											<?php endforeach; ?>
 										</select>

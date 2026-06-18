@@ -12,6 +12,5 @@ class Deactivator {
 		wp_clear_scheduled_hook( 'immens_mcp_fortress_cleanup_sessions' );
 		wp_clear_scheduled_hook( 'immens_mcp_fortress_cleanup_oauth' );
 		wp_clear_scheduled_hook( 'immens_mcp_fortress_cleanup_change_log' );
-		flush_rewrite_rules();
 	}
 }

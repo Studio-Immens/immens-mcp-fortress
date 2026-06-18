@@ -40,9 +40,9 @@ class Authorization_Endpoint {
 		if ( ! is_user_logged_in() ) {
 			return new \WP_Error( 'not_authenticated', 'You must be logged in', array( 'status' => 401 ) );
 		}
+		$nonce = $request->get_param( '_immens_mcp_fortress_oauth_nonce' );
 
-		$nonce = $request->get_param( '_imf_oauth_nonce' );
-		if ( ! $nonce || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $nonce ) ), 'imf_oauth_consent' ) ) {
+		if ( ! $nonce || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $nonce ) ), 'immens_mcp_fortress_oauth_consent' ) ) {
 			return new \WP_Error( 'invalid_nonce', 'Security check failed. Please try again.', array( 'status' => 403 ) );
 		}
 

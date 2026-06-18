@@ -258,7 +258,7 @@ class REST_API_Auth {
 		}
 
 		$limit     = isset( $access_point['rate_limit'] ) ? (int) $access_point['rate_limit'] : 60;
-		$cache_key = 'imf_rest_rate_' . (int) $access_point_id;
+		$cache_key = 'immens_mcp_fortress_rest_rate_' . (int) $access_point_id;
 
 		if ( wp_using_ext_object_cache() ) {
 			wp_cache_add( $cache_key, 0, 'immens_mcp_fortress', 60 );
@@ -275,7 +275,7 @@ class REST_API_Auth {
 	}
 
 	private function track_failed_auth( $ip ) {
-		$cache_key = 'imf_rest_auth_fail_' . md5( $ip );
+		$cache_key = 'immens_mcp_fortress_rest_auth_fail_' . md5( $ip );
 
 		if ( wp_using_ext_object_cache() ) {
 			wp_cache_add( $cache_key, 0, 'immens_mcp_fortress', 60 );

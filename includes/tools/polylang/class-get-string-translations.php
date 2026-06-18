@@ -109,8 +109,6 @@ class Get_String_Translations extends Base_Tool {
 	}
 
 	private function get_string_translations( $name ) {
-		global $polylang;
-
 		$translations = array();
 
 		if ( function_exists( 'PLL' ) && PLL() && method_exists( PLL()->model, 'get_languages_list' ) ) {

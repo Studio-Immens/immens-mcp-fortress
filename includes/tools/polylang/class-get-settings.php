@@ -33,19 +33,19 @@ class Get_Settings extends Base_Tool {
 	}
 
 	public function execute( array $arguments ) {
-		$polylang = get_option( 'polylang', array() );
+		$polylang_options = get_option( 'polylang', array() );
 
 		return array(
-			'default_lang'   => isset( $polylang['default_lang'] ) ? $polylang['default_lang'] : '',
-			'force_lang'     => isset( $polylang['force_lang'] ) ? (int) $polylang['force_lang'] : 0,
-			'rewrite'        => isset( $polylang['rewrite'] ) ? (int) $polylang['rewrite'] : 0,
-			'hide_default'   => isset( $polylang['hide_default'] ) ? (int) $polylang['hide_default'] : 0,
-			'browser_detect' => isset( $polylang['browser'] ) ? (int) $polylang['browser'] : 1,
-			'media_support'  => isset( $polylang['medias'] ) ? (int) $polylang['medias'] : 1,
-			'domains'        => isset( $polylang['domains'] ) ? $polylang['domains'] : array(),
-			'post_types'     => isset( $polylang['post_types'] ) ? $polylang['post_types'] : array(),
-			'taxonomies'     => isset( $polylang['taxonomies'] ) ? $polylang['taxonomies'] : array(),
-			'nav_menus'      => isset( $polylang['nav_menus'] ) ? (int) $polylang['nav_menus'] : 0,
+			'default_lang'   => isset( $polylang_options['default_lang'] ) ? $polylang_options['default_lang'] : '',
+			'force_lang'     => isset( $polylang_options['force_lang'] ) ? (int) $polylang_options['force_lang'] : 0,
+			'rewrite'        => isset( $polylang_options['rewrite'] ) ? (int) $polylang_options['rewrite'] : 0,
+			'hide_default'   => isset( $polylang_options['hide_default'] ) ? (int) $polylang_options['hide_default'] : 0,
+			'browser_detect' => isset( $polylang_options['browser'] ) ? (int) $polylang_options['browser'] : 1,
+			'media_support'  => isset( $polylang_options['medias'] ) ? (int) $polylang_options['medias'] : 1,
+			'domains'        => isset( $polylang_options['domains'] ) ? $polylang_options['domains'] : array(),
+			'post_types'     => isset( $polylang_options['post_types'] ) ? $polylang_options['post_types'] : array(),
+			'taxonomies'     => isset( $polylang_options['taxonomies'] ) ? $polylang_options['taxonomies'] : array(),
+			'nav_menus'      => isset( $polylang_options['nav_menus'] ) ? (int) $polylang_options['nav_menus'] : 0,
 		);
 	}
 }

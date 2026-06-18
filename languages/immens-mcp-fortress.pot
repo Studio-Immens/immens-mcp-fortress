@@ -133,8 +133,8 @@ msgid "WordPress User"
 msgstr "Utente WordPress"
 
 #: includes/admin/class-access-points-page.php:63
-msgid "— None (Admin capabilities) —"
-msgstr "— Nessuno (capacità Admin) —"
+msgid "- None (Admin capabilities) -"
+msgstr "- Nessuno (capacità Admin) -"
 
 #: includes/admin/class-access-points-page.php:74
 msgid "The AI will act as this WordPress user. Leave empty for full admin access."

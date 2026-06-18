@@ -114,15 +114,13 @@ class Plugin {
 
 		$this->register_tools();
 		$this->register_resources();
-
 		// Extension point: Pro add-on registers integration tools here
-		do_action( 'imf_register_tools', $this->tool_registry ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
+		do_action( 'immens_mcp_fortress_register_tools', $this->tool_registry );
 
 		$transport = new MCP\Transport( $this->server, $access_point_manager );
 		$transport->register_routes();
-
 		// Extension point: Pro add-on registers SSE transport here
-		do_action( 'imf_register_transports', $this->server, $transport ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
+		do_action( 'immens_mcp_fortress_register_transports', $this->server, $transport );
 
 		if ( apply_filters( 'immens_mcp_fortress_oauth_enabled', true ) ) {
 			require_once IMMENS_MCP_FORTRESS_PLUGIN_DIR . 'includes/oauth/class-oauth-schema.php';
@@ -139,7 +137,7 @@ class Plugin {
 			$oauth_routes->register_routes();
 		}
 
-		if ( apply_filters( 'imf_rest_api_gateway_enabled', true ) ) {
+		if ( apply_filters( 'immens_mcp_fortress_rest_api_gateway_enabled', true ) ) {
 			require_once IMMENS_MCP_FORTRESS_PLUGIN_DIR . 'includes/rest-api/class-rest-api-schema.php';
 			require_once IMMENS_MCP_FORTRESS_PLUGIN_DIR . 'includes/rest-api/class-rest-api-registry.php';
 			require_once IMMENS_MCP_FORTRESS_PLUGIN_DIR . 'includes/rest-api/class-rest-api-auth.php';
@@ -313,7 +311,7 @@ class Plugin {
 			$request->set_param( 'state', sanitize_text_field( wp_unslash( $_POST['state'] ?? '' ) ) );
 			$request->set_param( 'code_challenge', sanitize_text_field( wp_unslash( $_POST['code_challenge'] ?? '' ) ) );
 			$request->set_param( 'code_challenge_method', sanitize_key( $_POST['code_challenge_method'] ?? '' ) );
-			$request->set_param( '_imf_oauth_nonce', sanitize_text_field( wp_unslash( $_POST['_imf_oauth_nonce'] ?? '' ) ) );
+			$request->set_param( '_immens_mcp_fortress_oauth_nonce', sanitize_text_field( wp_unslash( $_POST['_immens_mcp_fortress_oauth_nonce'] ?? '' ) ) );
 		} else {
 			$request->set_param( 'response_type', sanitize_key( $_GET['response_type'] ?? '' ) );
 			$request->set_param( 'client_id', sanitize_text_field( wp_unslash( $_GET['client_id'] ?? '' ) ) );

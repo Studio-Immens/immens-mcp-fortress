@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Immens MCP Fortress
  * Description: Military-grade MCP server for WordPress with multi-access-point architecture. Connect Claude, ChatGPT, Cursor and any MCP-compatible AI to manage your site with per-access-point IP whitelisting, tool permissions, and Gutenberg block-level manipulation.
- * Version:     1.1.1
+ * Version:     1.1.5
  * Author:      Studio Immens
  * Author URI:  https://studioimmens.com
  * License:     GPL-2.0-or-later
@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'IMMENS_MCP_FORTRESS_VERSION', '1.1.1' );
+define( 'IMMENS_MCP_FORTRESS_VERSION', '1.1.5' );
 define( 'IMMENS_MCP_FORTRESS_PLUGIN_FILE', __FILE__ );
 define( 'IMMENS_MCP_FORTRESS_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'IMMENS_MCP_FORTRESS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );

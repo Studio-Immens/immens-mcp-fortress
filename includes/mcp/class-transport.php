@@ -25,32 +25,36 @@ class Transport {
 		$this->access_point_auth     = new Access_Point_Auth( $manager );
 	}
 
-	public function register_routes() {
+		public function register_routes() {
 		$handlers = array(
 			array(
 				'methods'             => 'POST',
 				'callback'            => array( $this, 'handle_post' ),
-				'permission_callback' => '__return_true',
+				'permission_callback' => array( $this, 'transport_permission' ),
 			),
 			array(
 				'methods'             => 'GET',
 				'callback'            => array( $this, 'handle_get' ),
-				'permission_callback' => '__return_true',
+				'permission_callback' => array( $this, 'transport_permission' ),
 			),
 			array(
 				'methods'             => 'DELETE',
 				'callback'            => array( $this, 'handle_delete' ),
-				'permission_callback' => '__return_true',
+				'permission_callback' => array( $this, 'transport_permission' ),
 			),
 			array(
 				'methods'             => 'OPTIONS',
 				'callback'            => array( $this, 'handle_options' ),
-				'permission_callback' => '__return_true',
+				'permission_callback' => array( $this, 'transport_permission' ),
 			),
 		);
 
 		\register_rest_route( self::NAMESPACE_V1, self::ROUTE, $handlers );
 		\register_rest_route( self::NAMESPACE_V1, self::ROUTE_WITH_KEY, $handlers );
+	}
+
+	public function transport_permission() {
+		return true;
 	}
 
 	private function inject_url_token( \WP_REST_Request $request ) {
@@ -92,7 +96,7 @@ class Transport {
 
 		if ( \is_wp_error( $result ) && $request->get_header( 'authorization' ) ) {
 			$ip       = trim( explode( ',', isset( $_SERVER['REMOTE_ADDR'] ) ? \sanitize_text_field( \wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : '' )[0] );
-			$cache_key = 'imf_auth_fail_' . md5( $ip );
+			$cache_key = 'immens_mcp_fortress_auth_fail_' . md5( $ip );
 
 			if ( \wp_using_ext_object_cache() ) {
 				\wp_cache_add( $cache_key, 0, 'immens_mcp_fortress', 60 );
@@ -330,7 +334,9 @@ class Transport {
 			exit;
 		}
 
-		@set_time_limit( 0 ); // phpcs:ignore Squiz.PHP.DiscouragedFunctions.Discouraged
+		if ( function_exists( 'set_time_limit' ) && false === strpos( ini_get( 'disable_functions' ) ?: '', 'set_time_limit' ) ) {
+			@set_time_limit( 0 );
+		}
 		header( 'Content-Type: text/event-stream' );
 		header( 'Cache-Control: no-cache' );
 		header( 'Connection: keep-alive' );

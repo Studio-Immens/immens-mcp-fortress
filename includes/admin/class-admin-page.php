@@ -44,7 +44,7 @@ class Admin_Page {
 			true
 		);
 
-		wp_localize_script( 'immens-mcp-fortress-admin', 'IMF_Admin', array(
+		wp_localize_script( 'immens-mcp-fortress-admin', 'IMMENS_MCP_FORTRESS_Admin', array(
 			'nonce'     => wp_create_nonce( 'immens_mcp_fortress_admin' ),
 			'ajax_url'  => admin_url( 'admin-ajax.php' ),
 			'confirm_delete' => __( 'Are you sure you want to delete this access point? This action cannot be undone.', 'immens-mcp-fortress' ),

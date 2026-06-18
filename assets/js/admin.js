@@ -29,11 +29,11 @@ jQuery(function($) {
 
 		$checkbox.prop('disabled', true);
 
-		$.post(IMF_Admin.ajax_url, {
+		$.post(IMMENS_MCP_FORTRESS_Admin.ajax_url, {
 			action: 'immens_mcp_toggle_access_point',
 			id: apId,
 			enabled: enabled,
-			_ajax_nonce: IMF_Admin.nonce
+			_ajax_nonce: IMMENS_MCP_FORTRESS_Admin.nonce
 		}, function(response) {
 			$checkbox.prop('disabled', false);
 			if ( ! response.success ) {
