@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 namespace Immens_MCP_Fortress\Admin;
 
 use Immens_MCP_Fortress\Access_Points\Access_Point_Manager;
@@ -430,7 +430,7 @@ class Access_Points_Page {
 			$tool_permissions = array();
 			if ( is_array( $raw_permissions ) ) {
 				foreach ( $raw_permissions as $category => $perms ) {
-					$category = sanitize_key( $category );
+					$category = ( 0 === strpos( $category, 'ns:' ) ) ? $category : sanitize_key( $category );
 					$tool_permissions[ $category ] = array(
 						'read'  => ! empty( $perms['read'] ),
 						'write' => ! empty( $perms['write'] ),
@@ -441,6 +441,18 @@ class Access_Points_Page {
 			foreach ( array_keys( $all_categories ) as $cat ) {
 				if ( ! isset( $tool_permissions[ $cat ] ) ) {
 					$tool_permissions[ $cat ] = array( 'read' => false, 'write' => false );
+				}
+			}
+
+			$rest_registry   = new REST_API_Registry();
+			$all_namespaces  = $rest_registry->get_all_namespaces();
+			foreach ( $all_namespaces as $ns ) {
+				if ( ! REST_API_Schema::should_show_namespace( $ns ) ) {
+					continue;
+				}
+				$ns_key = 'ns:' . $ns;
+				if ( ! isset( $tool_permissions[ $ns_key ] ) ) {
+					$tool_permissions[ $ns_key ] = array( 'read' => false, 'write' => false );
 				}
 			}
 		}
@@ -500,7 +512,7 @@ class Access_Points_Page {
 			$permissions = array();
 			if ( is_array( $raw_permissions ) ) {
 				foreach ( $raw_permissions as $category => $perms ) {
-					$category = sanitize_key( $category );
+					$category = ( 0 === strpos( $category, 'ns:' ) ) ? $category : sanitize_key( $category );
 					$permissions[ $category ] = array(
 						'read'  => ! empty( $perms['read'] ),
 						'write' => ! empty( $perms['write'] ),
@@ -511,6 +523,18 @@ class Access_Points_Page {
 			foreach ( array_keys( $all_categories ) as $cat ) {
 				if ( ! isset( $permissions[ $cat ] ) ) {
 					$permissions[ $cat ] = array( 'read' => false, 'write' => false );
+				}
+			}
+
+			$rest_registry  = new REST_API_Registry();
+			$all_namespaces = $rest_registry->get_all_namespaces();
+			foreach ( $all_namespaces as $ns ) {
+				if ( ! REST_API_Schema::should_show_namespace( $ns ) ) {
+					continue;
+				}
+				$ns_key = 'ns:' . $ns;
+				if ( ! isset( $permissions[ $ns_key ] ) ) {
+					$permissions[ $ns_key ] = array( 'read' => false, 'write' => false );
 				}
 			}
 			$data['tool_permissions'] = $permissions;

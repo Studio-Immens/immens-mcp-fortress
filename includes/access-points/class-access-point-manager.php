@@ -45,9 +45,13 @@ class Access_Point_Manager {
 				$existing_perms = json_decode( $existing['tool_permissions'], true );
 				if ( is_array( $existing_perms ) ) {
 					$merged = $data['tool_permissions'];
-					foreach ( $existing_perms as $cat => $perms ) {
-						if ( ! isset( $merged[ $cat ] ) ) {
-							$merged[ $cat ] = $perms;
+					foreach ( $merged as $cat => $perms ) {
+						if ( is_array( $perms ) ) {
+							foreach ( array( 'read', 'write' ) as $key ) {
+								if ( ! isset( $merged[ $cat ][ $key ] ) ) {
+									$merged[ $cat ][ $key ] = false;
+								}
+							}
 						}
 					}
 					$data['tool_permissions'] = $merged;

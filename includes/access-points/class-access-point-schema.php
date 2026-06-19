@@ -105,8 +105,11 @@ class Access_Point_Schema {
 			'translatepress'     => __( 'TranslatePress (Pro)', 'immens-mcp-fortress' ),
 			'elementor'          => __( 'Elementor (Pro)', 'immens-mcp-fortress' ),
 			'acf'                => __( 'ACF (Pro)', 'immens-mcp-fortress' ),
-			'code-snippets'      => __( 'Code Snippets', 'immens-mcp-fortress' ),
-			'w3-total-cache'     => __( 'W3 Total Cache', 'immens-mcp-fortress' ),
+			'code-snippets'        => __( 'Code Snippets', 'immens-mcp-fortress' ),
+			'w3-total-cache'      => __( 'W3 Total Cache', 'immens-mcp-fortress' ),
+			'keyword-explorer'    => __( 'Keyword Explorer', 'immens-mcp-fortress' ),
+			'fast-product-importer' => __( 'Fast Product Importer', 'immens-mcp-fortress' ),
+			'license-system'      => __( 'License System', 'immens-mcp-fortress' ),
 		);
 	}
 
@@ -151,8 +154,11 @@ class Access_Point_Schema {
 			'translatepress'     => array( 'trp_*' ),
 			'elementor'          => array( 'elementor_*' ),
 			'acf'                => array( 'acf_*' ),
-			'code-snippets'      => array( 'cs_*' ),
-			'w3-total-cache'     => array( 'w3tc_*' ),
+			'code-snippets'        => array( 'cs_*' ),
+			'w3-total-cache'      => array( 'w3tc_*' ),
+			'keyword-explorer'    => array( 'ike_*' ),
+			'fast-product-importer' => array( 'fi_*' ),
+			'license-system'      => array( 'stl_*' ),
 		);
 
 		foreach ( $permissions as $category => $perms ) {
@@ -208,8 +214,11 @@ class Access_Point_Schema {
 			'translatepress'     => 'translatepress',
 			'elementor'          => 'elementor',
 			'acf'                => 'acf',
-			'code-snippets'      => 'code-snippets',
-			'w3-total-cache'     => 'w3-total-cache',
+			'code-snippets'        => 'code-snippets',
+			'w3-total-cache'      => 'w3-total-cache',
+			'keyword-explorer'    => 'keyword-explorer',
+			'fast-product-importer' => 'fast-product-importer',
+			'license-system'      => 'license-system',
 		);
 	}
 
@@ -252,15 +261,19 @@ class Access_Point_Schema {
 		$status['immens-integration'] = defined( 'IMMENS_INTEGRATION_VERSION' );
 		$status['immens-crm']         = defined( 'IMMENS_CRM_VERSION' );
 		$status['classyblocks']       = defined( 'CB_PRO_VERSION' );
-		$status['seo-framework']      = function_exists( 'the_seo_framework' );
-		$status['greenshift']         = defined( 'GREENSHIFT_VERSION' );
+		$status['seo-framework']      = defined( 'THE_SEO_FRAMEWORK_VERSION' ) || function_exists( 'the_seo_framework' );
+		$status['greenshift']         = defined( 'GREENSHIFT_DIR_URL' );
 		$status['stackable']          = defined( 'STACKABLE_VERSION' );
 		$status['translatepress']     = defined( 'TRP_PLUGIN_VERSION' );
 		$status['elementor']          = defined( 'ELEMENTOR_VERSION' );
 		$status['acf']                = class_exists( 'ACF' );
 		$status['rest-api']            = true;
-		$status['code-snippets']      = function_exists( 'code_snippets' ) || post_type_exists( 'code-snippets' );
-		$status['w3-total-cache']     = defined( 'W3TC' ) || function_exists( 'w3tc_flush_all' );
+		$status['code-snippets']        = defined( 'CODE_SNIPPETS_VERSION' ) || function_exists( 'code_snippets' ) || post_type_exists( 'code-snippets' );
+		$status['w3-total-cache']       = defined( 'W3TC' ) || function_exists( 'w3tc_flush_all' );
+		$status['keyword-explorer']     = defined( 'IKE_VERSION' ) || class_exists( 'IKE_REST_API' );
+		$status['fast-product-importer'] = defined( 'SIFP_VERSION' ) || class_exists( 'SIFlashProducts\Core\Plugin' );
+		$status['license-system']       = defined( 'STL_VERSION' ) || class_exists( 'STL_REST' );
+		$status['studio-immens-css']    = defined( 'SICC_VERSION' ) || class_exists( 'SICC_Plugin' );
 
 		return $status;
 	}

@@ -88,9 +88,18 @@ class Access_Point_Auth {
 			wp_cache_set( $cache_key, $entries, 'immens_mcp_fortress', 300 );
 		}
 
-		$remote_ip = isset( $_SERVER['REMOTE_ADDR'] )
-			? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) )
-			: '';
+		if ( ! empty( $_SERVER['HTTP_CF_CONNECTING_IP'] ) ) {
+			$remote_ip = sanitize_text_field( wp_unslash( $_SERVER['HTTP_CF_CONNECTING_IP'] ) );
+		} elseif ( ! empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
+			$ips = explode( ',', sanitize_text_field( wp_unslash( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) );
+			$remote_ip = trim( $ips[0] );
+		} elseif ( ! empty( $_SERVER['HTTP_X_REAL_IP'] ) ) {
+			$remote_ip = sanitize_text_field( wp_unslash( $_SERVER['HTTP_X_REAL_IP'] ) );
+		} else {
+			$remote_ip = isset( $_SERVER['REMOTE_ADDR'] )
+				? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) )
+				: '';
+		}
 
 		$remote_ip = $this->normalize_ip( $remote_ip );
 
