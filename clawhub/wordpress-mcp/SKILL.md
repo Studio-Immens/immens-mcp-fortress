@@ -80,17 +80,61 @@ Once connected, your AI agent gains access to 121 free tools (274 with Pro):
 - Code Snippets: CRUD, toggle
 - W3 Total Cache: flush caches
 
-### Pro Integrations
-- Gutenberg block-level editing (parse, add, remove, reorder)
-- ClassyBlocks Pro animations
-- Greenshift settings, stylebook, AI
-- Stackable global colors, typography
-- Primary Source AI content
-- Immens CRM contacts, pipelines, tags, automations
-- The SEO Framework analysis, bulk SEO
-- TranslatePress translations, batch translate
-- Elementor templates, colors, fonts
-- ACF field groups, fields
+### Pro Integrations (Immens CRM)
+- Full contact lifecycle: create, list, get, update, delete
+- Pipeline management: view pipelines, move contacts through stages
+- Tagging system: create tags, assign/remove tags from contacts
+- Activity tracking: notes, activities, transactions, recordings
+- Email system: create templates, preview with placeholders, send branded or raw emails
+- Automation engine: create, list, get, toggle, delete automations
+- Business management: products with financial metrics, revenue goals
+- Sales tools: scripts with objections, proposals, contracts
+- AI analysis: contact insights, CRM statistics, dashboard alerts
+
+## CRM Workflows
+
+### Lead Management
+1. **Create a contact** with `crm_create_contact` (upserts on duplicate email)
+2. **Segment** by creating and assigning tags with `crm_create_tag` + `crm_assign_tag`
+3. **Move through pipeline** with `crm_move_contact_stage` (advance or move back)
+4. **Track interactions** with `crm_add_contact_note` (use importance 0-10)
+5. **Review progress** with `crm_get_contact` (full details + tags + notes + recent activities)
+6. **Update info** with `crm_update_contact` or change status
+
+### Email Communication
+1. **Create or update templates** with `crm_create_email_template` (HTML body + plain text)
+2. **Browse existing templates** with `crm_list_email_templates` (use active_only=true for enabled)
+3. **Preview with real data** using `crm_parse_email_template` — resolves all placeholders:
+   - Contact: `{{first_name}}`, `{{last_name}}`, `{{email}}`, `{{phone}}`, `{{id}}`
+   - Pipeline: `{{pipeline}}`, `{{stage}}`
+   - Financial: `{{orders_count}}`, `{{last_order_total}}`, `{{last_order_date}}`, `{{ltv}}`
+   - Documents: `{{proposal_title}}`, `{{proposal_link}}`, `{{proposal_url}}`, `{{proposal_date}}`
+   - Contracts: `{{contract_title}}`, `{{contract_link}}`, `{{contract_url}}`, `{{contract_date}}`
+4. **Send branded email** with `crm_send_email` (logs activity to contact timeline)
+5. **Send plain email** with `crm_send_raw_email` (no branding, no logging, supports custom headers)
+6. **Manage templates** with `crm_toggle_email_template` and `crm_delete_email_template`
+
+### Automation
+1. **Browse existing automations** with `crm_list_automations`
+2. **Create or update** with `crm_save_automation` (events: contact_created, stage_changed, tag_added, etc.)
+3. **Toggle active state** with `crm_toggle_automation` (temporarily disable without losing config)
+4. **Get details** with `crm_get_automation` (conditions, actions, status)
+5. **Permanently delete** with `crm_delete_automation`
+
+### Business Analysis
+1. **Dashboard overview** with `crm_get_stats` (contacts, revenue, pipelines, conversions)
+2. **AI-powered analysis** with `crm_get_ai_insight` (natural language summary of trends)
+3. **Business data** with `crm_get_management_data` (products with ATV/CAC/LTV, revenue goals)
+4. **Dashboard alerts** with `crm_get_dashboard_alerts` (unread_only=true for new notifications)
+5. **Manage products** with `crm_save_product` and `crm_delete_product`
+6. **Set revenue targets** with `crm_save_revenue_goal` (monthly goals)
+
+### Sales Enablement
+1. **Browse sales scripts** with `crm_list_scripts` (filter by stage, category, active status)
+2. **Get script details** with `crm_get_script` (full content with scores and timing)
+3. **Review objections** with `crm_list_objections` (filter by script_id)
+4. **View proposals** with `crm_list_proposals` (commercial offers sent to contacts)
+5. **View contracts** with `crm_list_contracts` (agreements, post-approval stage)
 
 ## Security
 
