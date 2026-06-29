@@ -518,13 +518,6 @@ class Transport {
 			\wp_set_current_user( $user_id );
 			return true;
 		}
-		if ( 0 === $user_id ) {
-			$admins = \get_users( array( 'role' => 'administrator', 'number' => 1, 'fields' => 'ID' ) );
-			if ( ! empty( $admins ) ) {
-				\wp_set_current_user( $admins[0] );
-				return true;
-			}
-		}
 		return false;
 	}
 

@@ -94,8 +94,8 @@ class Access_Points_Page {
 							<tr>
 								<th><label for="ap_wp_user"><?php esc_html_e( 'WordPress User', 'immens-mcp-fortress' ); ?></label></th>
 								<td>
-									<select name="wp_user_id" id="ap_wp_user">
-										<option value="0"><?php esc_html_e( '- None (Admin capabilities) -', 'immens-mcp-fortress' ); ?></option>
+									<select name="wp_user_id" id="ap_wp_user" required>
+										<option value=""><?php esc_html_e( '- Select a user -', 'immens-mcp-fortress' ); ?></option>
 										<?php foreach ( $users as $user ) : ?>
 											<option value="<?php echo esc_attr( $user->ID ); ?>"
 												<?php selected( $editing['wp_user_id'], $user->ID ); ?>>
@@ -104,7 +104,7 @@ class Access_Points_Page {
 										<?php endforeach; ?>
 									</select>
 									<p class="description">
-										<?php esc_html_e( 'The AI will act as this WordPress user. Leave empty for full admin access.', 'immens-mcp-fortress' ); ?>
+										<?php esc_html_e( 'The AI will act as this WordPress user.', 'immens-mcp-fortress' ); ?>
 									</p>
 								</td>
 							</tr>
@@ -244,8 +244,8 @@ class Access_Points_Page {
 								<tr>
 									<th><label for="new_ap_user"><?php esc_html_e( 'WordPress User', 'immens-mcp-fortress' ); ?></label></th>
 									<td>
-										<select name="wp_user_id" id="new_ap_user">
-										<option value="0"><?php esc_html_e( '- None (Admin capabilities) -', 'immens-mcp-fortress' ); ?></option>
+									<select name="wp_user_id" id="new_ap_user" required>
+										<option value=""><?php esc_html_e( '- Select a user -', 'immens-mcp-fortress' ); ?></option>
 										<?php foreach ( $users as $user ) : ?>
 											<option value="<?php echo esc_attr( $user->ID ); ?>">
 												<?php echo esc_html( $user->display_name . ' (' . $user->user_login . ')' ); ?>
@@ -461,6 +461,10 @@ class Access_Points_Page {
 			wp_die( esc_html__( 'Name is required.', 'immens-mcp-fortress' ) );
 		}
 
+		if ( empty( $wp_user_id ) ) {
+			wp_die( esc_html__( 'A WordPress user must be selected for the access point.', 'immens-mcp-fortress' ) );
+		}
+
 		$result = $this->manager->create_access_point( $name, $wp_user_id, $tool_permissions, $ip_whitelist, $rate_limit );
 
 		if ( is_wp_error( $result ) ) {
@@ -495,8 +499,12 @@ class Access_Points_Page {
 			$data['name'] = sanitize_text_field( wp_unslash( $_POST['name'] ) );
 		}
 		if ( isset( $_POST['wp_user_id'] ) ) {
- // phpcs:ignore WordPress.Security.NonceVerification.Missing
-			$data['wp_user_id'] = absint( $_POST['wp_user_id'] );
+  // phpcs:ignore WordPress.Security.NonceVerification.Missing
+			$user_id = absint( $_POST['wp_user_id'] );
+			if ( empty( $user_id ) ) {
+				wp_die( esc_html__( 'A WordPress user must be selected for the access point.', 'immens-mcp-fortress' ) );
+			}
+			$data['wp_user_id'] = $user_id;
 		}
 		$data['ip_whitelist'] = isset( $_POST['ip_whitelist'] )
  // phpcs:ignore WordPress.Security.NonceVerification.Missing

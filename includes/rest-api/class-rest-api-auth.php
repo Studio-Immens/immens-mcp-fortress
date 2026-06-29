@@ -90,16 +90,11 @@ class REST_API_Auth {
 			}
 			\wp_set_current_user( $wp_user_id );
 		} else {
-			$admins = \get_users( array( 'role' => 'administrator', 'number' => 1, 'fields' => 'ID' ) );
-			if ( ! empty( $admins ) ) {
-				\wp_set_current_user( $admins[0] );
-			} else {
-				return new \WP_Error(
-					'rest_forbidden',
-					__( 'No valid user found for this access point.', 'immens-mcp-fortress' ),
-					array( 'status' => 401 )
-				);
-			}
+			return new \WP_Error(
+				'rest_forbidden',
+				__( 'No user is configured for this access point.', 'immens-mcp-fortress' ),
+				array( 'status' => 401 )
+			);
 		}
 
 		$this->current_access_point_id = (int) $access_point['id'];

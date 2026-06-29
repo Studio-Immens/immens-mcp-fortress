@@ -199,8 +199,28 @@ class Activator {
 			self::create_oauth_tables();
 			self::set_default_options();
 			self::schedule_cron_jobs();
+
+			if ( version_compare( $installed_version, '1.2.0', '<' ) ) {
+				self::migrate_access_point_users();
+			}
+
 			update_option( 'immens_mcp_fortress_version', IMMENS_MCP_FORTRESS_VERSION );
 			flush_rewrite_rules();
+		}
+	}
+
+	private static function migrate_access_point_users() {
+		$manager = new Access_Points\Access_Point_Manager();
+		$all     = $manager->get_all_access_points( 9999, 0 );
+		$admins  = \get_users( array( 'role' => 'administrator', 'number' => 1, 'fields' => 'ID' ) );
+		if ( empty( $admins ) ) {
+			return;
+		}
+		$admin_id = (int) $admins[0];
+		foreach ( $all as $ap ) {
+			if ( empty( (int) $ap['wp_user_id'] ) ) {
+				$manager->update_access_point( (int) $ap['id'], array( 'wp_user_id' => $admin_id ) );
+			}
 		}
 	}
 }
