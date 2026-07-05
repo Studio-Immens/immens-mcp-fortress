@@ -84,8 +84,7 @@ class Update_Post_Seo extends Base_Tool {
 
 		$post = get_post( $post_id );
 		if ( ! $post ) {
-			throw new \RuntimeException( sprintf( 'Post not found: %d', $post_id ) );
- // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
+			throw new \RuntimeException( sprintf( 'Post not found: %d', $post_id ) ); // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
 		}
 		if ( ! current_user_can( 'edit_post', $post_id ) ) {
 			throw new \RuntimeException( 'You are not allowed to edit this post.' );
