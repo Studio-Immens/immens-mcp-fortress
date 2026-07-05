@@ -18,7 +18,7 @@ class Get_Store_Stats extends Base_Tool {
 	}
 
 	public function get_required_capability() {
-		return 'read';
+		return 'view_woocommerce_reports';
 	}
 
 	public function get_input_schema() {

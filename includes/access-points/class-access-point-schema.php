@@ -115,7 +115,7 @@ class Access_Point_Schema {
 
 	public static function tool_permissions_to_allowed_tools( $permissions ) {
 		if ( empty( $permissions ) || ! is_array( $permissions ) ) {
-			return array( '*' );
+			return array();
 		}
 
 		$allowed = array();
@@ -187,10 +187,6 @@ class Access_Point_Schema {
 					}
 				}
 			}
-		}
-
-		if ( empty( $allowed ) ) {
-			$allowed[] = '*';
 		}
 
 		return $allowed;

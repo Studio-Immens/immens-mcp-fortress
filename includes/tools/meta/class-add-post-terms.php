@@ -65,6 +65,11 @@ class Add_Post_Terms extends Base_Tool {
 		$taxonomy = $arguments['taxonomy'];
 		$terms    = $this->parse_json_param( $arguments['terms'], 'terms' );
 
+		$post = get_post( $post_id );
+		if ( ! $post || ! current_user_can( 'edit_post', $post_id ) ) {
+			throw new \RuntimeException( 'You are not allowed to edit this post.' );
+		}
+
 		$result = wp_set_object_terms( $post_id, $terms, $taxonomy, false );
 
 		if ( is_wp_error( $result ) ) {

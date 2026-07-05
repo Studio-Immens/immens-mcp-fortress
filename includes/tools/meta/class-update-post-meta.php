@@ -62,6 +62,11 @@ class Update_Post_Meta extends Base_Tool {
 		$meta_key  = $arguments['meta_key'];
 		$meta_value = $arguments['meta_value'];
 
+		$post = get_post( $post_id );
+		if ( ! $post || ! current_user_can( 'edit_post', $post_id ) ) {
+			throw new \RuntimeException( 'You are not allowed to edit this post.' );
+		}
+
 		$result = update_post_meta( $post_id, $meta_key, $meta_value );
 
 		if ( false === $result ) {

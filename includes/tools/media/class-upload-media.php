@@ -36,7 +36,7 @@ class Upload_Media extends Base_Tool {
 			'properties' => array(
 				'file'      => array(
 					'type'        => 'string',
-					'description' => 'Base64-encoded file content or absolute file path on server',
+					'description' => 'Base64-encoded file content',
 				),
 				'filename'  => array(
 					'type'        => 'string',
@@ -62,19 +62,13 @@ class Upload_Media extends Base_Tool {
 	public function execute( array $arguments ) {
 		$this->validate_required( $arguments, array( 'file', 'filename' ) );
 
-		$tmp_file = null;
-
-		if ( @file_exists( $arguments['file'] ) && is_readable( $arguments['file'] ) ) {
-			$file_path = $arguments['file'];
-		} else {
-			$decoded = base64_decode( $arguments['file'], true );
-			if ( false === $decoded ) {
-				throw new \InvalidArgumentException( 'Invalid base64 file data.' );
-			}
-			$tmp_file = wp_tempnam( $arguments['filename'] );
-			file_put_contents( $tmp_file, $decoded );
-			$file_path = $tmp_file;
+		$decoded = base64_decode( $arguments['file'], true );
+		if ( false === $decoded ) {
+			throw new \InvalidArgumentException( 'Invalid base64 file data.' );
 		}
+		$tmp_file = wp_tempnam( $arguments['filename'] );
+		file_put_contents( $tmp_file, $decoded );
+		$file_path = $tmp_file;
 
 		$filename = $arguments['filename'];
 		$mime     = wp_check_filetype( $filename );

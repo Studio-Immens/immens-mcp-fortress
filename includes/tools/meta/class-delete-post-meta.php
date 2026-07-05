@@ -48,6 +48,11 @@ class Delete_Post_Meta extends Base_Tool {
 		$post_id  = $this->parse_required_id( $arguments['post_id'] );
 		$meta_key = $arguments['meta_key'];
 
+		$post = get_post( $post_id );
+		if ( ! $post || ! current_user_can( 'edit_post', $post_id ) ) {
+			throw new \RuntimeException( 'You are not allowed to edit this post.' );
+		}
+
 		$result = delete_post_meta( $post_id, $meta_key );
 
 		if ( false === $result ) {
