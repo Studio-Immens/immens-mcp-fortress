@@ -210,6 +210,8 @@ class Activator {
 	}
 
 	private static function migrate_access_point_users() {
+		require_once IMMENS_MCP_FORTRESS_PLUGIN_DIR . 'includes/access-points/class-access-point-manager.php';
+		require_once IMMENS_MCP_FORTRESS_PLUGIN_DIR . 'includes/access-points/class-access-point-repository.php';
 		$manager = new Access_Points\Access_Point_Manager();
 		$all     = $manager->get_all_access_points( 9999, 0 );
 		$admins  = \get_users( array( 'role' => 'administrator', 'number' => 1, 'fields' => 'ID' ) );
