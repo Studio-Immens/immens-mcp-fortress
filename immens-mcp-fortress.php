@@ -30,6 +30,7 @@ register_deactivation_hook( __FILE__, array( 'Immens_MCP_Fortress\Deactivator', 
 
 Immens_MCP_Fortress\Plugin::instance();
 
+
 add_filter(
 	'plugin_action_links_' . IMMENS_MCP_FORTRESS_PLUGIN_BASENAME,
 	function ( $links ) {
