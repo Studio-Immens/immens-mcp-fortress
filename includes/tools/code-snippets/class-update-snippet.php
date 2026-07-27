@@ -121,6 +121,8 @@ class Update_Snippet extends Base_Tool {
 
 			$updated = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$table_name} WHERE id = %d", $id ), ARRAY_A );
 
+			$this->clear_snippet_cache();
+
 			return array(
 				'id'          => (int) $updated['id'],
 				'name'        => $updated['name'],
@@ -169,6 +171,8 @@ class Update_Snippet extends Base_Tool {
 				update_post_meta( $id, '_snippet_priority', (int) $arguments['priority'] );
 			}
 
+			$this->clear_snippet_cache();
+
 			$updated_post = get_post( $id );
 
 			return array(
@@ -186,5 +190,14 @@ class Update_Snippet extends Base_Tool {
 		}
 
 		throw new \RuntimeException( 'Code Snippets plugin is not active.' );
+	}
+
+	private function clear_snippet_cache() {
+		if ( function_exists( 'code_snippets\clean_snippets_cache' ) ) {
+			code_snippets\clean_snippets_cache();
+		}
+		if ( function_exists( 'code_snippets\clean_active_snippets_cache' ) ) {
+			code_snippets\clean_active_snippets_cache();
+		}
 	}
 }

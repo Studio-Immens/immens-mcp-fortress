@@ -10,6 +10,42 @@ class Admin_Page {
 	public function __construct() {
 		add_action( 'admin_menu', array( $this, 'add_menu_pages' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_assets' ) );
+		add_action( 'admin_notices', array( $this, 'review_notice' ) );
+	}
+
+	public function review_notice() {
+		$screen = get_current_screen();
+		if ( ! $screen || strpos( $screen->id, 'immens-mcp-fortress' ) === false ) {
+			return;
+		}
+
+		if ( get_option( 'imf_review_dismissed', false ) ) {
+			return;
+		}
+
+		if ( ! get_option( 'imf_review_triggered', false ) ) {
+			return;
+		}
+
+		if ( isset( $_GET['imf_dismiss_review'] ) ) {
+			update_option( 'imf_review_dismissed', true );
+			return;
+		}
+
+		$review_url  = 'https://wordpress.org/support/plugin/immens-mcp-fortress/reviews/#new-post';
+		$dismiss_url = add_query_arg( 'imf_dismiss_review', '1' );
+		?>
+		<div class="notice notice-info">
+			<p>
+				<strong>Immens MCP Fortress</strong> has connected your AI agents to WordPress.
+				If it made your workflow easier, please leave a <strong>5-star review</strong> on WordPress.org — it helps us keep the plugin free and updated.
+			</p>
+			<p>
+				<a href="<?php echo esc_url( $review_url ); ?>" target="_blank" class="button button-primary">Leave a Review ★</a>
+				<a href="<?php echo esc_url( $dismiss_url ); ?>" style="margin-left: 10px;">I already did / Not now</a>
+			</p>
+		</div>
+		<?php
 	}
 
 	public function add_menu_pages() {

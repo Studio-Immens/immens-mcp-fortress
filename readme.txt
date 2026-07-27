@@ -1,40 +1,50 @@
-=== Immens MCP Fortress ===
+=== Immens MCP Fortress — AI-Powered WordPress Manager for Claude, ChatGPT, Gemini & Cursor ===
 Contributors: innovazioneweb
 Tags: mcp, ai, gutenberg, rest-api, security
 Requires at least: 6.0
 Tested up to: 7.0
-Stable tag: 1.3.2
+Stable tag: 1.3.5
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-MCP server for WordPress. Connect Claude, ChatGPT, Cursor to manage your site with multi-access-point architecture and top security.
+Let AI manage your WordPress site. Connect Claude, ChatGPT, Gemini or Cursor to create content, manage media, and control settings — securely, no developer needed.
 
 == Description ==
 
-Immens MCP Fortress turns your WordPress site into a secure MCP (Model Context Protocol) server. AI agents like Claude, ChatGPT, and Cursor can connect directly to read, create, and manage your content through natural conversation.
+**Your AI agents should manage your WordPress site. Most plugins can't deliver that.**
 
-= Key Features =
+They break. They expose your data. They can't create pages, manage media, or control settings through real conversation.
 
-* **Multi-Access-Point Architecture** — Create multiple independent access points, each with its own API key, enabling/disabling anytime.
-* **50+ MCP Tools** — Posts, pages, media, comments, taxonomy, users, menus, blocks, templates, global styles, and more.
-* **Gutenberg Block Support** — Create, update, delete reusable blocks via MCP.
-* **Streamable HTTP Transport** — Modern MCP protocol (2025-11-25) for efficient communication.
-* **OAuth 2.0/2.1** — One-click connect with PKCE S256 and Dynamic Client Registration.
-* **Security First** — SHA-256 hashed API keys, IP whitelisting, rate limiting, full audit log.
-* **Two Access Points** — Free tier includes 2 configurable access points.
+Immens MCP Fortress is the first production-grade MCP (Model Context Protocol) server built for WordPress.
 
-= Pro Features =
+### What makes it different
 
-Upgrade to Immens MCP Fortress Pro on studioimmens.com for:
+* **50+ MCP tools** — Posts, pages, media, comments, taxonomy, users, menus, blocks, templates, global styles, and more. Your AI can do everything a human admin can do.
+* **Multi-access-point architecture** — Create multiple independent access points, each with its own API key. Enable or disable anytime.
+* **OAuth 2.0/2.1 with PKCE** — One-click connect with Dynamic Client Registration. No manual API key copying required.
+* **Streamable HTTP transport** — Modern MCP protocol (2025-11-25) for efficient, real-time communication.
 
-* **Unlimited Access Points**
-* **Gutenberg Block-Level Editing** — Parse, add, remove, reorder blocks inside posts.
-* **131 Integration Tools** — Primary Source, Immens CRM, ClassyBlocks Pro, SEO Framework, Greenshift, Stackable, TranslatePress, and more.
-* **SSE Transport** — Support for legacy MCP clients.
-* **Change History** — Before/after snapshots of every AI-originated write.
-* **Per-Access-Point IP Whitelisting**
-* **Extended Audit Log Retention**
+### Security that lets you sleep at night
+
+* **SHA-256 hashed API keys** — Keys are never stored in plain text. Even if the database is compromised, your access points are safe.
+* **IP whitelisting** — Restrict access to specific IP addresses or CIDR ranges per access point.
+* **Rate limiting** — Protect your site from abuse with configurable rate limits per access point.
+* **Full audit log** — Every AI-originated action is logged with timestamps and details.
+
+### Compatible with every major AI client
+
+Claude Desktop, Claude Code, ChatGPT, Cursor, Windsurf, Cline, Gemini, and any MCP-compatible client.
+
+### Free tier includes
+
+* **2 access points** — Enough to connect Claude and ChatGPT simultaneously.
+* **50+ core WordPress tools** — Full read/write access to posts, pages, media, comments, and more.
+* **OAuth 2.0/2.1** — One-click connection with PKCE.
+
+---
+
+**Need unlimited access points, Gutenberg block-level editing, 130+ integration tools, and change history?** [Upgrade to Immens MCP Fortress Pro →](https://studioimmens.com)
 
 == Installation ==
 

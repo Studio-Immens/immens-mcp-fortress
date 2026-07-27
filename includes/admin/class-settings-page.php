@@ -109,6 +109,62 @@ class Settings_Page {
 					</a>
 				</p>
 			</div>
+
+			<div class="imf-card" style="background:linear-gradient(135deg,#fff4e6 0%,#fff 100%);border-left:4px solid #f0a030;">
+				<h2><?php esc_html_e( '🚀 Free Performance Audit for Your WordPress Site', 'immens-mcp-fortress' ); ?></h2>
+				<p><?php esc_html_e( 'Get a complete analysis of your site speed, Core Web Vitals, and optimization opportunities — no strings attached.', 'immens-mcp-fortress' ); ?></p>
+				<ul style="list-style: disc; margin-left: 20px;">
+					<li><?php esc_html_e( 'TTFB, Lighthouse score & page size breakdown', 'immens-mcp-fortress' ); ?></li>
+					<li><?php esc_html_e( 'Hosting, caching & CDN recommendations', 'immens-mcp-fortress' ); ?></li>
+					<li><?php esc_html_e( 'Personalized action plan from our team', 'immens-mcp-fortress' ); ?></li>
+				</ul>
+				<p style="margin-top:16px;">
+					<a href="https://studioimmens.com/audit-performance/" target="_blank" class="button button-primary">
+						<?php esc_html_e( 'Request Free Audit →', 'immens-mcp-fortress' ); ?>
+					</a>
+				</p>
+			</div>
+
+			<div class="imf-card">
+				<h2><?php esc_html_e( 'Lead Webhook URL', 'immens-mcp-fortress' ); ?></h2>
+				<table class="form-table">
+					<tr>
+						<th><label for="lead_webhook"><?php esc_html_e( 'Webhook Endpoint', 'immens-mcp-fortress' ); ?></label></th>
+						<td>
+							<input type="url" name="lead_webhook_url" id="lead_webhook"
+								value="<?php echo esc_attr( get_option( 'imf_lead_webhook_url', '' ) ); ?>"
+								placeholder="https://studioimmens.com/wp-json/immens/v1/lead"
+								style="width:100%;">
+							<p class="description">
+								<?php esc_html_e( 'When a user subscribes, the plugin will POST their name, email, and source to this URL.', 'immens-mcp-fortress' ); ?>
+							</p>
+						</td>
+					</tr>
+				</table>
+			</div>
+
+			<div class="imf-card">
+				<h2><?php esc_html_e( 'Collected Leads', 'immens-mcp-fortress' ); ?></h2>
+				<?php
+				$imf_leads = get_option( 'imf_leads', array() );
+				if ( empty( $imf_leads ) ) :
+					echo '<p>' . esc_html__( 'No leads collected yet.', 'immens-mcp-fortress' ) . '</p>';
+				else :
+					echo '<table class="wp-list-table widefat fixed striped">';
+					echo '<thead><tr><th>' . esc_html__( 'Name', 'immens-mcp-fortress' ) . '</th><th>' . esc_html__( 'Email', 'immens-mcp-fortress' ) . '</th><th>' . esc_html__( 'Date', 'immens-mcp-fortress' ) . '</th></tr></thead>';
+					echo '<tbody>';
+					foreach ( array_reverse( $imf_leads ) as $imf_lead ) {
+						echo '<tr>';
+						echo '<td>' . esc_html( $imf_lead['name'] ) . '</td>';
+						echo '<td>' . esc_html( $imf_lead['email'] ) . '</td>';
+						echo '<td>' . esc_html( $imf_lead['timestamp'] ) . '</td>';
+						echo '</tr>';
+					}
+					echo '</tbody></table>';
+				endif;
+				?>
+			</div>
+
 		</div>
 		<?php
 	}
@@ -119,12 +175,13 @@ class Settings_Page {
 		}
 
 		check_admin_referer( 'immens_mcp_save_settings' );
-
 		update_option( 'immens_mcp_fortress_force_draft_on_create', ! empty( $_POST['force_draft_on_create'] ) );
-		update_option( 'immens_mcp_fortress_max_title_length', isset( $_POST['max_title_length'] ) ? absint( $_POST['max_title_length'] ) : 0 ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		update_option( 'immens_mcp_fortress_max_title_length', isset( $_POST['max_title_length'] ) ? absint( $_POST['max_title_length'] ) : 0 );
+ // phpcs:ignore WordPress.Security.NonceVerification.Missing
 		update_option( 'immens_mcp_fortress_audit_log_enabled', ! empty( $_POST['audit_log_enabled'] ) );
-		update_option( 'immens_mcp_fortress_audit_log_retention', isset( $_POST['audit_log_retention'] ) ? max( 1, absint( $_POST['audit_log_retention'] ) ) : 30 ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
-
+		update_option( 'immens_mcp_fortress_audit_log_retention', isset( $_POST['audit_log_retention'] ) ? max( 1, absint( $_POST['audit_log_retention'] ) ) : 30 );
+ // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		update_option( 'imf_lead_webhook_url', isset( $_POST['lead_webhook_url'] ) ? esc_url_raw( wp_unslash( $_POST['lead_webhook_url'] ) ) : '' );
 		wp_safe_redirect( add_query_arg(
 			array( 'page' => 'immens-mcp-fortress-settings', 'saved' => 1 ),
 			admin_url( 'admin.php' )

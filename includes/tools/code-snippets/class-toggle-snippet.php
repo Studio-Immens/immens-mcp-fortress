@@ -76,6 +76,8 @@ class Toggle_Snippet extends Base_Tool {
 				throw new \RuntimeException( 'Failed to toggle snippet status.' );
 			}
 
+			$this->clear_snippet_cache();
+
 			return array(
 				'id'     => $id,
 				'name'   => $existing['name'],
@@ -89,10 +91,12 @@ class Toggle_Snippet extends Base_Tool {
 				throw new \RuntimeException( sprintf( 'Snippet with ID %d not found.', $id ) ); // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
 			}
 
-			$current_active = get_post_meta( $id, '_snippet_active', true ) === '1';
+			$current_active = get_post_meta( $id, '_code_snippets_active', true ) === '1';
 			$new_active = isset( $arguments['active'] ) ? (bool) $arguments['active'] : ! $current_active;
 
-			update_post_meta( $id, '_snippet_active', $new_active ? '1' : '0' );
+			update_post_meta( $id, '_code_snippets_active', $new_active ? '1' : '0' );
+
+			$this->clear_snippet_cache();
 
 			return array(
 				'id'     => $id,
@@ -103,5 +107,14 @@ class Toggle_Snippet extends Base_Tool {
 		}
 
 		throw new \RuntimeException( 'Code Snippets plugin is not active.' );
+	}
+
+	private function clear_snippet_cache() {
+		if ( function_exists( 'code_snippets\clean_snippets_cache' ) ) {
+			code_snippets\clean_snippets_cache();
+		}
+		if ( function_exists( 'code_snippets\clean_active_snippets_cache' ) ) {
+			code_snippets\clean_active_snippets_cache();
+		}
 	}
 }

@@ -102,6 +102,8 @@ class Create_Snippet extends Base_Tool {
 
 			$new_id = $wpdb->insert_id;
 
+			$this->clear_snippet_cache();
+
 			return array(
 				'id'          => $new_id,
 				'name'        => $name,
@@ -127,11 +129,13 @@ class Create_Snippet extends Base_Tool {
 				throw new \RuntimeException( esc_html( $new_id->get_error_message() ) ); // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
 			}
 
-			update_post_meta( $new_id, '_snippet_desc', $description );
-			update_post_meta( $new_id, '_snippet_scope', $scope );
-			update_post_meta( $new_id, '_snippet_tags', $tags );
-			update_post_meta( $new_id, '_snippet_priority', $priority );
-			update_post_meta( $new_id, '_snippet_active', $active ? '1' : '0' );
+			update_post_meta( $new_id, '_code_snippets_scope', $scope );
+			update_post_meta( $new_id, '_code_snippets_priority', $priority );
+			update_post_meta( $new_id, '_code_snippets_active', $active ? '1' : '0' );
+			update_post_meta( $new_id, '_code_snippets_format', 'php' );
+			update_post_meta( $new_id, '_code_snippets_description', $description );
+
+			$this->clear_snippet_cache();
 
 			return array(
 				'id'          => $new_id,
@@ -147,5 +151,14 @@ class Create_Snippet extends Base_Tool {
 		}
 
 		throw new \RuntimeException( 'Code Snippets plugin is not active.' );
+	}
+
+	private function clear_snippet_cache() {
+		if ( function_exists( 'code_snippets\clean_snippets_cache' ) ) {
+			code_snippets\clean_snippets_cache();
+		}
+		if ( function_exists( 'code_snippets\clean_active_snippets_cache' ) ) {
+			code_snippets\clean_active_snippets_cache();
+		}
 	}
 }

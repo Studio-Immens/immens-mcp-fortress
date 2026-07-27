@@ -465,11 +465,13 @@ class Access_Points_Page {
 			wp_die( esc_html__( 'A WordPress user must be selected for the access point.', 'immens-mcp-fortress' ) );
 		}
 
-		$result = $this->manager->create_access_point( $name, $wp_user_id, $tool_permissions, $ip_whitelist, $rate_limit );
+        $result = $this->manager->create_access_point( $name, $wp_user_id, $tool_permissions, $ip_whitelist, $rate_limit );
 
-		if ( is_wp_error( $result ) ) {
-			wp_die( esc_html( $result->get_error_message() ) );
-		}
+        if ( is_wp_error( $result ) ) {
+            wp_die( esc_html( $result->get_error_message() ) );
+        }
+
+        update_option( 'imf_review_triggered', true );
 
 		$redirect = add_query_arg(
 			array(

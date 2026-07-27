@@ -60,6 +60,8 @@ class Delete_Snippet extends Base_Tool {
 				throw new \RuntimeException( 'Failed to delete snippet.' );
 			}
 
+			$this->clear_snippet_cache();
+
 			return array(
 				'deleted_id' => $id,
 				'name'       => $existing['name'],
@@ -78,6 +80,8 @@ class Delete_Snippet extends Base_Tool {
 				throw new \RuntimeException( 'Failed to delete snippet.' );
 			}
 
+			$this->clear_snippet_cache();
+
 			return array(
 				'deleted_id' => $id,
 				'name'       => $post->post_title,
@@ -86,5 +90,14 @@ class Delete_Snippet extends Base_Tool {
 		}
 
 		throw new \RuntimeException( 'Code Snippets plugin is not active.' );
+	}
+
+	private function clear_snippet_cache() {
+		if ( function_exists( 'code_snippets\clean_snippets_cache' ) ) {
+			code_snippets\clean_snippets_cache();
+		}
+		if ( function_exists( 'code_snippets\clean_active_snippets_cache' ) ) {
+			code_snippets\clean_active_snippets_cache();
+		}
 	}
 }
