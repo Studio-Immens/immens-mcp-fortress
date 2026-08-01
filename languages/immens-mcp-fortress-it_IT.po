@@ -1,430 +1,1011 @@
-﻿msgid ""
+msgid ""
 msgstr ""
-"Project-Id-Version: Immens MCP Fortress 1.0.0\n"
+"Project-Id-Version: immens-mcp-fortress\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-08-01T11:30:02+02:00\n"
+"PO-Revision-Date: 2026-08-01T11:30:02+02:00\n"
+"Last-Translator: Studio Immens <info@studioimmens.com>\n"
+"Language-Team: Studio Immens\n"
 "Language: it_IT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: i18n-tool\n"
 
-#: includes/admin/class-admin-page.php:68
-msgid "Unlock 131 additional MCP tools!"
-msgstr "Sblocca 131 strumenti MCP aggiuntivi!"
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "- Select a user -"
+msgstr "- Seleziona un utente -"
 
-#: includes/admin/class-admin-page.php:69
-msgid "Get Immens MCP Fortress Pro for Gutenberg block-level editing, Primary Source, Immens CRM, ClassyBlocks, SEO Framework, Greenshift, Stackable, TranslatePress integrations, unlimited access points, SSE transport and more."
-msgstr "Ottieni Immens MCP Fortress Pro per editing Gutenberg avanzato, integrazioni con Primary Source, Immens CRM, ClassyBlocks, SEO Framework, Greenshift, Stackable, TranslatePress, access point illimitati, trasporto SSE e molto altro."
-
-#: includes/admin/class-admin-page.php:70
-#, php-bracket-format
-msgid "Learn More →"
-msgstr "Scopri di più →"
-
-#: includes/admin/class-admin-page.php:79
-msgid "Immens MCP Fortress — Dashboard"
-msgstr "Immens MCP Fortress — Dashboard"
-
-#: includes/admin/class-admin-page.php:84
-msgid "MCP Endpoint"
-msgstr "Endpoint MCP"
-
-#: includes/admin/class-admin-page.php:90
-msgid "Copy"
-msgstr "Copia"
-
-#: includes/admin/class-admin-page.php:93
-msgid "Use this URL in Claude Desktop, ChatGPT, Cursor, or any MCP-compatible client."
-msgstr "Usa questo URL in Claude Desktop, ChatGPT, Cursor o qualsiasi client MCP."
-
-#: includes/admin/class-admin-page.php:99
-msgid "Quick Stats"
-msgstr "Statistiche Rapide"
-
-#: includes/admin/class-admin-page.php:103
-msgid "Access Points"
-msgstr "Access Point"
-
-#: includes/admin/class-admin-page.php:108
-msgid "Free tier limited to 2 access points. Upgrade to Pro for unlimited."
-msgstr "Il piano gratuito è limitato a 2 access point. Passa a Pro per averne illimitati."
-
-#: includes/admin/class-admin-page.php:114
-msgid "Quick Setup Guides"
-msgstr "Guide Rapide"
-
-#: includes/admin/class-admin-page.php:117
-msgid "Claude Desktop"
-msgstr "Claude Desktop"
-
-#: includes/admin/class-admin-page.php:119
-msgid "Go to Settings → Connectors → Add custom connector"
-msgstr "Vai su Impostazioni → Connettori → Aggiungi connettore personalizzato"
-
-#: includes/admin/class-admin-page.php:120
-msgid "Paste the MCP endpoint URL above"
-msgstr "Incolla l'URL dell'endpoint MCP qui sopra"
-
-#: includes/admin/class-admin-page.php:121
-msgid "Enter your Access Point API key when prompted"
-msgstr "Inserisci la chiave API dell'Access Point quando richiesto"
-
-#: includes/admin/class-admin-page.php:127
-msgid "OpenCode"
-msgstr "OpenCode"
-
-#: includes/admin/class-admin-page.php:129
-msgid "Add to your opencode.json:"
-msgstr "Aggiungi al tuo opencode.json:"
-
-#: includes/admin/class-admin-page.php:141
-msgid "Run opencode mcp list to verify connection"
-msgstr "Esegui opencode mcp list per verificare la connessione"
-
-#: includes/admin/class-admin-page.php:146
-msgid "OpenClaw"
-msgstr "OpenClaw"
-
-#: includes/admin/class-admin-page.php:149
-msgid "Tell OpenClaw in plain English:"
-msgstr "Dì a OpenClaw in linguaggio naturale:"
-
-#: includes/admin/class-admin-page.php:156
-msgid "OpenClaw will auto-configure itself. Or install the WordPress MCP skill from ClawHub."
-msgstr "OpenClaw si configurerà automaticamente. Oppure installa la skill WordPress MCP da ClawHub."
-
-#: includes/admin/class-admin-page.php:161
-msgid "Cursor / Windsurf / Cline"
-msgstr "Cursor / Windsurf / Cline"
-
-#: includes/admin/class-admin-page.php:163
-msgid "Add MCP server in your client settings"
-msgstr "Aggiungi il server MCP nelle impostazioni del tuo client"
-
-#: includes/admin/class-admin-page.php:164
-msgid "Set transport to \"streamable-http\""
-msgstr "Imposta il trasporto su \"streamable-http\""
-
-#: includes/admin/class-admin-page.php:165
-msgid "Use the URL and your Access Point API key"
-msgstr "Usa l'URL e la chiave API del tuo Access Point"
-
-#: includes/admin/class-access-points-page.php:28
-msgid "Access Points"
-msgstr "Access Point"
-
-#: includes/admin/class-access-points-page.php:37
-msgid "Edit: %s"
-msgstr "Modifica: %s"
-
-#: includes/admin/class-access-points-page.php:46
-msgid "Update Access Point"
-msgstr "Aggiorna Access Point"
-
-#: includes/admin/class-access-points-page.php:47
-msgid "Name"
-msgstr "Nome"
-
-#: includes/admin/class-access-points-page.php:55
-msgid "API Key Prefix"
-msgstr "Prefisso Chiave API"
-
-#: includes/admin/class-access-points-page.php:60
-msgid "WordPress User"
-msgstr "Utente WordPress"
-
-#: includes/admin/class-access-points-page.php:63
-msgid "- None (Admin capabilities) -"
-msgstr "- Nessuno (capacità Admin) -"
-
-#: includes/admin/class-access-points-page.php:74
-msgid "The AI will act as this WordPress user. Leave empty for full admin access."
-msgstr "L\\'IA agirà come questo utente WordPress. Lascia vuoto per accesso amministrativo completo."
-
-#: includes/admin/class-access-points-page.php:78
-msgid "IP Whitelist"
-msgstr "Whitelist IP"
-
-#: includes/admin/class-access-points-page.php:81
-msgid "Leave empty to allow all IPs"
-msgstr "Lascia vuoto per permettere tutti gli IP"
-
-#: includes/admin/class-access-points-page.php:82
-msgid "One IP address or CIDR range per line. Leave empty to allow all IPs."
-msgstr "Un indirizzo IP o range CIDR per riga. Lascia vuoto per permettere tutti gli IP."
-
-#: includes/admin/class-access-points-page.php:87
-msgid "Rate Limit"
-msgstr "Limite di Richieste"
-
-#: includes/admin/class-access-points-page.php:91
-msgid "requests per minute"
-msgstr "richieste al minuto"
-
-#: includes/admin/class-access-points-page.php:95
-msgid "Tool Permissions"
-msgstr "Permessi Strumenti"
-
-#: includes/admin/class-access-points-page.php:97
-msgid "Category"
-msgstr "Categoria"
-
-#: includes/admin/class-access-points-page.php:98
-msgid "Read"
-msgstr "Lettura"
-
-#: includes/admin/class-access-points-page.php:99
-msgid "Write"
-msgstr "Scrittura"
-
-#: includes/admin/class-access-points-page.php:119
-msgid "Save Changes"
-msgstr "Salva Modifiche"
-
-#: includes/admin/class-access-points-page.php:122
-msgid "Cancel"
-msgstr "Annulla"
-
-#: includes/admin/class-access-points-page.php:126
-msgid "Danger Zone"
-msgstr "Zona Pericolo"
-
-#: includes/admin/class-access-points-page.php:134
-msgid "Regenerate API Key"
-msgstr "Rigenera Chiave API"
-
-#: includes/admin/class-access-points-page.php:141
-msgid "Delete Access Point"
-msgstr "Elimina Access Point"
-
-#: includes/admin/class-access-points-page.php:148
-msgid "All Access Points"
-msgstr "Tutti gli Access Point"
-
-#: includes/admin/class-access-points-page.php:150
-msgid "Add New"
-msgstr "Aggiungi Nuovo"
-
-#: includes/admin/class-access-points-page.php:156
-msgid "Create Access Point"
-msgstr "Crea Access Point"
-
-#: includes/admin/class-access-points-page.php:166
-msgid "My Claude Desktop"
-msgstr "Il mio Claude Desktop"
-
-#: includes/admin/class-access-points-page.php:173
-msgid "Create Access Point"
-msgstr "Crea Access Point"
-
-#: includes/access-points/class-access-point-schema.php:35
-msgid "Posts"
-msgstr "Articoli"
-
-#: includes/access-points/class-access-point-schema.php:36
-msgid "Pages"
-msgstr "Pagine"
-
-#: includes/access-points/class-access-point-schema.php:37
-msgid "Media"
-msgstr "Media"
-
-#: includes/access-points/class-access-point-schema.php:38
-msgid "Comments"
-msgstr "Commenti"
-
-#: includes/access-points/class-access-point-schema.php:39
-msgid "Users"
-msgstr "Utenti"
-
-#: includes/access-points/class-access-point-schema.php:40
-msgid "Taxonomy"
-msgstr "Tassonomia"
-
-#: includes/access-points/class-access-point-schema.php:41
-msgid "Menus"
-msgstr "Menu"
-
-#: includes/access-points/class-access-point-schema.php:42
-msgid "Blocks"
-msgstr "Blocchi"
-
-#: includes/access-points/class-access-point-schema.php:43
-msgid "Templates"
-msgstr "Template"
-
-#: includes/access-points/class-access-point-schema.php:44
-msgid "Global Styles"
-msgstr "Stili Globali"
-
-#: includes/access-points/class-access-point-schema.php:45
-msgid "Plugins"
-msgstr "Plugin"
-
-#: includes/access-points/class-access-point-schema.php:46
-msgid "Themes"
-msgstr "Temi"
-
-#: includes/access-points/class-access-point-schema.php:47
-msgid "Site Settings"
-msgstr "Impostazioni Sito"
-
-#: includes/access-points/class-access-point-schema.php:48
-msgid "Search"
-msgstr "Ricerca"
-
-#: includes/access-points/class-access-point-schema.php:49
-msgid "Revisions"
-msgstr "Revisioni"
-
-#: includes/access-points/class-access-point-schema.php:50
-msgid "Post Meta"
-msgstr "Meta Articoli"
-
-#: includes/access-points/class-access-point-manager.php:22
-msgid "Free tier limited to %d access points. Upgrade to Immens MCP Fortress Pro for unlimited."
-msgstr "Il piano gratuito è limitato a %d access point. Passa a Immens MCP Fortress Pro per averne illimitati."
-
-#: includes/admin/class-settings-page.php:47
-msgid "Force Draft on Create"
-msgstr "Forza Bozza alla Creazione"
-
-#: includes/admin/class-settings-page.php:50
-msgid "AI-created posts are always saved as drafts, regardless of what the AI requests."
-msgstr "Gli articoli creati dall\\'IA vengono sempre salvati come bozze, indipendentemente da ciò che richiede l\\'IA."
-
-#: includes/admin/class-settings-page.php:57
-msgid "Max Title Length"
-msgstr "Lunghezza Massima Titolo"
-
-#: includes/admin/class-settings-page.php:61
-msgid "Maximum characters for post titles. 0 = no limit."
-msgstr "Numero massimo di caratteri per i titoli. 0 = nessun limite."
-
-#: includes/admin/class-settings-page.php:73
-msgid "Enable Audit Log"
-msgstr "Abilita Registro Audit"
-
-#: includes/admin/class-settings-page.php:76
-msgid "Log every MCP tool call with timestamp, tool name, and result."
-msgstr "Registra ogni chiamata strumento MCP con timestamp, nome strumento e risultato."
-
-#: includes/admin/class-settings-page.php:82
-msgid "Audit Log Retention"
-msgstr "Conservazione Registro Audit"
-
-#: includes/admin/class-settings-page.php:86
-msgid "days"
-msgstr "giorni"
-
-#: includes/admin/class-settings-page.php:97
-msgid "Save Settings"
-msgstr "Salva Impostazioni"
-
-#: includes/admin/class-settings-page.php:102-109
-msgid "Pro Features"
-msgstr "Funzionalità Pro"
-
-#: includes/admin/class-settings-page.php:103
-msgid "Upgrade to Immens MCP Fortress Pro for:"
-msgstr "Passa a Immens MCP Fortress Pro per:"
-
-#: includes/admin/class-settings-page.php:105
-msgid "Change History with before/after snapshots"
-msgstr "Cronologia Modifiche con snapshot prima/dopo"
-
-#: includes/admin/class-settings-page.php:106
-msgid "Gutenberg block-level editing (add/remove/reorder blocks)"
-msgstr "Modifica blocchi Gutenberg a livello avanzato (aggiungi/rimuovi/riordina blocchi)"
-
-#: includes/admin/class-settings-page.php:107
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-settings-page.php
 msgid "131 integration tools: Primary Source, Immens CRM, ClassyBlocks, SEO, and more"
 msgstr "131 strumenti di integrazione: Primary Source, Immens CRM, ClassyBlocks, SEO e altro"
 
-#: includes/admin/class-settings-page.php:108
-msgid "SSE Transport for legacy MCP clients"
-msgstr "Trasporto SSE per client MCP legacy"
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "192.168.1.0/24&#10;10.0.0.5&#10;Leave empty to allow all IPs"
+msgstr "192.168.1.0/24&#10;10.0.0.5&#10;Lascia vuoto per consentire tutti gli IP"
 
-#: includes/admin/class-settings-page.php:109
-msgid "Extended audit log retention"
-msgstr "Conservazione estesa del registro audit"
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "A WordPress user must be selected for the access point."
+msgstr "Per l'access point deve essere selezionato un utente WordPress."
 
-#: includes/admin/class-settings-page.php:113
-msgid "Learn More →"
-msgstr "Scopri di più →"
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-registry.php
+msgid "ACF"
+msgstr "ACF"
 
-#: includes/access-points/class-access-point-auth.php:18
-msgid "Missing Authorization header."
-msgstr "Intestazione Authorization mancante."
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/access-points/class-access-point-schema.php
+msgid "ACF (Pro)"
+msgstr "ACF (Pro)"
 
-#: includes/access-points/class-access-point-auth.php:24
-msgid "Authorization header must use Bearer scheme."
-msgstr "L\\'intestazione Authorization deve usare lo schema Bearer."
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-settings-page.php
+msgid "AI-created posts are always saved as drafts, regardless of what the AI requests."
+msgstr "Gli articoli creati dall'IA vengono sempre salvati come bozze, indipendentemente da ciò che richiede l'IA."
 
-#: includes/access-points/class-access-point-auth.php:30
-msgid "Bearer token is empty."
-msgstr "Il token Bearer è vuoto."
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "API Key Prefix"
+msgstr "Prefisso Chiave API"
 
-#: includes/access-points/class-access-point-auth.php:36
-msgid "Invalid or disabled access point."
-msgstr "Access Point non valido o disabilitato."
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-audit-log-page.php
+msgid "Access Point"
+msgstr "Access Point"
 
-#: includes/access-points/class-access-point-auth.php:41
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/immens-mcp-fortress.php
+msgid "Access Points"
+msgstr "Access Point"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/access-points/class-access-point-auth.php
 msgid "Access denied: your IP address is not whitelisted for this access point."
 msgstr "Accesso negato: il tuo indirizzo IP non è nella whitelist per questo access point."
 
-#: includes/oauth/class-scope-map.php:16
-msgid "Read access to content"
-msgstr "Accesso in lettura ai contenuti"
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-auth.php
+msgid "Access point user no longer exists."
+msgstr "L'utente dell'access point non esiste più."
 
-#: includes/oauth/class-scope-map.php:17
-msgid "Write access to content"
-msgstr "Accesso in scrittura ai contenuti"
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "Actions"
+msgstr "Azioni"
 
-#: includes/oauth/class-consent-screen.php:33
-msgid "Authorize MCP Client"
-msgstr "Autorizza Client MCP"
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-admin-page.php
+msgid "Activate Now →"
+msgstr "Attiva ora →"
 
-#: includes/oauth/class-consent-screen.php:54
-msgid "Authorize Application"
-msgstr "Autorizza Applicazione"
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-admin-page.php
+msgid "Activate your Pro license to unlock all integration tools and features."
+msgstr "Attiva la tua licenza Pro per sbloccare tutti gli strumenti e le funzionalità di integrazione."
 
-#: includes/oauth/class-consent-screen.php:57
-msgid "wants to access your WordPress site via MCP."
-msgstr "vuole accedere al tuo sito WordPress tramite MCP."
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-admin-page.php
+msgid "Add MCP server in your client settings"
+msgstr "Aggiungi il server MCP nelle impostazioni del tuo client"
 
-#: includes/oauth/class-consent-screen.php:59
-msgid "Requested permissions:"
-msgstr "Permessi richiesti:"
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "Add New"
+msgstr "Aggiungi Nuovo"
 
-#: includes/oauth/class-consent-screen.php:64
-msgid "Basic read access"
-msgstr "Accesso in lettura base"
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-admin-page.php
+msgid "Add to your opencode.json:"
+msgstr "Aggiungi al tuo opencode.json:"
 
-#: includes/oauth/class-consent-screen.php:77
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-schema.php
+msgid "Advanced Custom Fields: field groups, fields"
+msgstr "Advanced Custom Fields: gruppi di campi, campi"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "All Access Points"
+msgstr "Tutti gli Access Point"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-audit-log-page.php
+msgid "All statuses"
+msgstr "Tutti gli stati"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "Allow GET requests to this namespace"
+msgstr "Consenti richieste GET a questo namespace"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "Allow POST, PUT, PATCH, DELETE to this namespace"
+msgstr "Consenti POST, PUT, PATCH, DELETE a questo namespace"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/oauth/class-consent-screen.php
 msgid "Approve"
 msgstr "Approva"
 
-#: includes/oauth/class-consent-screen.php:78
-msgid "Deny"
-msgstr "Nega"
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-admin-page.php
+msgid "Are you sure you want to delete this access point? This action cannot be undone."
+msgstr "Sei sicuro di voler eliminare questo access point? Questa azione non può essere annullata."
 
-#: includes/access-points/class-access-point-repository.php:31
-msgid "Failed to create access point."
-msgstr "Impossibile creare l\\'access point."
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-audit-log-page.php
+msgid "Audit Log"
+msgstr "Registro di controllo"
 
-#: includes/admin/class-access-points-page.php:51
-msgid "New API Key (shown only once):"
-msgstr "Nuova Chiave API (mostrata una sola volta):"
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-settings-page.php
+msgid "Audit Log Retention"
+msgstr "Conservazione Registro Audit"
 
-#: includes/admin/class-access-points-page.php:56
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/access-points/class-access-point-auth.php
+msgid "Authorization header must use Bearer scheme."
+msgstr "L'intestazione Authorization deve usare lo schema Bearer."
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/oauth/class-consent-screen.php
+msgid "Authorize Application"
+msgstr "Autorizza Applicazione"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/oauth/class-consent-screen.php
+msgid "Authorize MCP Client"
+msgstr "Autorizza Client MCP"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/oauth/class-consent-screen.php
+msgid "Basic read access"
+msgstr "Accesso in lettura base"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/access-points/class-access-point-auth.php
+msgid "Bearer token is empty."
+msgstr "Il token Bearer è vuoto."
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-schema.php
+msgid "Block Editor"
+msgstr "Editor a blocchi"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-schema.php
+msgid "Block editor settings and URL details"
+msgstr "Impostazioni dell'editor a blocchi e dettagli URL"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/access-points/class-access-point-schema.php
+msgid "Blocks"
+msgstr "Blocchi"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "Cancel"
+msgstr "Annulla"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "Category"
+msgstr "Categoria"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-settings-page.php
+msgid "Change History with before/after snapshots"
+msgstr "Cronologia Modifiche con snapshot prima/dopo"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-registry.php
+msgid "ClassyBlocks"
+msgstr "ClassyBlocks"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/access-points/class-access-point-schema.php
+msgid "ClassyBlocks (Pro)"
+msgstr "ClassyBlocks (Pro)"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-schema.php
+msgid "ClassyBlocks: animations, packs"
+msgstr "ClassyBlocks: animazioni, pack"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-admin-page.php
+msgid "Claude Desktop"
+msgstr "Claude Desktop"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-audit-log-page.php
+msgid "Close"
+msgstr "Chiudi"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/access-points/class-access-point-schema.php
+msgid "Code Snippets"
+msgstr "Code Snippets"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-schema.php
+msgid "Code Snippets: snippets CRUD"
+msgstr "Code Snippets: CRUD snippet"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-settings-page.php
+msgid "Collected Leads"
+msgstr "Lead raccolti"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/access-points/class-access-point-schema.php
+msgid "Comments"
+msgstr "Commenti"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/access-points/class-access-point-schema.php
+msgid "Contact Form 7"
+msgstr "Contact Form 7"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-schema.php
+msgid "Contact Form 7: forms, submissions"
+msgstr "Contact Form 7: moduli, invii"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-admin-page.php
+msgid "Copy"
+msgstr "Copia"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
 msgid "Copy this key now. It will not be displayed again."
 msgstr "Copia subito questa chiave. Non verrà più mostrata."
 
-#: includes/admin/class-access-points-page.php:76
-msgid "Leave empty to allow all IPs"
-msgstr "Lascia vuoto per permettere tutti gli IP"
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "Create Access Point"
+msgstr "Crea Access Point"
 
-#: includes/admin/class-access-points-page.php:90
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-admin-page.php
+msgid "Cursor / Windsurf / Cline"
+msgstr "Cursor / Windsurf / Cline"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "Danger Zone"
+msgstr "Zona Pericolo"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/immens-mcp-fortress.php
+msgid "Dashboard"
+msgstr "Pannello di controllo"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-settings-page.php
+msgid "Date"
+msgstr "Data"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "Delete Access Point"
+msgstr "Elimina Access Point"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/oauth/class-consent-screen.php
+msgid "Deny"
+msgstr "Nega"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "Disabling a namespace here also hides it from the AI agent, reducing token usage."
+msgstr "Disabilitare un namespace qui lo nasconde anche all'agente AI, riducendo l'utilizzo dei token."
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "Edit"
+msgstr "Modifica"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "Edit: %s"
+msgstr "Modifica: %s"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-registry.php
+msgid "Elementor"
+msgstr "Elementor"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/access-points/class-access-point-schema.php
+msgid "Elementor (Pro)"
+msgstr "Elementor (Pro)"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-schema.php
+msgid "Elementor: templates, global settings, fonts"
+msgstr "Elementor: modelli, impostazioni globali, caratteri"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-settings-page.php
+msgid "Email"
+msgstr "Email"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "Enable All Active"
+msgstr "Abilita tutti gli attivi"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-settings-page.php
+msgid "Enable Audit Log"
+msgstr "Abilita Registro Audit"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-admin-page.php
+msgid "Enter your Access Point API key when prompted"
+msgstr "Inserisci la chiave API dell'Access Point quando richiesto"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-settings-page.php
+msgid "Extended audit log retention"
+msgstr "Conservazione estesa del registro audit"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/access-points/class-access-point-repository.php
+msgid "Failed to create access point."
+msgstr "Impossibile creare l'access point."
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/access-points/class-access-point-schema.php
+msgid "Fast Product Importer"
+msgstr "Fast Product Importer"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-audit-log-page.php
+msgid "Filter"
+msgstr "Filtra"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-settings-page.php
+msgid "Force Draft on Create"
+msgstr "Forza Bozza alla Creazione"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-admin-page.php
+msgid "Free tier limited to 2 access points. Upgrade to Pro for unlimited."
+msgstr "Il piano gratuito è limitato a 2 access point. Passa a Pro per averne illimitati."
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "GET requests (list, view)"
+msgstr "Richieste GET (elenco, visualizzazione)"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-admin-page.php
+msgid "Get Immens MCP Fortress Pro for Gutenberg block-level editing, Primary Source, Immens CRM, ClassyBlocks, SEO Framework, Greenshift, Stackable, TranslatePress integrations, unlimited access points, SSE transport and more."
+msgstr "Ottieni Immens MCP Fortress Pro per editing Gutenberg avanzato, integrazioni con Primary Source, Immens CRM, ClassyBlocks, SEO Framework, Greenshift, Stackable, TranslatePress, access point illimitati, trasporto SSE e molto altro."
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-settings-page.php
+msgid "Get a complete analysis of your site speed, Core Web Vitals, and optimization opportunities — no strings attached."
+msgstr "Ottieni un'analisi completa della velocità del tuo sito, delle Core Web Vitals e delle opportunità di ottimizzazione — senza impegno."
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/access-points/class-access-point-schema.php
+msgid "Global Styles"
+msgstr "Stili Globali"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-admin-page.php
+msgid "Go to Settings → Connectors → Add custom connector"
+msgstr "Vai su Impostazioni → Connettori → Aggiungi connettore personalizzato"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-registry.php
+msgid "Greenshift"
+msgstr "Greenshift"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/access-points/class-access-point-schema.php
+msgid "Greenshift (Pro)"
+msgstr "Greenshift (Pro)"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-schema.php
+msgid "Greenshift: blocks, stylebook, AI settings"
+msgstr "Greenshift: blocchi, stylebook, impostazioni AI"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-settings-page.php
+msgid "Gutenberg block-level editing (add/remove/reorder blocks)"
+msgstr "Modifica blocchi Gutenberg a livello avanzato (aggiungi/rimuovi/riordina blocchi)"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-settings-page.php
+msgid "Hosting, caching & CDN recommendations"
+msgstr "Raccomandazioni su hosting, caching e CDN"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-audit-log-page.php
+msgid "IP"
+msgstr "IP"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "IP Whitelist"
+msgstr "Whitelist IP"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-auth.php
+msgid "IP address not allowed for this access point."
+msgstr "Indirizzo IP non consentito per questo access point."
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "IP restricted"
+msgstr "IP limitato"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-registry.php
+msgid "Immens CRM"
+msgstr "Immens CRM"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/access-points/class-access-point-schema.php
+msgid "Immens CRM (Pro)"
+msgstr "Immens CRM (Pro)"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-schema.php
+msgid "Immens CRM: contacts, pipelines, automations"
+msgstr "Immens CRM: contatti, pipeline, automazioni"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-registry.php
+msgid "Immens Integration"
+msgstr "Immens Integration"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/access-points/class-access-point-schema.php
+msgid "Immens Integration (Pro)"
+msgstr "Immens Integration (Pro)"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-schema.php
+msgid "Immens Integration: modules, notifications, QR"
+msgstr "Immens Integration: moduli, notifiche, QR"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-admin-page.php
+msgid "Immens MCP Fortress"
+msgstr "Immens MCP Fortress"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-admin-page.php
+msgid "Immens MCP Fortress — Dashboard"
+msgstr "Immens MCP Fortress — Dashboard"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-auth.php
+msgid "Invalid API key."
+msgstr "Chiave API non valida."
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/access-points/class-access-point-auth.php
+msgid "Invalid or disabled access point."
+msgstr "Access Point non valido o disabilitato."
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-schema.php
+msgid "Jetpack: stats, subscriptions, related posts"
+msgstr "Jetpack: statistiche, abbonamenti, articoli correlati"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "Key Prefix"
+msgstr "Prefisso chiave"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/access-points/class-access-point-schema.php
+msgid "Keyword Explorer"
+msgstr "Keyword Explorer"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "Last Used"
+msgstr "Ultimo utilizzo"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-settings-page.php
+msgid "Lead Webhook URL"
+msgstr "URL webhook lead"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-admin-page.php
+msgid "Learn More →"
+msgstr "Scopri di più →"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/access-points/class-access-point-schema.php
+msgid "License System"
+msgstr "Sistema licenze"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/access-points/class-access-point-schema.php
+msgid "Loco Translate"
+msgstr "Loco Translate"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-schema.php
+msgid "Loco Translate: translations, PO/MO files"
+msgstr "Loco Translate: traduzioni, file PO/MO"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-settings-page.php
+msgid "Log every MCP tool call with timestamp, tool name, and result."
+msgstr "Registra ogni chiamata strumento MCP con timestamp, nome strumento e risultato."
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-admin-page.php
+msgid "MCP Endpoint"
+msgstr "Endpoint MCP"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-admin-page.php
+msgid "MCP Fortress"
+msgstr "MCP Fortress"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-settings-page.php
+msgid "Max Title Length"
+msgstr "Lunghezza Massima Titolo"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-settings-page.php
+msgid "Maximum characters for post titles. 0 = no limit."
+msgstr "Numero massimo di caratteri per i titoli. 0 = nessun limite."
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/access-points/class-access-point-schema.php
+msgid "Media"
+msgstr "Media"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/access-points/class-access-point-schema.php
+msgid "Menus"
+msgstr "Menu"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/access-points/class-access-point-auth.php
+msgid "Missing Authorization header."
+msgstr "Intestazione Authorization mancante."
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "My Claude Desktop"
+msgstr "Il mio Claude Desktop"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "Name"
+msgstr "Nome"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "Name is required."
+msgstr "Il nome è obbligatorio."
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "Namespace"
+msgstr "Namespace"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "Never"
+msgstr "Mai"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "New API Key (shown only once):"
+msgstr "Nuova Chiave API (mostrata una sola volta):"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "No access points configured yet. Create your first one above."
+msgstr "Nessun access point configurato. Crea il primo qui sopra."
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-settings-page.php
+msgid "No leads collected yet."
+msgstr "Nessun lead raccolto ancora."
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-audit-log-page.php
+msgid "No log entries found."
+msgstr "Nessuna voce di registro trovata."
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-auth.php
+msgid "No user is configured for this access point."
+msgstr "Nessun utente è configurato per questo access point."
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "One IP address or CIDR range per line. Leave empty to allow all IPs."
+msgstr "Un indirizzo IP o range CIDR per riga. Lascia vuoto per permettere tutti gli IP."
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "Open"
+msgstr "Apri"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "Open to all IPs"
+msgstr "Aperto a tutti gli IP"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-admin-page.php
+msgid "OpenClaw"
+msgstr "OpenClaw"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-admin-page.php
+msgid "OpenClaw will auto-configure itself. Tip: publish your skill on ClawHub for easy sharing."
+msgstr "OpenClaw si configurerà automaticamente. Consiglio: pubblica la tua skill su ClawHub per condividerla facilmente."
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-admin-page.php
+msgid "OpenCode"
+msgstr "OpenCode"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-admin-page.php
+msgid "Or manually via CLI:"
+msgstr "Oppure manualmente tramite CLI:"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-admin-page.php
+msgid "Or tell OpenClaw in plain English:"
+msgstr "Oppure dì a OpenClaw in parole semplici:"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-registry.php
+msgid "Other Plugins"
+msgstr "Altri plugin"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "POST, PUT, PATCH, DELETE (create, update, delete)"
+msgstr "POST, PUT, PATCH, DELETE (crea, aggiorna, elimina)"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/access-points/class-access-point-schema.php
+msgid "Pages"
+msgstr "Pagine"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-admin-page.php
+msgid "Paste the MCP endpoint URL above"
+msgstr "Incolla l'URL dell'endpoint MCP qui sopra"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-schema.php
+msgid "Patterns, Navigation, Global Styles"
+msgstr "Pattern, Navigazione, Stili globali"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-settings-page.php
+msgid "Personalized action plan from our team"
+msgstr "Piano d'azione personalizzato dal nostro team"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "Plugin installed"
+msgstr "Plugin installato"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "Plugin not installed"
+msgstr "Plugin non installato"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/access-points/class-access-point-schema.php
+msgid "Plugins"
+msgstr "Plugin"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/access-points/class-access-point-schema.php
+msgid "Polylang"
+msgstr "Polylang"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/access-points/class-access-point-schema.php
+msgid "Post Meta"
+msgstr "Meta Articoli"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/access-points/class-access-point-schema.php
+msgid "Posts"
+msgstr "Articoli"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-schema.php
+msgid "Posts, Pages, Media, Users, Comments, Categories, Tags, Settings, Blocks, Templates"
+msgstr "Articoli, Pagine, Media, Utenti, Commenti, Categorie, Tag, Impostazioni, Blocchi, Modelli"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-registry.php
+msgid "Primary Source"
+msgstr "Primary Source"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/access-points/class-access-point-schema.php
+msgid "Primary Source (Pro)"
+msgstr "Primary Source (Pro)"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-schema.php
+msgid "Primary Source: RAG content, profiles, logs"
+msgstr "Primary Source: contenuti RAG, profili, registri"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-settings-page.php
+msgid "Pro Features"
+msgstr "Funzionalità Pro"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-schema.php
+msgid "Products, Orders, Customers, Coupons, Reports, Settings, Shipping"
+msgstr "Prodotti, Ordini, Clienti, Coupon, Report, Impostazioni, Spedizioni"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-admin-page.php
+msgid "Quick Setup Guides"
+msgstr "Guide Rapide"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-admin-page.php
+msgid "Quick Stats"
+msgstr "Statistiche Rapide"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/access-points/class-access-point-schema.php
+msgid "REST API Gateway"
+msgstr "Gateway API REST"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "REST API Namespace Permissions"
+msgstr "Permessi namespace API REST"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-auth.php
+msgid "REST API access is disabled for this access point."
+msgstr "L'accesso alle API REST è disabilitato per questo access point."
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/access-points/class-access-point-schema.php
+msgid "Rank Math SEO"
+msgstr "Rank Math SEO"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-schema.php
+msgid "Rank Math SEO: meta, sitemap, analytics"
+msgstr "Rank Math SEO: meta, sitemap, analisi"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
 msgid "Rate Limit"
 msgstr "Limite Richieste/min"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-auth.php
+msgid "Rate limit exceeded."
+msgstr "Limite di richieste superato."
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "Read"
+msgstr "Lettura"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/oauth/class-scope-map.php
+msgid "Read access to content"
+msgstr "Accesso in lettura ai contenuti"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "Regenerate API Key"
+msgstr "Rigenera Chiave API"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-admin-page.php
+msgid "Regenerating the key will invalidate the current key immediately. Continue?"
+msgstr "La rigenerazione della chiave invaliderà immediatamente la chiave corrente. Continuare?"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-settings-page.php
+msgid "Request Free Audit →"
+msgstr "Richiedi audit gratuito →"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/oauth/class-consent-screen.php
+msgid "Requested permissions:"
+msgstr "Permessi richiesti:"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "Restricted"
+msgstr "Limitato"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/access-points/class-access-point-schema.php
+msgid "Revisions"
+msgstr "Revisioni"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-admin-page.php
+msgid "Run opencode mcp list to verify connection"
+msgstr "Esegui opencode mcp list per verificare la connessione"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/access-points/class-access-point-schema.php
+msgid "SEO Framework (Pro)"
+msgstr "SEO Framework (Pro)"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-schema.php
+msgid "SI Licenze: license management API"
+msgstr "SI Licenze: API di gestione licenze"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-settings-page.php
+msgid "SSE Transport for legacy MCP clients"
+msgstr "Trasporto SSE per client MCP legacy"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "Save Changes"
+msgstr "Salva Modifiche"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-settings-page.php
+msgid "Save Settings"
+msgstr "Salva Impostazioni"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/access-points/class-access-point-schema.php
+msgid "Search"
+msgstr "Ricerca"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-settings-page.php
+msgid "Security"
+msgstr "Sicurezza"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-admin-page.php
+msgid "Set transport to \"streamable-http\""
+msgstr "Imposta il trasporto su \"streamable-http\""
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/immens-mcp-fortress.php
+msgid "Settings"
+msgstr "Impostazioni"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "Show only installed plugins"
+msgstr "Mostra solo i plugin installati"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-schema.php
+msgid "Site Health"
+msgstr "Salute del sito"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-schema.php
+msgid "Site Health checks and tests"
+msgstr "Controlli e test di salute del sito"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/access-points/class-access-point-schema.php
+msgid "Site Settings"
+msgstr "Impostazioni Sito"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-registry.php
+msgid "Stackable"
+msgstr "Stackable"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/access-points/class-access-point-schema.php
+msgid "Stackable (Pro)"
+msgstr "Stackable (Pro)"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-schema.php
+msgid "Stackable: blocks, global colors, typography"
+msgstr "Stackable: blocchi, colori globali, tipografia"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "Status"
+msgstr "Stato"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-settings-page.php
+msgid "TTFB, Lighthouse score & page size breakdown"
+msgstr "TTFB, punteggio Lighthouse e dimensioni della pagina"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/access-points/class-access-point-schema.php
+msgid "Taxonomy"
+msgstr "Tassonomia"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/access-points/class-access-point-schema.php
+msgid "Templates"
+msgstr "Template"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "The AI will act as this WordPress user."
+msgstr "L'IA agirà come questo utente WordPress."
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-registry.php
+msgid "The SEO Framework"
+msgstr "The SEO Framework"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-schema.php
+msgid "The SEO Framework: meta, sitemap, social"
+msgstr "The SEO Framework: meta, sitemap, social"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/access-points/class-access-point-schema.php
+msgid "Themes"
+msgstr "Temi"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "These permissions control which REST API endpoints are accessible through this access point, both via the MCP tool and direct HTTP calls. Enable a namespace to expose it to the AI agent."
+msgstr "Questi permessi controllano quali endpoint API REST sono accessibili tramite questo access point, sia tramite lo strumento MCP che tramite chiamate HTTP dirette. Abilita un namespace per esporlo all'agente AI."
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-auth.php
+msgid "This REST API namespace is not enabled for this access point."
+msgstr "Questo namespace API REST non è abilitato per questo access point."
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-audit-log-page.php
+msgid "Time"
+msgstr "Ora"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-audit-log-page.php
+msgid "Tool"
+msgstr "Strumento"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "Tool Permissions"
+msgstr "Permessi Strumenti"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-audit-log-page.php
+msgid "Tool name..."
+msgstr "Nome strumento..."
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-registry.php
+msgid "TranslatePress"
+msgstr "TranslatePress"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/access-points/class-access-point-schema.php
+msgid "TranslatePress (Pro)"
+msgstr "TranslatePress (Pro)"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-schema.php
+msgid "TranslatePress: translations, languages"
+msgstr "TranslatePress: traduzioni, lingue"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "Unauthorized."
+msgstr "Non autorizzato."
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "Unchecked categories are not sent to the AI agent, reducing context usage."
+msgstr "Le categorie non selezionate non vengono inviate all'agente AI, riducendo l'utilizzo del contesto."
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-admin-page.php
+msgid "Unlock 131 additional MCP tools!"
+msgstr "Sblocca 131 strumenti MCP aggiuntivi!"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-settings-page.php
+msgid "Upgrade to Immens MCP Fortress Pro for:"
+msgstr "Passa a Immens MCP Fortress Pro per:"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-admin-page.php
+msgid "Use the URL and your Access Point API key"
+msgstr "Usa l'URL e la chiave API del tuo Access Point"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-admin-page.php
+msgid "Use this URL in Claude Desktop, ChatGPT, Cursor, or any MCP-compatible client."
+msgstr "Usa questo URL in Claude Desktop, ChatGPT, Cursor o qualsiasi client MCP."
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/access-points/class-access-point-schema.php
+msgid "Users"
+msgstr "Utenti"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-admin-page.php
+msgid "Via ClawHub skill (one-click):"
+msgstr "Tramite skill ClawHub (un clic):"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/access-points/class-access-point-schema.php
+msgid "W3 Total Cache"
+msgstr "W3 Total Cache"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-settings-page.php
+msgid "Webhook Endpoint"
+msgstr "Endpoint webhook"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-settings-page.php
+msgid "When a user subscribes, the plugin will POST their name, email, and source to this URL."
+msgstr "Quando un utente si iscrive, il plugin invierà tramite POST nome, email e origine a questo URL."
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/access-points/class-access-point-schema.php
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-schema.php
+msgid "WooCommerce (v1)"
+msgstr "WooCommerce (v1)"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-schema.php
+msgid "WooCommerce (v2)"
+msgstr "WooCommerce (v2)"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-schema.php
+msgid "WooCommerce (v3)"
+msgstr "WooCommerce (v3)"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-schema.php
+msgid "WooCommerce Admin"
+msgstr "WooCommerce Admin"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-schema.php
+msgid "WooCommerce Admin reports and analytics"
+msgstr "Report e analisi di WooCommerce Admin"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-schema.php
+msgid "WooCommerce Analytics data"
+msgstr "Dati di WooCommerce Analytics"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-schema.php
+msgid "WooCommerce POS catalog"
+msgstr "Catalogo WooCommerce POS"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-schema.php
+msgid "WooCommerce Store API (cart, checkout)"
+msgstr "WooCommerce Store API (carrello, checkout)"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-schema.php
+msgid "WooCommerce Store API v1"
+msgstr "WooCommerce Store API v1"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-schema.php
+msgid "WooCommerce Telemetry"
+msgstr "WooCommerce Telemetry"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-schema.php
+msgid "WooCommerce legacy v1 API"
+msgstr "API legacy v1 di WooCommerce"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-schema.php
+msgid "WooCommerce legacy v2 API"
+msgstr "API legacy v2 di WooCommerce"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-schema.php
+msgid "WooCommerce private/internal endpoints"
+msgstr "Endpoint privati/interni di WooCommerce"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-schema.php
+msgid "WooCommerce usage tracking"
+msgstr "Monitoraggio utilizzo di WooCommerce"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-schema.php
+msgid "WooCommerce.com site connection"
+msgstr "Connessione sito WooCommerce.com"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-registry.php
+msgid "WordPress Core"
+msgstr "WordPress Core"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-schema.php
+msgid "WordPress Core (v2)"
+msgstr "WordPress Core (v2)"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-schema.php
+msgid "WordPress Core (v3)"
+msgstr "WordPress Core (v3)"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "WordPress User"
+msgstr "Utente WordPress"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-schema.php
+msgid "WordPress user abilities/capabilities"
+msgstr "Capacità/permessi utente WordPress"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "Write"
+msgstr "Scrittura"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-auth.php
+msgid "Write access is not allowed for this REST API namespace."
+msgstr "L'accesso in scrittura non è consentito per questo namespace API REST."
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/oauth/class-scope-map.php
+msgid "Write access to content"
+msgstr "Accesso in scrittura ai contenuti"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/access-points/class-access-point-schema.php
+msgid "Yoast SEO"
+msgstr "Yoast SEO"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-schema.php
+msgid "Yoast SEO: meta, sitemaps, redirects, social"
+msgstr "Yoast SEO: meta, sitemap, reindirizzamenti, social"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "ago"
+msgstr "fa"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-audit-log-page.php
+msgid "args"
+msgstr "argomenti"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-settings-page.php
+msgid "days"
+msgstr "giorni"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "not installed"
+msgstr "non installato"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-schema.php
+msgid "oEmbed"
+msgstr "oEmbed"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/rest-api/class-rest-api-schema.php
+msgid "oEmbed proxy endpoint"
+msgstr "Endpoint proxy oEmbed"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "plugin not installed"
+msgstr "plugin non installato"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-access-points-page.php
+msgid "requests per minute"
+msgstr "richieste al minuto"
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/oauth/class-consent-screen.php
+msgid "wants to access your WordPress site via MCP."
+msgstr "vuole accedere al tuo sito WordPress tramite MCP."
+
+#: C:/Users/mauro/Local Sites/local/app/public/wp-content/plugins/immens-mcp-fortress/includes/admin/class-settings-page.php
+msgid "🚀 Free Performance Audit for Your WordPress Site"
+msgstr "🚀 Audit gratuito delle prestazioni per il tuo sito WordPress"
 
