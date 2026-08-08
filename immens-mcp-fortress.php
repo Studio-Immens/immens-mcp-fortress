@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Immens MCP Fortress — AI-Powered WordPress Manager for Claude, ChatGPT, Gemini & Cursor
  * Description: Let AI manage your WordPress site. Connect Claude, ChatGPT, Gemini or Cursor to create content, manage media, and control settings — securely, no developer needed.
- * Version:     1.3.7
+ * Version:     1.3.8
  * Author:      Studio Immens
  * Author URI:  https://studioimmens.com
  * License:     GPL-2.0-or-later
@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'IMMENS_MCP_FORTRESS_VERSION', '1.3.7' );
+define( 'IMMENS_MCP_FORTRESS_VERSION', '1.3.8' );
 define( 'IMMENS_MCP_FORTRESS_PLUGIN_FILE', __FILE__ );
 define( 'IMMENS_MCP_FORTRESS_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'IMMENS_MCP_FORTRESS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
@@ -81,4 +81,17 @@ add_filter(
 		);
 		return array_merge( $prepend, $links, $append );
 	}
+);
+
+// Link documentazione nella pagina plugin
+add_filter(
+	'plugin_row_meta',
+	function ( $meta, $file ) {
+		if ( IMMENS_MCP_FORTRESS_PLUGIN_BASENAME === $file ) {
+			$meta[] = '<a href="https://docs.studioimmens.com/immens-mcp-fortress/" target="_blank" rel="noopener">' . esc_html__( 'Documentazione', 'immens-mcp-fortress' ) . '</a>';
+		}
+		return $meta;
+	},
+	10,
+	2
 );
