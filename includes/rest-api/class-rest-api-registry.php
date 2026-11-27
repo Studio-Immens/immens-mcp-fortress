@@ -121,30 +121,29 @@ class REST_API_Registry {
 		$namespace = REST_API_Schema::normalize_namespace( $namespace );
 
 		if ( empty( $access_point['tool_permissions'] ) ) {
-			return true;
+			return false;
 		}
 
 		$all_permissions = json_decode( $access_point['tool_permissions'], true );
 		if ( ! is_array( $all_permissions ) ) {
-			return true;
+			return false;
 		}
 
-		if ( ! empty( $all_permissions['rest-api'] ) ) {
-			if ( empty( $all_permissions['rest-api']['read'] )
-				&& empty( $all_permissions['rest-api']['write'] ) ) {
-				return false;
-			}
-		}
+		// SECURITY: deny by default. A namespace is reachable only when it is
+		// explicitly enabled, either globally through the rest-api grant or
+		// through an explicit ns:<namespace> entry.
+		$globally_enabled = ! empty( $all_permissions['rest-api'] )
+			&& ( ! empty( $all_permissions['rest-api']['read'] ) || ! empty( $all_permissions['rest-api']['write'] ) );
 
-		$ns_key = 'ns:' . $namespace;
-		if ( isset( $all_permissions[ $ns_key ] ) && is_array( $all_permissions[ $ns_key ] ) ) {
-			$ns_perms = $all_permissions[ $ns_key ];
-			if ( empty( $ns_perms['read'] ) && empty( $ns_perms['write'] ) ) {
-				return false;
-			}
-		}
+		$ns_key    = 'ns:' . $namespace;
+		$ns_entry  = isset( $all_permissions[ $ns_key ] ) && is_array( $all_permissions[ $ns_key ] )
+			? $all_permissions[ $ns_key ]
+			: null;
+		$ns_enabled = $ns_entry
+			? ( ! empty( $ns_entry['read'] ) || ! empty( $ns_entry['write'] ) )
+			: false;
 
-		return true;
+		return $globally_enabled || $ns_enabled;
 	}
 
 	public function is_write_allowed( $namespace, $access_point ) {
@@ -153,28 +152,28 @@ class REST_API_Registry {
 		}
 
 		if ( empty( $access_point['tool_permissions'] ) ) {
-			return true;
+			return false;
 		}
 
 		$all_permissions = json_decode( $access_point['tool_permissions'], true );
 		if ( ! is_array( $all_permissions ) ) {
-			return true;
+			return false;
 		}
 
-		if ( ! empty( $all_permissions['rest-api'] ) ) {
-			if ( empty( $all_permissions['rest-api']['write'] ) ) {
-				return false;
-			}
+		$namespace = REST_API_Schema::normalize_namespace( $namespace );
+		$ns_key    = 'ns:' . $namespace;
+
+		$global_write = ! empty( $all_permissions['rest-api'] ) && ! empty( $all_permissions['rest-api']['write'] );
+
+		$ns_entry = isset( $all_permissions[ $ns_key ] ) && is_array( $all_permissions[ $ns_key ] )
+			? $all_permissions[ $ns_key ]
+			: null;
+
+		if ( $ns_entry ) {
+			return ! empty( $ns_entry['write'] );
 		}
 
-		$ns_key = 'ns:' . REST_API_Schema::normalize_namespace( $namespace );
-		if ( isset( $all_permissions[ $ns_key ] ) && is_array( $all_permissions[ $ns_key ] ) ) {
-			if ( empty( $all_permissions[ $ns_key ]['write'] ) ) {
-				return false;
-			}
-		}
-
-		return true;
+		return $global_write;
 	}
 
 	private function get_registered_routes_fallback() {

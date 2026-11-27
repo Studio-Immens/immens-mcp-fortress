@@ -25,7 +25,11 @@ class REST_API_Request_Tool extends Base_Tool {
 	}
 
 	public function get_required_capability() {
-		return 'read';
+		// SECURITY: this tool can reach ANY registered REST route, so it must never
+		// be usable with a low-privilege capability like 'read'. Anything less than
+		// manage_options effectively allows privilege escalation (e.g. creating an
+		// administrator through /wp/v2/users).
+		return 'manage_options';
 	}
 
 	public function get_input_schema() {
@@ -91,13 +95,22 @@ class REST_API_Request_Tool extends Base_Tool {
 			}
 		}
 
+		// SECURITY: never let this generic gateway be used for privilege escalation.
+		// These routes can mint administrators, reset passwords, swap code or read
+		// secrets, so they stay blocked here regardless of access point permissions.
+		if ( $this->is_privileged_route( $method, $route ) ) {
+			throw new \RuntimeException(
+				'Access denied: this REST route is not available through the MCP gateway. Use the WordPress admin or the dedicated MCP tools instead.'
+			);
+		}
+
 		$request = new \WP_REST_Request( $method, $route );
 
 		if ( 'GET' === $method && ! empty( $params ) ) {
 			foreach ( $params as $key => $value ) {
 				$request->set_param( $key, $value );
 			}
-		} elseif ( in_array( $method, array( 'POST', 'PUT', 'PATCH' ), true ) ) {
+		} elseif ( in_array( $method, array( 'POST', 'PUT', 'PATCH', 'DELETE' ), true ) ) {
 			if ( ! empty( $params ) ) {
 				foreach ( $params as $key => $value ) {
 					$request->set_param( $key, $value );
@@ -180,5 +193,57 @@ class REST_API_Request_Tool extends Base_Tool {
 		}
 
 		return $route;
+	}
+
+	/**
+	 * Routes that must never be reachable through the generic REST gateway.
+	 *
+	 * @param string $method HTTP method.
+	 * @param string $route  Route path.
+	 * @return bool
+	 */
+	private function is_privileged_route( $method, $route ) {
+		$route   = '/' . ltrim( (string) $route, '/' );
+		$method  = strtoupper( (string) $method );
+		$is_read = in_array( $method, array( 'GET', 'HEAD' ), true );
+
+		// Application passwords and direct credential handling.
+		// NOTE: this must be checked BEFORE the generic /wp/v2/users rule, because
+		// reading credential endpoints is dangerous too (they leak login ability).
+		if ( false !== strpos( $route, '/application-passwords' ) ) {
+			return true;
+		}
+
+		// User administration: creating/updating/deleting users and roles.
+		if ( preg_match( '#^/wp/v2/users#', $route ) ) {
+			return ! $is_read;
+		}
+
+		// Plugin/theme installation and activation (arbitrary code execution).
+		if ( preg_match( '#^/wp/v2/(plugins|themes)#', $route ) ) {
+			return ! $is_read;
+		}
+
+		// Settings, widgets, global styles and site health can carry sensitive config.
+		if ( preg_match( '#^/wp/v2/(settings|widgets|global-styles|sidebars)#', $route ) ) {
+			return ! $is_read;
+		}
+
+		// Anything that installs code or toggles plugins in WooCommerce.
+		if ( preg_match( '#^/wc(-admin)?/v[0-9]+/(plugins|themes|marketplace)#', $route ) ) {
+			return true;
+		}
+
+		// MCP itself, to avoid recursion against other endpoints.
+		if ( preg_match( '#^/immens-mcp-fortress/#', $route ) ) {
+			return true;
+		}
+
+		// OAuth client/token management.
+		if ( preg_match( '#/(oauth|token)/#', $route ) ) {
+			return true;
+		}
+
+		return false;
 	}
 }

@@ -50,7 +50,10 @@ class Transport {
 		);
 
 		\register_rest_route( self::NAMESPACE_V1, self::ROUTE, $handlers );
-		\register_rest_route( self::NAMESPACE_V1, self::ROUTE_WITH_KEY, $handlers );
+		// SECURITY: the legacy /mcp/{api_key} route is intentionally NOT registered.
+		// Putting a bearer credential in the URL path leaks it into web server logs,
+		// CDN logs (Cloudflare) and browser history. Clients must send the
+		// Authorization header instead.
 	}
 
 	public function transport_permission() {

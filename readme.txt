@@ -3,7 +3,7 @@ Contributors: innovazioneweb
 Tags: mcp, ai, gutenberg, rest-api, security
 Requires at least: 6.0
 Tested up to: 7.0
-Stable tag: 1.3.7
+Stable tag: 1.3.9
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -73,6 +73,13 @@ Yes. API keys are stored as SHA-256 hashes, never in plain text. Rate limiting, 
 The free tier includes 2 access points. Upgrade to Pro for unlimited.
 
 == Changelog ==
+
+= 1.3.9 =
+* SECURITY: fix privilege escalation through the REST API gateway tool (`wp_rest_api_request`). It required only the `read` capability and could be used to create an administrator through `/wp/v2/users`. It now requires `manage_options`.
+* SECURITY: the REST gateway blocks privileged routes (users, application passwords, plugin/theme install, settings, marketplace, MCP/OAuth endpoints) regardless of access point permissions.
+* SECURITY: REST namespace permissions are now deny-by-default. A namespace is reachable only when explicitly granted via `rest-api` or `ns:<namespace>`.
+* SECURITY: removed the legacy `/mcp/{api_key}` route, which leaked bearer credentials into web server, CDN and browser-history logs. Use the `Authorization` header.
+* Fixed `params` being ignored for `DELETE` requests in the REST gateway tool.
 
 = 1.0.0 =
 * Initial release
