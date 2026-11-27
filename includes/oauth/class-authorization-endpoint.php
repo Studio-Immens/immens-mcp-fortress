@@ -7,6 +7,49 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Authorization_Endpoint {
 
+	private function is_allowed_redirect_uri( $client, $redirect_uri ) {
+		if ( empty( $redirect_uri ) ) {
+			return false;
+		}
+		$parts = wp_parse_url( $redirect_uri );
+		if ( empty( $parts['scheme'] ) || empty( $parts['host'] ) ) {
+			return false;
+		}
+		if ( ! in_array( strtolower( $parts['scheme'] ), array( 'http', 'https' ), true ) ) {
+			return false;
+		}
+		if ( ! empty( $parts['user'] ) || ! empty( $parts['pass'] ) ) {
+			return false;
+		}
+
+		$host = strtolower( $parts['host'] );
+
+		// Native / local MCP clients (Claude Desktop, Cursor, ...).
+		if ( in_array( $host, array( 'localhost', '127.0.0.1', '::1' ), true ) ) {
+			return true;
+		}
+
+		// Exact match against the client's registered redirect URIs.
+		if ( is_array( $client ) && ! empty( $client['redirect_uris'] ) ) {
+			$registered = json_decode( $client['redirect_uris'], true );
+			if ( is_array( $registered ) ) {
+				foreach ( $registered as $uri ) {
+					if ( esc_url_raw( $uri ) === $redirect_uri ) {
+						return true;
+					}
+				}
+			}
+		}
+
+		// Same host as this WordPress site.
+		$site_host = strtolower( (string) wp_parse_url( home_url(), PHP_URL_HOST ) );
+		if ( '' !== $site_host && $host === $site_host ) {
+			return true;
+		}
+
+		return false;
+	}
+
 	public function handle_get( \WP_REST_Request $request ) {
 		$response_type = sanitize_key( $request->get_param( 'response_type' ) );
 		$client_id     = sanitize_text_field( $request->get_param( 'client_id' ) );
@@ -29,7 +72,12 @@ class Authorization_Endpoint {
 		$client   = $registry->get_client( $client_id );
 
 		if ( ! $client ) {
-			$registry->register_client( $client_id, 'MCP Client ' . substr( $client_id, 0, 8 ) );
+			$registry->register_client( $client_id, 'MCP Client ' . substr( $client_id, 0, 8 ), array( $redirect_uri ) );
+			$client = $registry->get_client( $client_id );
+		}
+
+		if ( ! $this->is_allowed_redirect_uri( $client, $redirect_uri ) ) {
+			return new \WP_Error( 'invalid_redirect_uri', 'The redirect URI is not allowed for this client', array( 'status' => 400 ) );
 		}
 
 		$consent = new Consent_Screen();
@@ -52,6 +100,12 @@ class Authorization_Endpoint {
 		$code_challenge = sanitize_text_field( $request->get_param( 'code_challenge' ) );
 		$code_challenge_method = sanitize_key( $request->get_param( 'code_challenge_method' ) );
 		$scope         = sanitize_text_field( $request->get_param( 'scope' ) );
+
+		$registry = new Client_Registry();
+		$client   = $registry->get_client( $client_id );
+		if ( ! $this->is_allowed_redirect_uri( $client, $redirect_uri ) ) {
+			return new \WP_Error( 'invalid_redirect_uri', 'The redirect URI is not allowed for this client', array( 'status' => 400 ) );
+		}
 
 		$code = bin2hex( random_bytes( 32 ) );
 
