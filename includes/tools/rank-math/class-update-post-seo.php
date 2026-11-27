@@ -86,6 +86,11 @@ class Update_Post_Seo extends Base_Tool {
 			throw new \RuntimeException( sprintf( 'Post not found: %d', $post_id ) ); // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
 		}
 
+		// SECURITY: verify the caller may edit THIS post, not just the post type.
+		if ( ! current_user_can( 'edit_post', $post_id ) ) {
+			throw new \RuntimeException( sprintf( 'Access denied: you cannot edit post %d.', $post_id ) );
+		}
+
 		$map = array(
 			'title'               => 'rank_math_title',
 			'description'         => 'rank_math_description',

@@ -41,6 +41,11 @@ class Get_Post_Translations extends Base_Tool {
 	public function execute( array $arguments ) {
 		$this->validate_required( $arguments, array( 'post_id' ) );
 		$post_id = $this->parse_required_id( $arguments['post_id'], 'Post ID' );
+		// SECURITY: reading a draft/private post owned by someone else leaks data.
+		if ( get_post( $post_id ) && ! current_user_can( 'read_post', $post_id ) ) {
+			throw new \RuntimeException( sprintf( 'Access denied: you cannot read post %d.', $post_id ) );
+		}
+
 
 		$post = get_post( $post_id );
 		if ( ! $post ) {

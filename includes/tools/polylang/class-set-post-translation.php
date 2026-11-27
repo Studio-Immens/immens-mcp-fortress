@@ -63,6 +63,11 @@ class Set_Post_Translation extends Base_Tool {
 			throw new \RuntimeException( sprintf( 'Translation post not found: %d', $translation_post_id ) ); // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
 		}
 
+		// SECURITY: verify the caller may edit THIS post, not just the post type.
+		if ( ! current_user_can( 'edit_post', $post_id ) ) {
+			throw new \RuntimeException( sprintf( 'Access denied: you cannot edit post %d.', $post_id ) );
+		}
+
 		if ( function_exists( 'pll_set_post_language' ) ) {
 			pll_set_post_language( $post_id, $lang );
 		} else {
