@@ -71,9 +71,13 @@ class Authorization_Endpoint {
 		$registry = new Client_Registry();
 		$client   = $registry->get_client( $client_id );
 
+		// Non auto-registrare il client con il redirect_uri fornito dall'attaccante:
+		// il controllo successivo sarebbe tautologico (l'URI appena registrato
+		// matcherebbe sempre) e permetterebbe di rubare l'authorization code.
+		// Un client sconosciuto deve essere rifiutato; la registrazione avviene
+		// solo via /oauth/register con redirect_uris validate.
 		if ( ! $client ) {
-			$registry->register_client( $client_id, 'MCP Client ' . substr( $client_id, 0, 8 ), array( $redirect_uri ) );
-			$client = $registry->get_client( $client_id );
+			return new \WP_Error( 'unknown_client', 'Unknown client_id. Register the client before authorizing.', array( 'status' => 400 ) );
 		}
 
 		if ( ! $this->is_allowed_redirect_uri( $client, $redirect_uri ) ) {

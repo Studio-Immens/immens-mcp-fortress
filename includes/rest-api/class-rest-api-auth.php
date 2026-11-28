@@ -137,6 +137,19 @@ class REST_API_Auth {
 		$route    = '/' . ltrim( $request->get_route(), '/' );
 		$base_ns  = $this->extract_namespace_from_route( $route );
 
+		// Blocklist dei route privilegiati, la stessa applicata dal tool
+		// wp_rest_api_request. Senza questo, una chiamata HTTP diretta con
+		// Bearer imf_... poteva creare amministratori o installare plugin,
+		// aggirando la correzione introdotta nella 1.3.9.
+		$gw_method = strtoupper( $request->get_method() );
+		if ( $this->is_privileged_route( $gw_method, $route ) ) {
+			return new \WP_Error(
+				'rest_forbidden',
+				__( 'This REST route is not available through the MCP gateway.', 'immens-mcp-fortress' ),
+				array( 'status' => 403 )
+			);
+		}
+
 		$namespace = $route;
 		$parts     = explode( '/', ltrim( $route, '/' ) );
 		if ( count( $parts ) >= 2 ) {
@@ -293,5 +306,54 @@ class REST_API_Auth {
 			),
 			array( '%d', '%s', '%s', '%s', '%s', '%s' )
 		);
+	}
+
+	/**
+	 * Route REST che non devono mai passare dal gateway MCP, indipendentemente
+	 * dai permessi del namespace. Stessa logica del tool wp_rest_api_request.
+	 *
+	 * @param string $method Metodo HTTP.
+	 * @param string $route  Route (es. /wp/v2/users).
+	 * @return bool
+	 */
+	private function is_privileged_route( $method, $route ) {
+		$route  = '/' . ltrim( (string) $route, '/' );
+		$method = strtoupper( (string) $method );
+		$is_read = in_array( $method, array( 'GET', 'HEAD' ), true );
+
+		// Application passwords e gestione credenziali.
+		if ( false !== strpos( $route, '/application-passwords' ) ) {
+			return true;
+		}
+
+		// Amministrazione utenti: creare/modificare/eliminare utenti e ruoli.
+		if ( preg_match( '#^/wp/v2/users#', $route ) ) {
+			return ! $is_read;
+		}
+
+		// Installazione e attivazione di plugin/temi (esecuzione arbitraria).
+		if ( preg_match( '#^/wp/v2/(plugins|themes)#', $route ) ) {
+			return ! $is_read;
+		}
+
+		// Impostazioni, widget, global styles e site health.
+		if ( preg_match( '#^/wp/v2/(settings|widgets|global-styles|sidebars)#', $route ) ) {
+			return ! $is_read;
+		}
+
+		// WooCommerce: installazione codice / toggle plugin.
+		if ( preg_match( '#^/wc(-admin)?/v[0-9]+/(plugins|themes|marketplace)#', $route ) ) {
+			return true;
+		}
+
+		// Il gateway stesso e gli endpoint OAuth/token.
+		if ( preg_match( '#^/immens-mcp-fortress/#', $route ) ) {
+			return true;
+		}
+		if ( preg_match( '#/(oauth|token)/#', $route ) ) {
+			return true;
+		}
+
+		return false;
 	}
 }

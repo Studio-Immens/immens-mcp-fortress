@@ -44,6 +44,15 @@ class Token_Endpoint {
 			return new \WP_Error( 'invalid_grant', 'Invalid or expired authorization code', array( 'status' => 400 ) );
 		}
 
+		// RFC 6749 §4.1.3: il redirect_uri al token endpoint deve coincidere con
+		// quello usato nella richiesta di autorizzazione. Senza questo controllo
+		// un code intercettato può essere riscattato con un redirect diverso.
+		if ( ! empty( $row['redirect_uri'] ) ) {
+			if ( empty( $redirect_uri ) || esc_url_raw( $redirect_uri ) !== esc_url_raw( $row['redirect_uri'] ) ) {
+				return new \WP_Error( 'invalid_grant', 'redirect_uri mismatch', array( 'status' => 400 ) );
+			}
+		}
+
 		if ( ! empty( $row['code_challenge'] ) ) {
 			if ( empty( $code_verifier ) ) {
 				return new \WP_Error( 'invalid_grant', 'PKCE code_verifier required', array( 'status' => 400 ) );

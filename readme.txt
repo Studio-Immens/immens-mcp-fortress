@@ -1,9 +1,9 @@
-﻿=== Immens MCP Fortress â€” AI-Powered WordPress Manager for Claude, ChatGPT, Gemini & Cursor ===
+=== Immens MCP Fortress â€” AI-Powered WordPress Manager for Claude, ChatGPT, Gemini & Cursor ===
 Contributors: innovazioneweb
 Tags: mcp, ai, gutenberg, rest-api, security
 Requires at least: 6.0
 Tested up to: 7.0
-Stable tag: 1.3.10
+Stable tag: 1.3.11
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -74,6 +74,14 @@ The free tier includes 2 access points. Upgrade to Pro for unlimited.
 
 == Changelog ==
 
+= 1.3.11 =
+* SECURITY: OAuth authorization no longer auto-registers an unknown client with the redirect_uri supplied in the request. Previously the redirect check validated the URI against the record created a moment earlier, so a crafted authorize link could redirect the authorization code to an attacker-controlled host and take over the site with an admin-scoped MCP token.
+* SECURITY: registered redirect_uris are now restricted to loopback clients (127.0.0.1, ::1, localhost) or the site's own host.
+* SECURITY: the OAuth client_secret is now persisted (SHA-256 hash) and verified; confidential clients must present a matching secret. redirect_uri must match the one used at authorize time (RFC 6749 section 4.1.3).
+* SECURITY: the REST API gateway now enforces the privileged-route blocklist. Previously only the wp_rest_api_request tool blocked /wp/v2/users, application passwords, plugin/theme install and settings, so a direct request with a Bearer key could still create an administrator.
+* SECURITY: wildcard tool permissions no longer grant write tools on read-only access. A category with read only (for example Polylang or Yoast) previously matched the same wildcard used for write, exposing set/update tools.
+* SECURITY: wp_upload_media sanitizes the filename with sanitize_file_name() and wp_basename(), uses wp_unique_filename() and verifies the resolved path stays inside the temp directory. A filename such as ../../evil.php could write outside it and, when get_temp_dir() falls back to wp-content, produce an executable file.
+* SECURITY: rest-api and meta write access are disabled by default for new access points.
 = 1.3.10 =
 * SECURITY: read tools now enforce per-object authorization (read_post). Without it, a user with edit_posts could read drafts and private posts owned by others: wp_parse_blocks, yoast_get_post_seo, rankmath_get_post_seo, polylang_get_post_translations.
 * SECURITY: write tools for Rank Math, Yoast and Polylang now enforce edit_post per object, closing the same cross-owner write path already fixed in the other integrations.

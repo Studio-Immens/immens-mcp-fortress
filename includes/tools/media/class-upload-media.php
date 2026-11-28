@@ -70,17 +70,27 @@ class Upload_Media extends Base_Tool {
 		file_put_contents( $tmp_file, $decoded );
 		$file_path = $tmp_file;
 
-		$filename = $arguments['filename'];
+		// Il filename arriva dal client e prima NON veniva sanitizzato: con
+		// "../../evil.php" si scriveva fuori dalla temp dir (e, se get_temp_dir()
+		// fa fallback su wp-content, il file finiva nella webroot eseguibile).
+		$filename = sanitize_file_name( wp_basename( (string) $arguments['filename'] ) );
+		if ( '' === $filename ) {
+			throw new \InvalidArgumentException( 'Invalid filename.' );
+		}
 		$mime     = wp_check_filetype( $filename );
-		$tmp_dir  = get_temp_dir();
+		$tmp_dir  = trailingslashit( get_temp_dir() );
 
-		$tmp_path = $tmp_dir . $filename;
+		$tmp_path = $tmp_dir . wp_unique_filename( $tmp_dir, $filename );
+
+		// Verifica finale: il path deve restare dentro la temp dir.
+		$real_tmp  = wp_normalize_path( (string) realpath( $tmp_dir ) );
+		$real_path = wp_normalize_path( (string) realpath( dirname( $tmp_path ) ) );
+		if ( '' === $real_tmp || 0 !== strpos( $real_path . '/', $real_tmp . '/' ) ) {
+			throw new \RuntimeException( 'Invalid temporary file path.' );
+		}
 
 		if ( ! copy( $file_path, $tmp_path ) ) {
-			$tmp_path = $tmp_dir . wp_generate_uuid4() . '-' . $filename;
-			if ( ! copy( $file_path, $tmp_path ) ) {
-				throw new \RuntimeException( 'Failed to copy file to temp directory.' ); // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
-			}
+			throw new \RuntimeException( 'Failed to copy file to temp directory.' ); // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
 		}
 
 		$file = array(

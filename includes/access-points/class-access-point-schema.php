@@ -47,8 +47,10 @@ class Access_Point_Schema {
 			'site'               => array( 'read' => true, 'write' => false ),
 			'search'             => array( 'read' => true, 'write' => false ),
 			'revisions'          => array( 'read' => true, 'write' => false ),
-			'meta'               => array( 'read' => true, 'write' => true ),
-			'rest-api'           => array( 'read' => true, 'write' => true ),
+			'meta'               => array( 'read' => true, 'write' => false ),
+			// Il gateway REST consente di raggiungere qualunque route: in write
+			// equivale a un accesso amministrativo completo. Default: disattivato.
+			'rest-api'           => array( 'read' => true, 'write' => false ),
 			'woocommerce'        => array( 'read' => true, 'write' => false ),
 			'yoast'              => array( 'read' => true, 'write' => true ),
 			'rank-math'          => array( 'read' => true, 'write' => true ),
@@ -171,8 +173,19 @@ class Access_Point_Schema {
 
 			foreach ( $category_to_prefixes[ $category ] as $tool ) {
 				if ( false !== strpos( $tool, '*' ) ) {
+					// Per i wildcard (es. wc_*, yoast_*, polylang_*) il permesso
+					// "read" concederebbe ANCHE i tool di scrittura, perché il
+					// pattern è identico. Separiamo quindi:
+					//  - prima concessione: pattern read-only (get_/list_/count_/search_)
+					//  - scrittura: pattern pieno, solo con permesso write.
+					$read_only_pattern = preg_replace( '/\*$/', 'get_*', $tool );
+					$is_list_pattern   = preg_replace( '/\*$/', 'list_*', $tool );
+					$is_search_pattern = preg_replace( '/\*$/', 'search_*', $tool );
+
 					if ( $read ) {
-						$allowed[] = $tool;
+						$allowed[] = $read_only_pattern;
+						$allowed[] = $is_list_pattern;
+						$allowed[] = $is_search_pattern;
 					}
 					if ( $write ) {
 						$allowed[] = $tool;
